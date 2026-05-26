@@ -1,17 +1,157 @@
 ---
+// src/pages/index.astro
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+// Pastikan nama import file komponennya sesuai dengan yang ada di folder src/components kamu ya!
+import Hero from '../components/Hero.astro'
+import Masalahauradigital from '../components/MasalahClient.astro'
+import ApaItuauradigital from '../components/ApaItuauradigital.astro'
+import Manfaatauradigital from '../components/Manfaatauradigital.astro'
+import MengapaMemilihauradigital from '../components/MengapaMemilihauradigital.astro' 
+import Testimonials from '../components/Testimonials.astro'
+import Faqauradigital from '../components/Faqauradigital.astro'
+import MetodePembayaran from '../components/MetodePembayaran.astro'
+import DaftarHarga from '../components/DaftarHarga.astro' 
+import CaraOrder from '../components/CaraOrder.astro'
 
+// ==========================================
+// 1. DATA SEO
+// ==========================================
+const title = "auradigital | Agensi Eskalasi Digital & Optimasi Media Sosial";
+const description = "Mitra eskalasi digital terpercaya. Tingkatkan otoritas brand, retensi interaksi, dan potensi konversi organik di multi-platform secara profesional dan aman.";
+const keywords = "agensi digital, optimasi media sosial, manajemen interaksi, social proof, pertumbuhan organik, auradigital, eskalasi brand";
+
+// ==========================================
+// 2. DATA KONTEN HALAMAN (FRONTMATTER)
+// ==========================================
+
+const dataHero = {
+  tipe: "home" as const, // <--- Tambahkan 'as const' di sini
+  labelTeks: "Agensi Eskalasi Digital No. 1",
+  labelIcon: "lucide:award",
+  judulUtama: 'auradigital Membantu Meningkatkan <span class="text-violet-500">Otoritas Digital Anda</span>',
+  deskripsi: "Dominasi algoritma, bangun kredibilitas brand, dan maksimalkan potensi organik di multi-platform dengan strategi eskalasi interaksi yang terukur dan 100% aman.",
+  teksTombol1: "Jelajahi Solusi",
+  linkTombol1: "/layanan/",
+  teksTombol2: "Konsultasi Strategis",
+  linkTombol2: "https://wa.me/6289634740308",
+  gambarHero: "/image/hero-auradigital.png"
+};
+
+const dataMasalah = {
+  judulUtama: 'Menghadapi Kendala <span class="text-violet-600">Eksposur Digital?</span>',
+  deskripsiUtama: "Membangun kredibilitas audiens organik dari titik nol adalah tantangan berat. Banyak brand tertahan pertumbuhannya karena kendala visibilitas ini:",
+  ms1Teks: 'Konversi terhambat karena tingkat <strong class="text-violet-600 font-bold">social proof</strong> dan interaksi profil bisnis yang masih minim.',
+  ms2Teks: 'Kualitas konten premium <strong class="text-violet-600 font-bold">kalah bersaing di algoritma</strong> karena rendahnya retensi interaksi awal.',
+  ms3Teks: 'Tingkat produksi konten tinggi namun <strong class="text-violet-600 font-bold">jangkauan impresi statis</strong> dan gagal menembus rekomendasi audiens baru.',
+  ms4Teks: 'Sulit meyakinkan calon mitra bisnis akibat <strong class="text-violet-600 font-bold">otoritas brand</strong> yang belum terbangun solid di platform digital.'
+};
+
+const dataApaItu = {
+  judulUtama: 'Lebih Dari Sekadar <span class="text-violet-500">Metrik Visibilitas</span>',
+  deskripsiUtama: "auradigital bukan sekadar penambah angka. Kami adalah katalisator awal agar entitas digital Anda tervalidasi secara profesional dan siap mendominasi sistem algoritma.",
+  k1Judul: "Otoritas Psikologis",
+  k1Teks: "Secara empiris, saat audiens melihat interaksi yang masif pada suatu entitas, persepsi mereka otomatis mevalidasi kualitas dan kredibilitas brand tersebut (<strong class='text-violet-600'>Social Proof</strong>).",
+  k2Judul: "Katalisator Algoritma",
+  k2Teks: "Kami merancang distribusi interaksi awal yang strategis untuk memicu sistem rekomendasi platform agar <strong class='text-violet-600'>menyebarkan konten</strong> Anda kepada target audiens organik secara presisi."
+};
+
+const dataManfaat = {
+  judulUtama: 'Dampak Strategis Bagi <span class="text-violet-600">Pertumbuhan Bisnis</span>',
+  deskripsiUtama: "Bukan sekadar kosmetik digital. Optimasi interaksi yang terukur akan mengakselerasi potensi organik dan performa jangka panjang akun bisnis Anda.",
+  m1Judul: "Optimasi Jangkauan",
+  m1Teks: "Sinyal retensi interaksi yang stabil memicu algoritma platform untuk mendistribusikan aset digital Anda ke audiens potensial yang lebih luas.",
+  m2Judul: "Akselerasi Konversi",
+  m2Teks: "Profil dengan otoritas interaksi yang kuat secara psikologis memvalidasi kualitas layanan, sehingga tingkat keraguan calon pelanggan menurun drastis.",
+  m3Judul: "Efisiensi Operasional",
+  m3Teks: "Minimalisasi waktu tunggu untuk mendapatkan interaksi pertama. Biarkan infrastruktur kami yang memicu momentum pertumbuhan awal Anda.",
+  m4Judul: "Dominasi Sektoral",
+  m4Teks: "Membangun persepsi bahwa brand Anda adalah figur otoritatif yang memiliki daya tarik tinggi di ekosistem industri Anda."
+};
+
+const dataMengapaMemilih = {
+  judulUtama: 'Mengapa Bermitra Dengan <span class="text-violet-600">auradigital?</span>',
+  deskripsiUtama: "Kami mengutamakan integritas dan presisi eksekusi. Ini alasan korporasi dan kreator mempercayakan eskalasi digitalnya kepada infrastruktur kami.",
+  
+  mk1Judul: "Infrastruktur Eksternal",
+  mk1Teks: "Proses berjalan 100% dari luar sistem akun Anda. Kami memastikan kepatuhan tanpa pernah meminta akses kredensial atau otorisasi internal.",
+  
+  mk2Judul: "Eksekusi Taktis",
+  mk2Teks: "Sistem cerdas kami mulai mendistribusikan interaksi secara otomatis sesaat setelah konfirmasi, tanpa hambatan antrean manual.",
+  
+  mk3Judul: "Stabilitas Metrik",
+  mk3Teks: "Fokus kami adalah kualitas retensi interaksi jangka panjang untuk menjaga kredibilitas profil Anda tetap solid.",
+  
+  mk4Judul: "Efisiensi Anggaran",
+  mk4Teks: "Sebagai penyedia ekosistem eskalasi tingkat pertama, kami merancang struktur penawaran yang sangat rasional untuk investasi B2B.",
+  
+  mk5Judul: "Proteksi Retensi",
+  mk5Teks: "Seluruh layanan dilengkapi dengan sistem proteksi stabilitas otomatis untuk memastikan performa yang berkelanjutan.",
+  
+  mk6Judul: "Pendampingan Dedikatif",
+  mk6Teks: "Tim ahli strategis kami siap merespons, mendampingi, dan memastikan setiap kampanye berjalan sejalan dengan target Anda 24/7."
+};
+
+const dataFaq = {
+  judulUtama: 'Pusat Informasi <br/> <span class="text-violet-600">Layanan auradigital</span>',
+  deskripsiUtama: "Membutuhkan pemahaman lebih mendalam terkait integrasi layanan kami? Berikut adalah penjelasan komprehensif seputar sistem eskalasi digital kami.",
+  linkWhatsapp: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital,%20saya%20ingin%20berkonsultasi%20mengenai%20layanan...",
+  
+  faq1Judul: "Bagaimana tingkat kepatuhan dan keamanan proses eskalasi ini?",
+  faq1Teks: "Integritas aset Anda adalah prioritas utama. Seluruh mekanisme kami murni dijalankan secara eksternal melalui distribusi tautan URL. Kami tidak memerlukan otorisasi akses maupun kredensial internal, sehingga profil bisnis Anda terjamin aman dari risiko pembatasan platform.",
+  
+  faq2Judul: "Apakah stabilitas interaksi yang didapatkan bersifat jangka panjang?",
+  faq2Teks: "Algoritma distribusi kami dirancang untuk mereplikasi interaksi natural demi stabilitas maksimal. Namun, sebagai bentuk perlindungan investasi Anda dari pembaruan algoritma platform, kami menyertakan fasilitas Proteksi Retensi Bergaransi pada setiap kampanye.",
+  
+  faq3Judul: "Berapa durasi waktu eksekusi yang dibutuhkan untuk satu kampanye?",
+  faq3Teks: "Sistem kami terhubung secara real-time. Segera setelah konfirmasi kampanye divalidasi, infrastruktur kami langsung merespons. Umumnya, peningkatan metrik awal sudah dapat terpantau dalam rentang 1 hingga 5 jam masa operasional.",
+  
+  faq4Judul: "Apakah terdapat batasan volume pemesanan untuk setiap layanan?",
+  faq4Teks: "Infrastruktur kami sangat elastis untuk mengakomodasi berbagai skala bisnis. Kami dapat menangani permintaan strategis mulai dari 100 impresi awal hingga eskalasi masif berskala puluhan ribu interaksi per target URL.",
+  
+  faq5Judul: "Dapatkah saya mendistribusikan volume interaksi ke beberapa aset konten?",
+  faq5Teks: "Tentu. Strategi distribusi ganda sangat kami rekomendasikan. Sebagai contoh, volume 1.000 interaksi dapat dialokasikan secara proporsional ke 10 aset konten yang berbeda. Anda cukup melampirkan daftar URL target pada tim operasional kami.",
+  
+  faq6Judul: "Apakah diperlukan pengaturan khusus pada akun selama proses berjalan?",
+  faq6Teks: "Demi kelancaran sinkronisasi data, aset digital maupun profil Anda harus berstatus Publik selama masa kampanye. Jika akses dibatasi, sistem eksternal kami tidak dapat melakukan validasi URL sehingga proses distribusi akan tertunda."
+};
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<DefaultLayout title={title} description={description} keywords={keywords}>
+  
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://auradigital.id/#website",
+          "url": "https://auradigital.id",
+          "name": "auradigital",
+          "description": "Agensi Eskalasi Digital & Optimasi Media Sosial Terpercaya",
+          "inLanguage": "id-ID"
+        }
+      ]
+    }
+  </script>
+
+  <Hero {...dataHero} />
+  
+  <Masalahauradigital {...dataMasalah} />
+  
+  <ApaItuauradigital {...dataApaItu} />
+
+  <Manfaatauradigital {...dataManfaat} />
+
+  <MengapaMemilihauradigital {...dataMengapaMemilih} />
+  
+  <Testimonials />
+  
+  <MetodePembayaran />
+  
+  <DaftarHarga />
+
+  <CaraOrder />
+  
+  <Faqauradigital {...dataFaq} />
+
+</DefaultLayout>

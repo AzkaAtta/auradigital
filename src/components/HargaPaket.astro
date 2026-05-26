@@ -1,0 +1,150 @@
+---
+// src/components/HargaPaket.astro
+
+export interface Props {
+  judulHarga?: string;
+  deskripsiHarga?: string;
+  
+  // Data Paket 1 (Kiri)
+  p1Gambar?: string;
+  p1Nama?: string;
+  p1Fitur1?: string;
+  p1Fitur2?: string;
+  p1Fitur3?: string;
+  p1Harga?: string;
+  p1Link?: string; 
+  
+  // Data Paket 2 (Kanan)
+  p2Label?: string;
+  p2Gambar?: string;
+  p2Nama?: string;
+  p2Fitur1?: string;
+  p2Fitur2?: string;
+  p2Fitur3?: string;
+  p2Harga?: string;
+  p2Link?: string; 
+}
+
+const {
+  judulHarga = "Pilihan Paket Favorit",
+  deskripsiHarga,
+  p1Gambar, p1Nama, p1Fitur1, p1Fitur2, p1Fitur3, p1Harga, p1Link,
+  p2Label = "TERLARIS", p2Gambar, p2Nama, p2Fitur1, p2Fitur2, p2Fitur3, p2Harga, p2Link
+} = Astro.props;
+---
+<section id="harga-paket" class="relative py-24 bg-[#090514] border-y border-violet-900/30 overflow-hidden">
+  
+  {/* 🌟 Background Titik & Glow Ungu Premium */}
+  <div class="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.45)_2px,transparent_2px)] [background-size:32px_32px] [background-position:16px_16px] z-0 animate-twinkle opacity-30"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[400px] bg-violet-600/35 blur-[120px] rounded-full pointer-events-none z-0"></div>
+
+  <div class="max-w-4xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-16 animate-on-scroll-hargapaket opacity-0 translate-y-8 transform transition-all duration-700 ease-out">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">{judulHarga}</h2>
+      <p class="text-violet-200/60 max-w-xl mx-auto">{deskripsiHarga}</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      {/* ======================= KOTAK KIRI (UNGU GELAP ELEGAN) ======================= */}
+      {/* 💥 Smackdown: Semua slate diganti jadi violet-950 dan violet-800 */}
+      <div class="animate-on-scroll-hargapaket opacity-0 translate-y-8 transform transition-all duration-700 ease-out bg-violet-950/40 backdrop-blur-md rounded-[2rem] border border-violet-800/50 overflow-hidden flex flex-col hover:border-violet-500/50 transition-all duration-300 shadow-lg shadow-violet-900/10">
+        <div class="w-full bg-violet-950/60 p-6 border-b border-violet-800/50">
+          {p1Gambar && <img src={p1Gambar} alt={p1Nama} class="mx-auto h-auto object-contain drop-shadow-[0_0_15px_rgba(124,58,237,0.3)]" style="max-height: 200px;" />}
+        </div>
+        <div class="p-8 pt-6 flex-1 flex flex-col">
+          <h3 class="text-2xl font-bold text-white mb-6">{p1Nama}</h3>
+          <ul class="space-y-4 mb-8 flex-1">
+            <li class="flex items-start gap-3 text-violet-100/80">
+              <span class="text-violet-500 text-xl leading-none mt-1">●</span>
+              <span class="text-lg">{p1Fitur1}</span>
+            </li>
+            <li class="flex items-start gap-3 text-violet-100/80">
+              <span class="text-violet-500 text-xl leading-none mt-1">●</span>
+              <span class="text-lg">{p1Fitur2}</span>
+            </li>
+            <li class="flex items-start gap-3 text-violet-100/80">
+              <span class="text-violet-500 text-xl leading-none mt-1">●</span>
+              <span class="text-lg">{p1Fitur3}</span>
+            </li>
+          </ul>
+          <div class="mb-6 border-t border-violet-800/50 pt-6">
+            <p class="text-sm text-violet-300/70 mb-1">Harga Spesial</p>
+            <div class="flex items-baseline gap-2">
+              <span class="text-4xl font-extrabold text-white">{p1Harga}</span>
+            </div>
+          </div>
+          {p1Link && (
+            <a href={p1Link} class="block w-full text-center bg-violet-900/30 hover:bg-violet-600 border border-violet-700/50 hover:border-violet-500 !text-white font-bold py-4 rounded-xl transition-all duration-300 !no-underline">
+              Pesan Sekarang
+            </a>
+          )}
+        </div>
+      </div>
+
+      {/* ======================= KOTAK KANAN (UNGU MENYALA) ======================= */}
+      {/* 💥 Smackdown: Semua sisa hitam diganti jadi violet-900 dan violet-800 */}
+      <div class="animate-on-scroll-hargapaket opacity-0 translate-y-8 transform transition-all duration-700 ease-out delay-200 bg-violet-900/40 backdrop-blur-md rounded-[2rem] border-2 border-violet-500/60 overflow-hidden flex flex-col relative hover:border-violet-400 transition-all duration-300 shadow-[0_0_30px_rgba(124,58,237,0.15)] transform hover:-translate-y-1">
+        {p2Label && <div class="absolute top-4 right-4 bg-violet-600 text-white text-xs font-bold px-4 py-1.5 rounded-full z-20 shadow-md tracking-wide">{p2Label}</div>}
+        <div class="w-full bg-violet-800/30 p-6 border-b border-violet-500/30">
+          {p2Gambar && <img src={p2Gambar} alt={p2Nama} class="mx-auto h-auto object-contain drop-shadow-[0_0_20px_rgba(124,58,237,0.5)]" style="max-height: 200px;" />}
+        </div>
+        <div class="p-8 pt-6 flex-1 flex flex-col">
+          <h3 class="text-2xl font-bold text-white mb-6">{p2Nama}</h3>
+          <ul class="space-y-4 mb-8 flex-1">
+            <li class="flex items-start gap-3 text-violet-50">
+              <span class="text-violet-400 text-xl leading-none mt-1">●</span>
+              <span class="text-lg">{p2Fitur1}</span>
+            </li>
+            <li class="flex items-start gap-3 text-violet-50">
+              <span class="text-violet-400 text-xl leading-none mt-1">●</span>
+              <span class="text-lg">{p2Fitur2}</span>
+            </li>
+            <li class="flex items-start gap-3 text-violet-50">
+              <span class="text-violet-400 text-xl leading-none mt-1">●</span>
+              <span class="text-lg">{p2Fitur3}</span>
+            </li>
+          </ul>
+          <div class="mb-6 border-t border-violet-500/30 pt-6">
+            <p class="text-sm text-violet-300/80 mb-1">Harga Spesial</p>
+            <div class="flex flex-col gap-1">
+              <span class="text-4xl font-extrabold text-violet-300">{p2Harga}</span>
+            </div>
+          </div>
+          {p2Link && (
+            <a href={p2Link} class="block w-full text-center bg-violet-600 hover:bg-violet-500 !text-white font-bold py-4 rounded-xl transition-all duration-300 !no-underline shadow-lg shadow-violet-900/50">
+              Pesan Sekarang
+            </a>
+          )}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('opacity-0', 'translate-y-8');
+          entry.target.classList.add('opacity-100', 'translate-y-0');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    const items = document.querySelectorAll('.animate-on-scroll-hargapaket');
+    items.forEach((item) => observer.observe(item));
+  });
+</script>
+
+<style>
+  @keyframes smooth-twinkle {
+    0%, 100% { opacity: 0.12; }
+    50% { opacity: 0.35; } 
+  }
+  .animate-twinkle {
+    animation: smooth-twinkle 8s ease-in-out infinite;
+  }
+</style>

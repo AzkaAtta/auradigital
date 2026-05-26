@@ -1,0 +1,49 @@
+---
+// src/components/DaftarHarga.astro
+import { Icon } from 'astro-icon/components'
+---
+<section class="py-20 md:py-24 bg-white overflow-hidden">
+  <div class="max-w-5xl mx-auto px-6 text-center">
+    
+    <div class="animate-on-scroll-harga opacity-0 translate-y-8 transform transition-all duration-700 ease-out bg-gradient-to-br from-blue-600 to-indigo-800 rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
+      
+      <div class="absolute top-0 right-0 -mt-10 -mr-10 w-56 h-56 bg-white opacity-10 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-blue-400 opacity-20 rounded-full blur-2xl"></div>
+
+      <div class="relative z-10">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white mb-4 tracking-tight">
+          Cek Daftar Harga Lengkap Kami
+        </h2>
+        
+        <p class="text-blue-100 text-sm md:text-base mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">
+          Mulai dari layanan interaksi Organik hingga Bot untuk Instagram dan platform lainnya. Transparan, lengkap, dan bisa Anda cek langsung ketersediaan layanannya melalui Spreadsheet kami.
+        </p>
+        
+                        <a href="https://docs.google.com/spreadsheets/d/1BXtgxl_qcKRe4UOIm__BDH5DwufpyX-56Ru-NDDXMcI/edit?usp=sharing" 
+          target="_blank" rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 md:gap-3 !bg-transparent !text-white border-2 !border-white/50 font-extrabold text-sm md:text-base px-6 py-3.5 md:px-8 md:py-4 rounded-full shadow-lg shadow-emerald-900/20 hover:!bg-white hover:!text-emerald-700 hover:scale-105 hover:shadow-2xl transition-all duration-300 w-full sm:w-auto !no-underline"
+        >
+          <Icon name="lucide:file-spreadsheet" class="w-5 h-5 !text-emerald-400" />
+          Lihat Spreadsheet Harga
+        </a>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('opacity-0', 'translate-y-8');
+          entry.target.classList.add('opacity-100', 'translate-y-0');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const items = document.querySelectorAll('.animate-on-scroll-harga');
+    items.forEach((item) => observer.observe(item));
+  });
+</script>

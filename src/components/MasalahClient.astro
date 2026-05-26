@@ -1,0 +1,76 @@
+---
+// src/components/MasalahClient.astro
+import { Icon } from 'astro-icon/components'
+
+const {
+  judulUtama,
+  deskripsiUtama,
+  ms1Teks,
+  ms2Teks,
+  ms3Teks,
+  ms4Teks
+} = Astro.props;
+---
+<section id="masalah" class="py-20 md:py-24 bg-white border-b border-slate-100 overflow-hidden">
+  <div class="max-w-4xl mx-auto px-6">
+    
+    <div class="animate-masalah-judul opacity-0 translate-y-8 transform transition-all duration-700 ease-out text-center mb-14">
+      <h2 class="text-2xl md:text-3xl lg:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight" set:html={judulUtama}></h2>
+      <p class="text-sm md:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed">
+        {deskripsiUtama}
+      </p>
+    </div>
+
+    <div class="flex flex-col gap-8 max-w-2xl mx-auto">
+      
+      <div class="animate-masalah-list opacity-0 translate-y-8 transform transition-all duration-700 ease-out flex items-center gap-5 group">
+        <div class="w-16 h-16 shrink-0 bg-[#0B1B42] rounded-2xl flex items-center justify-center text-white shadow-md transform group-hover:-translate-y-1 transition-all duration-300">
+          <Icon name="lucide:presentation" class="w-8 h-8" />
+        </div>
+        <p class="text-base md:text-lg text-slate-700 leading-relaxed" set:html={ms1Teks}></p>
+      </div>
+
+      <div class="animate-masalah-list opacity-0 translate-y-8 transform transition-all duration-700 ease-out delay-150 flex items-center gap-5 group">
+        <div class="w-16 h-16 shrink-0 bg-[#0B1B42] rounded-2xl flex items-center justify-center text-white shadow-md transform group-hover:-translate-y-1 transition-all duration-300">
+          <Icon name="lucide:message-square" class="w-8 h-8" />
+        </div>
+        <p class="text-base md:text-lg text-slate-700 leading-relaxed" set:html={ms2Teks}></p>
+      </div>
+
+      <div class="animate-masalah-list opacity-0 translate-y-8 transform transition-all duration-700 ease-out delay-300 flex items-center gap-5 group">
+        <div class="w-16 h-16 shrink-0 bg-[#0B1B42] rounded-2xl flex items-center justify-center text-white shadow-md transform group-hover:-translate-y-1 transition-all duration-300">
+          <Icon name="lucide:users" class="w-8 h-8" />
+        </div>
+        <p class="text-base md:text-lg text-slate-700 leading-relaxed" set:html={ms3Teks}></p>
+      </div>
+
+      <div class="animate-masalah-list opacity-0 translate-y-8 transform transition-all duration-700 ease-out delay-[500ms] flex items-center gap-5 group">
+        <div class="w-16 h-16 shrink-0 bg-[#0B1B42] rounded-2xl flex items-center justify-center text-white shadow-md transform group-hover:-translate-y-1 transition-all duration-300">
+          <Icon name="lucide:megaphone" class="w-8 h-8" />
+        </div>
+        <p class="text-base md:text-lg text-slate-700 leading-relaxed" set:html={ms4Teks}></p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('opacity-0', 'translate-y-8');
+          entry.target.classList.add('opacity-100', 'translate-y-0');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const judul = document.querySelector('.animate-masalah-judul');
+    if (judul) observer.observe(judul);
+
+    const lists = document.querySelectorAll('.animate-masalah-list');
+    lists.forEach((list) => observer.observe(list));
+  });
+</script>

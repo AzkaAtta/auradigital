@@ -1,0 +1,162 @@
+---
+// src/components/Hero.astro
+import { Icon } from 'astro-icon/components';
+
+// Definisi tipe data agar TypeScript rapi
+interface Props {
+  tipe?: "home" | "service";
+  judulUtama?: string;
+  deskripsi?: string;
+  teksTombol1?: string;
+  linkTombol1?: string;
+  teksTombol2?: string;
+  linkTombol2?: string;
+  gambarHero?: string;
+  labelTeks?: string;
+  labelIcon?: string;
+}
+
+const { 
+  tipe = "home", 
+  judulUtama, 
+  deskripsi, 
+  teksTombol1, 
+  linkTombol1, 
+  teksTombol2, 
+  linkTombol2, 
+  gambarHero,
+  labelTeks,
+  labelIcon
+} = Astro.props;
+---
+
+          {/* ================= HERO TIPE HOME ================= */}
+{tipe === "home" && (
+  <section class="relative pt-32 pb-48 md:pt-40 md:pb-64 bg-[#090514] text-white overflow-hidden">
+    
+    {/* 🌟 1. BACKGROUND TITIK (TWINKLE) */}
+    <div class="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.45)_2px,transparent_2px)] [background-size:32px_32px] [background-position:16px_16px] z-0 animate-twinkle"></div>
+    
+    {/* 🔮 2. GLOW UNGU PREMIUM ATAS */}
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] bg-violet-600/35 blur-[120px] rounded-full pointer-events-none z-0"></div>
+
+    <div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
+      <div class="flex flex-col items-center">
+        
+        {/* Kontainer Teks */}
+        <div class="max-w-3xl flex flex-col items-center transform transition-all duration-1000 ease-out z-10 relative">
+          
+          {labelTeks && (
+            <span class="inline-flex items-center gap-2 bg-violet-900/40 border border-violet-700/50 text-violet-300 px-4 py-1.5 rounded-full text-xs md:text-sm font-medium mb-8 backdrop-blur-sm shadow-sm">
+              {labelIcon && <Icon name={labelIcon} class="w-4 h-4" />}
+              {labelTeks}
+            </span>
+          )}
+
+          <h1 class="text-3xl md:text-4xl lg:text-5xl font-black mb-6 leading-[1.2] tracking-tight text-white" set:html={judulUtama}></h1>
+          <p class="text-sm md:text-base text-slate-300 leading-relaxed font-normal max-w-2xl" set:html={deskripsi}></p>
+          
+          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-10 w-full sm:w-auto">
+            {teksTombol1 && linkTombol1 && (
+              <a href={linkTombol1} class="inline-flex justify-center items-center !bg-transparent hover:!bg-white hover:!text-violet-600 !text-white font-bold px-8 py-3.5 rounded-full border-2 !border-white/50 transition-all text-sm md:text-base min-w-[200px] !no-underline shadow-lg shadow-violet-900/20">
+                {teksTombol1}
+              </a>
+            )}
+            
+            {teksTombol2 && linkTombol2 && (
+              <a href={linkTombol2} target="_blank" rel="noopener noreferrer" class="inline-flex justify-center items-center !bg-white/10 hover:!bg-white hover:!text-violet-900 !text-white font-bold px-8 py-3.5 rounded-full border-2 !border-white/20 transition-all text-sm md:text-base min-w-[200px] backdrop-blur-sm !no-underline">
+                {teksTombol2}
+              </a>
+            )}
+          </div>
+
+        </div>
+
+        {/* Kontainer Gambar - 🛠️ POSISI DITURUNKAN SEDIKIT JADI -mt-32 🛠️ */}
+        {gambarHero && (
+          <div class="w-full max-w-3xl relative -mt-4 md:-mt-32 z-20 flex justify-center">
+            
+            {/* 🔮 3. GLOW DI BELAKANG GAMBAR */}
+            <div class="absolute inset-0 bg-violet-500/30 blur-[60px] rounded-full transform scale-75 -z-10"></div>
+            
+            <img 
+              src={gambarHero} 
+              alt="jasa komentar YouTube indonesia - auradigital agensi optimasi media sosial" 
+              class="w-full max-w-2xl h-auto object-cover transform hover:scale-[1.01] transition-transform duration-500 mix-blend-screen drop-shadow-[0_20px_50px_rgba(124,58,237,0.4)]" 
+            />
+          </div>
+        )}
+
+      </div>
+    </div>
+  </section>
+)}
+
+{/* ================= HERO TIPE LAYANAN ================= */}
+{tipe === "service" && (
+  <section class="relative pt-32 pb-24 lg:pt-40 lg:pb-32 bg-[#090514] overflow-hidden flex items-center border-b border-violet-900/30">
+    
+    {gambarHero && (
+      <div class="absolute inset-0 z-0">
+        <img src={gambarHero} alt="Background Layanan" class="w-full h-full object-cover object-center opacity-20 block" />
+        <div class="absolute inset-0 bg-gradient-to-b from-[#090514] via-transparent to-[#090514]"></div>
+        <div class="absolute inset-0 bg-[#090514]/60"></div> 
+      </div>
+    )}
+
+    <div class="relative z-10 container mx-auto px-6 text-center max-w-4xl mt-10 lg:mt-0">
+      
+      {labelTeks && (
+        <span class="inline-flex items-center gap-2 bg-violet-900/30 border border-violet-800 text-violet-300 px-4 py-1.5 rounded-full text-xs md:text-sm font-medium mb-6">
+          {labelIcon && <Icon name={labelIcon} class="w-4 h-4" />}
+          {labelTeks}
+        </span>
+      )}
+      
+      {judulUtama && <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-[1.2] mb-6 tracking-tight" set:html={judulUtama} />}
+      {deskripsi && <p class="text-sm md:text-base text-violet-100/70 max-w-3xl mx-auto leading-relaxed mb-10" set:html={deskripsi} />}
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center w-full sm:w-auto">
+        {teksTombol1 && linkTombol1 && (
+          <a href={linkTombol1} class="inline-flex justify-center items-center bg-violet-600 hover:bg-violet-700 text-white font-bold px-8 py-3.5 rounded-xl transition-all text-sm md:text-base min-w-[190px] !no-underline transform hover:-translate-y-1">
+            {teksTombol1}
+          </a>
+        )}
+        
+        {teksTombol2 && linkTombol2 && (
+          <a href={linkTombol2} target="_blank" rel="noopener noreferrer" class="inline-flex justify-center items-center !bg-transparent hover:!bg-white/5 !text-white font-bold px-8 py-3.5 rounded-xl border-2 !border-violet-600 hover:!border-violet-500 transition-all text-sm md:text-base min-w-[190px] !no-underline">
+            {teksTombol2}
+          </a>
+        )}
+      </div>
+
+    </div>
+  </section>
+)}
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('opacity-0', 'translate-y-8');
+          entry.target.classList.add('opacity-100', 'translate-y-0');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const heroElements = document.querySelectorAll('.animate-hero-text, .animate-hero-image');
+    heroElements.forEach((el) => observer.observe(el));
+  });
+</script>
+
+<style>
+  @keyframes smooth-twinkle {
+    0%, 100% { opacity: 0.12; }
+    50% { opacity: 0.35; } 
+  }
+  .animate-twinkle {
+    animation: smooth-twinkle 8s ease-in-out infinite;
+  }
+</style>

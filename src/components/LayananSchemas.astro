@@ -1,0 +1,155 @@
+---
+/**
+ * LayananSchemas.astro — Schema “kaya” untuk halaman /layanan
+ * Tanpa Organization. Relevan untuk halaman daftar layanan.
+ */
+
+interface Offer {
+  price: number | string
+  priceCurrency?: string
+  unitText?: string
+  availability?: string // e.g. "https://schema.org/InStock"
+  url?: string
+}
+
+interface ServiceItem {
+  name: string
+  url: string
+  description?: string
+  serviceType?: string
+  areaServed?: string
+  offers?: Offer[]
+}
+
+interface FAQItem { q: string; a: string }
+
+interface Props {
+  pageUrl: string
+  pageTitle: string
+  description: string
+  imageWebp?: string   
+  imagePng?: string    
+
+  services: ServiceItem[]
+  faqItems?: FAQItem[] 
+}
+
+const {
+  pageUrl,
+  pageTitle,
+  description,
+  imageWebp = '/layanan.webp',
+  imagePng = '/layanan.png',
+  services = [],
+  faqItems = []
+}: Props = Astro.props
+
+// 🔥 IDENTITAS AURADIGITAL 🔥
+const site = Astro.site?.href?.replace(/\/$/, '') || 'https://auradigital.id'
+
+// ImageObject gabungan webp+png
+const serviceImage = {
+  '@type': 'ImageObject',
+  url: new URL(imagePng, site).href,
+  contentUrl: new URL(imageWebp, site).href, 
+  encodingFormat: ['image/png', 'image/webp'],
+}
+
+const graph: any[] = [
+  // Halaman daftar
+  {
+    '@type': 'CollectionPage',
+    '@id': `${pageUrl}#webpage`,
+    url: pageUrl,
+    name: pageTitle,
+    description,
+    isPartOf: { '@id': `${site}/#website` },
+    primaryImageOfPage: serviceImage
+  },
+
+  // Breadcrumb
+  {
+    '@type': 'BreadcrumbList',
+    '@id': `${pageUrl}#breadcrumb`,
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${site}/` },
+      { '@type': 'ListItem', position: 2, name: 'Layanan', item: pageUrl }
+    ]
+  },
+
+  // Daftar layanan: ItemList + Service lengkap 
+  {
+    '@type': 'ItemList',
+    '@id': `${pageUrl}#items`,
+    itemListElement: services.map((s, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: s.url,
+      item: {
+        '@type': 'Service',
+        '@id': `${s.url}#service`,
+        name: s.name,
+        url: s.url,
+        image: serviceImage,
+        ...(s.description ? { description: s.description } : {}),
+        ...(s.serviceType ? { serviceType: s.serviceType } : {}),
+        ...(s.areaServed ? { areaServed: s.areaServed } : {}),
+        provider: { '@type': 'WebSite', url: site }, 
+        ...(s.offers && s.offers.length
+          ? {
+              offers: s.offers.map(o => ({
+                '@type': 'Offer',
+                price: String(o.price),
+                priceCurrency: o.priceCurrency || 'IDR',
+                ...(o.unitText ? { unitText: o.unitText } : {}),
+                availability: o.availability || 'https://schema.org/InStock',
+                url: o.url || s.url,
+              }))
+            }
+          : {}),
+        potentialAction: [
+          {
+            '@type': 'OrderAction',
+            target: `${s.url}?ref=order`,
+          },
+          {
+            '@type': 'ContactAction',
+            target: `${site}/kontak/`,
+          }
+        ]
+      }
+    }))
+  },
+
+  // 🔥 KATALOG LAYANAN AURADIGITAL 🔥
+  {
+    '@type': 'OfferCatalog',
+    '@id': `${pageUrl}#catalog`,
+    name: 'Katalog Layanan AuraDigital',
+    url: pageUrl,
+    itemListElement: services.map((s, i) => ({
+      '@type': 'OfferCatalog',
+      position: i + 1,
+      name: s.name,
+      url: s.url
+    }))
+  }
+]
+
+// FAQ hanya jika tampil di halaman
+if (faqItems.length) {
+  graph.push({
+    '@type': 'FAQPage',
+    '@id': `${pageUrl}#faq`,
+    mainEntity: faqItems.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a }
+    }))
+  })
+}
+
+const jsonld = { '@context': 'https://schema.org', '@graph': graph }
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonld)}></script>

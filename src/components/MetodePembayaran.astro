@@ -1,0 +1,95 @@
+---
+// src/components/MetodePembayaran.astro
+import { Icon } from 'astro-icon/components'
+---
+<section id="pembayaran" class="relative py-20 md:py-24 bg-[#0B1121] text-white overflow-hidden border-t border-slate-800">
+  
+  <div class="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.45)_2px,transparent_2px)] [background-size:32px_32px] [background-position:16px_16px] z-0 animate-twinkle"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl h-[400px] bg-violet-600/35 blur-[120px] rounded-full pointer-events-none z-0"></div>
+
+  <div class="max-w-6xl mx-auto px-6 relative z-10">
+    
+    <div class="text-center mb-14">
+      <h2 class="text-2xl md:text-3xl lg:text-4xl font-extrabold mb-4 tracking-tight">
+        Kemudahan Transaksi <span class="text-blue-400">Aman & Cepat</span>
+      </h2>
+      <p class="text-sm md:text-base text-slate-400 max-w-2xl mx-auto leading-relaxed">
+        Kami mendukung berbagai metode pembayaran populer di Indonesia untuk memudahkan dan menjamin keamanan transaksi Anda.
+      </p>
+    </div>
+
+    <div class="flex flex-wrap justify-center items-center gap-4 max-w-4xl mx-auto">
+      
+      <div class="animate-on-scroll-pay opacity-0 translate-y-8 transform transition-all duration-500 ease-out flex items-center justify-center px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-600 rounded-xl shadow-lg hover:scale-105 hover:shadow-indigo-500/25 transition-all cursor-default">
+        <span class="font-black text-lg md:text-xl tracking-widest text-white">QRIS</span>
+      </div>
+
+      <div class="animate-on-scroll-pay opacity-0 translate-y-8 transform transition-all duration-500 ease-out delay-75 flex items-center justify-center px-6 py-3 md:px-8 md:py-4 bg-[#005ca1] rounded-xl shadow-lg hover:scale-105 hover:shadow-blue-500/25 transition-all cursor-default">
+        <span class="font-extrabold text-lg md:text-xl italic text-white">BCA</span>
+      </div>
+
+      <div class="animate-on-scroll-pay opacity-0 translate-y-8 transform transition-all duration-500 ease-out delay-100 flex items-center justify-center px-6 py-3 md:px-8 md:py-4 bg-[#1c294a] border border-slate-700 rounded-xl shadow-lg hover:scale-105 hover:shadow-blue-900/50 transition-all cursor-default">
+        <span class="font-bold text-lg md:text-xl italic tracking-tight text-white">mandiri</span>
+      </div>
+
+      <div class="animate-on-scroll-pay opacity-0 translate-y-8 transform transition-all duration-500 ease-out delay-150 flex items-center justify-center px-6 py-3 md:px-8 md:py-4 bg-[#00529c] rounded-xl shadow-lg hover:scale-105 hover:shadow-blue-600/25 transition-all cursor-default">
+        <span class="font-black text-lg md:text-xl tracking-tighter text-white">BRI</span>
+      </div>
+
+      <div class="animate-on-scroll-pay opacity-0 translate-y-8 transform transition-all duration-500 ease-out delay-200 flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 bg-[#00aed6] rounded-xl shadow-lg hover:scale-105 hover:shadow-cyan-500/25 transition-all cursor-default">
+        <Icon name="lucide:wallet" class="w-4 h-4 md:w-5 md:h-5 text-white" />
+        <span class="font-extrabold text-base md:text-lg text-white">gopay</span>
+      </div>
+
+      <div class="animate-on-scroll-pay opacity-0 translate-y-8 transform transition-all duration-500 ease-out delay-250 flex items-center justify-center px-6 py-3 md:px-8 md:py-4 bg-[#118eea] rounded-xl shadow-lg hover:scale-105 hover:shadow-blue-500/25 transition-all cursor-default">
+        <span class="font-black text-lg md:text-xl tracking-wide italic text-white">DANA</span>
+      </div>
+
+      <div class="animate-on-scroll-pay opacity-0 translate-y-8 transform transition-all duration-500 ease-out delay-300 flex items-center justify-center px-6 py-3 md:px-8 md:py-4 bg-[#e52a26] rounded-xl shadow-lg hover:scale-105 hover:shadow-red-500/25 transition-all cursor-default">
+        <span class="font-black text-base md:text-lg text-white">LinkAja!</span>
+      </div>
+
+      <div class="animate-on-scroll-pay opacity-0 translate-y-8 transform transition-all duration-500 ease-out delay-[350ms] flex items-center justify-center px-6 py-3 md:px-8 md:py-4 bg-[#ee4d2d] rounded-xl shadow-lg hover:scale-105 hover:shadow-orange-500/25 transition-all cursor-default">
+        <span class="font-bold text-base md:text-lg text-white">ShopeePay</span>
+      </div>
+
+      <div class="animate-on-scroll-pay opacity-0 translate-y-8 transform transition-all duration-500 ease-out delay-[400ms] flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 bg-slate-800 border border-amber-500/30 rounded-xl shadow-lg hover:scale-105 hover:shadow-amber-500/25 transition-all cursor-default">
+        <Icon name="lucide:bitcoin" class="w-5 h-5 md:w-6 md:h-6 text-amber-500 animate-pulse" />
+        <span class="font-bold text-base md:text-lg text-amber-500">CRYPTO</span>
+      </div>
+
+    </div>
+
+    <p class="text-center text-xs md:text-sm text-slate-500 mt-10 font-medium">
+      *Konfirmasi otomatis setelah pembayaran sukses diverifikasi oleh admin via WhatsApp.
+    </p>
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('opacity-0', 'translate-y-8');
+          entry.target.classList.add('opacity-100', 'translate-y-0');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const boxes = document.querySelectorAll('.animate-on-scroll-pay');
+    boxes.forEach((box) => observer.observe(box));
+  });
+</script>
+
+<style>
+  @keyframes smooth-twinkle {
+    0%, 100% { opacity: 0.12; }
+    50% { opacity: 0.35; } 
+  }
+  .animate-twinkle {
+    animation: smooth-twinkle 8s ease-in-out infinite;
+  }
+</style>

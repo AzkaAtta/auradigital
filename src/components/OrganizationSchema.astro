@@ -1,0 +1,44 @@
+---
+interface Props {
+  name?: string
+  url?: string
+  logo?: string
+  sameAs?: string[]
+  telephone?: string
+  languages?: string[]
+}
+
+const {
+  name = 'AuraDigital',
+  url = 'https://auradigital.id',
+  // Pastikan URL logo ini disesuaikan jika nanti kamu sudah punya file gambar logonya
+  logo = 'https://auradigital.id/logo-sosmed.jpg',
+  sameAs = [
+    'https://www.instagram.com/jasa.like.asli',
+    'https://twitter.com/auradigitalID',
+    'https://t.me/auradigitalID'
+  ],
+  telephone = '+62-896-3474-0308',
+  languages = ['Indonesian', 'English'],
+}: Props = Astro.props
+
+const site = url.replace(/\/$/, '')
+
+const data = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${site}/#organization`,
+  name,
+  url: `${site}/`,
+  logo: { '@type': 'ImageObject', url: logo },
+  sameAs,
+  contactPoint: [{
+    '@type': 'ContactPoint',
+    telephone,
+    contactType: 'customer service',
+    availableLanguage: languages
+  }]
+}
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(data)}></script>

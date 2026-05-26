@@ -1,0 +1,73 @@
+---
+// src/components/Faqauradigital.astro
+import { Icon } from 'astro-icon/components'
+
+// Menangkap data yang dikirim dari halaman (layanan.astro, dll)
+const {
+  judulUtama = "Pertanyaan Seputar <br/> <span class='text-blue-600'>Layanan JasaLike</span>",
+  deskripsiUtama = "Menemukan kendala atau butuh informasi lebih lanjut? Berikut adalah hal-hal yang paling sering ditanyakan oleh klien kami.",
+  linkWhatsapp = "https://wa.me/6289634740308",
+  faq1Judul, faq1Teks,
+  faq2Judul, faq2Teks,
+  faq3Judul, faq3Teks,
+  faq4Judul, faq4Teks,
+  faq5Judul, faq5Teks,
+  faq6Judul, faq6Teks
+} = Astro.props;
+
+// Menyusun array FAQ agar rapi dan mengabaikan yang kosong
+const faqs = [
+  { q: faq1Judul, a: faq1Teks },
+  { q: faq2Judul, a: faq2Teks },
+  { q: faq3Judul, a: faq3Teks },
+  { q: faq4Judul, a: faq4Teks },
+  { q: faq5Judul, a: faq5Teks },
+  { q: faq6Judul, a: faq6Teks },
+].filter(faq => faq.q && faq.a);
+---
+
+<section class="py-16 md:py-20 bg-slate-50 relative">
+  <div class="container mx-auto px-6 max-w-3xl relative z-10">
+    
+    <div class="mb-10 text-left">
+      <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 mb-4 leading-tight" set:html={judulUtama}></h2>
+      <p class="text-slate-600 text-base mb-6 max-w-xl leading-relaxed">{deskripsiUtama}</p>
+      
+      <a href={linkWhatsapp} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebd5b] !text-white hover:!text-white font-bold py-2.5 px-6 rounded-full text-sm transition-all hover:shadow-lg hover:shadow-green-500/30 hover:-translate-y-1 !no-underline">
+  <Icon name="lucide:message-circle" class="w-4 h-4" />
+  Tanya Admin via WhatsApp
+</a>
+
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 md:p-8">
+      <div class="space-y-4">
+        
+        {faqs.map((faq) => (
+          <details class="group border-b border-slate-100 last:border-0 pb-4 last:pb-0">
+            
+            <summary class="flex justify-between items-center font-bold cursor-pointer list-none text-slate-900 text-base hover:text-blue-600 transition-colors">
+              <span class="pr-4 leading-snug">{faq.q}</span>
+              
+              <span class="transition-transform duration-300 group-open:rotate-180 bg-slate-50 text-slate-500 p-1.5 rounded-full group-hover:bg-blue-50 group-hover:text-blue-600 flex-shrink-0">
+                <Icon name="lucide:chevron-down" class="w-4 h-4" />
+              </span>
+            </summary>
+            
+            <div class="text-slate-600 mt-3 text-sm leading-relaxed pl-4 border-l-2 border-blue-500 ml-1 italic">
+              {faq.a}
+            </div>
+            
+          </details>
+        ))}
+
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<style>
+  /* Menghilangkan tanda panah (segitiga) default bawaan browser Chrome/Safari */
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

@@ -1,0 +1,458 @@
+---
+import Navigation from '../components/Navigation.astro'
+import { DarkMode, SkipLink } from 'accessible-astro-components'
+import { Icon } from 'astro-icon/components'
+---
+
+<header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out border-b border-transparent bg-transparent">
+  <SkipLink />
+  <Navigation>
+    <li class="menu-item"><a href="/">Home</a></li>
+    
+    <li class="menu-item has-dropdown">
+      <button aria-haspopup="true" aria-expanded="false">
+        Layanan Kami
+        <Icon name="lucide:chevron-down" size="20" class="ml-1" />
+      </button>
+      
+      <ul class="dropdown-menu mega-menu">
+        <li class="mega-menu-container">
+          
+          <div class="mega-column">
+            <div class="mega-title">
+              <img src="/image/instagram.png" alt="Instagram" class="mega-img-icon" /> 
+              Instagram
+            </div>
+            <div class="mega-links-grid">
+              <a href="/like-instagram/">Like Instagram</a>
+              <a href="/follower-instagram/">Follower Instagram</a>
+              <a href="/komentar-instagram/">Like Komentar Instagram</a>
+              <a href="/like-komentar-instagram/">Komentar Instagram</a>
+              <a href="/share-instagram/">Share Instagram</a>
+              <a href="/repost-instagram/">Repost Instagram</a>
+              <a href="/repost-story-instagram/">Repost To Story Instagram</a>
+              <a href="/view-instagram/">View Instagram</a>
+              <a href="/save-instagram/">Save/Favorite Instagram</a>
+              <a href="/livestreaming-instagram/">Livestraeming Instagram</a>
+            </div>
+          </div>
+
+          <div class="mega-column">
+            <div class="mega-title">
+              <img src="/image/tiktok.png" alt="TikTok" class="mega-img-icon" /> 
+              TikTok
+            </div>
+            <div class="mega-links-grid">
+              <a href="/like-tiktok/">Like TikTok</a>
+              <a href="/follower-tiktok/">Follower Tiktok</a>
+              <a href="/view-tiktok/">View TikTok</a>
+              <a href="/share-tiktok/">Share TikTok</a>
+              <a href="/save-tiktok/">Save/Favorite TikTok</a>
+              <a href="/repost-tiktok/">Repost TikTok</a>
+              <a href="/komentar-tiktok/">Komentar TikTok</a>
+              <a href="/repost-story-tiktok/">Repost To Story TikTok</a>
+              <a href="/like-komentar-tiktok/">Like Komentar TikTok</a>
+              <a href="/livestreaming-tiktok/">Livestraeming TikTok</a>
+            </div>
+          </div>
+
+          <div class="mega-column">
+            <div class="mega-title">
+              <img src="/image/facebook.png" alt="Facebook" class="mega-img-icon" /> 
+              Facebook
+            </div>
+            <div class="mega-links-grid">
+              <a href="/like-facebook/">Like Facebook</a>
+              <a href="/follower-facebook/">Follower Facebook</a>
+              <a href="/view-facebook/">View Facebook</a>
+              <a href="/komentar-facebook/">Komentar Facebook</a>
+              <a href="/like-komentar-facebook/">Like Komentar Facebook</a>
+              <a href="/save-facebook/">Save/Favorite Facebook</a>
+              <a href="/share-facebook/">Share Facebook</a>
+              <a href="/repost-facebook/">Repost Facebook</a>
+              <a href="/repost-story-facebook/">Repost To Story Facebook</a>
+              <a href="/livestreaming-facebook/">Livestreaming Facebook</a>
+            </div>
+          </div>
+
+          <div class="mega-column">
+            <div class="mega-title">
+              <img src="/image/youtube.png" alt="YouTube" class="mega-img-icon" /> 
+              YouTube
+            </div>
+            <div class="mega-links-grid">
+              <a href="/like-youtube/">Like YouTube</a>
+              <a href="/subscriber-youtube/">Subscriber Youtube</a>
+              <a href="/komentar-youtube/">Komentar Youtube</a>
+              <a href="/like-komentar-youtube/">Like Komentar Youtube</a>
+              <a href="/view-youtube/">View Youtube</a>
+              <a href="/share-youtube/">Share Youtube</a>
+              <a href="/save-youtube/">Save/Favorite Youtube</a>
+              <a href="/livestreaming-youtube/">Livestreaming Youtube</a>
+            </div>
+          </div>
+
+          <div class="mega-column">
+            <div class="mega-title">
+              <img src="/image/twitter.png" alt="Twitter" class="mega-img-icon" /> 
+              Twitter / X
+            </div>
+            <div class="mega-links-grid">
+              <a href="/like-twitter/">Like Twitter</a>
+              <a href="/follower-twitter/">Follower Twitter</a>
+              <a href="/retweet-twitter/">Retweet Twitter</a>
+              <a href="/repost-twitter/">Repost Twitter</a>
+              <a href="/view-twitter/">View Twitter</a>
+              <a href="/share-twitter/">Share Twitter</a>
+              <a href="/komentar-twitter/">Komentar Twitter</a>
+              <a href="/like-komentar-twitter/">Like Komentar Twitter</a>
+              <a href="/space-twitter/">Space Twitter</a>
+            </div>
+          </div>
+
+          <div class="mega-column">
+            <div class="mega-title">
+              <img src="/image/linkedin.png" alt="LinkedIn" class="mega-img-icon" /> 
+              LinkedIn
+            </div>
+            <div class="mega-links-grid">
+              <a href="/like-linkedin/">Like LinkedIn</a>
+              <a href="/follower-linkedin/">Follower Linkedin</a>
+              <a href="/koneksi-linkedin/">Koneksi Linkedin</a>
+              <a href="/komentar-linkedin/">Komentar Linkedin</a>
+              <a href="/like-komentar-linkedin/">Like Komentar Linkedin</a>
+              <a href="/share-linkedin/">Share LinkedIn</a>
+              <a href="/save-linkedin/">Save/Favorite LinkedIn</a>
+            </div>
+          </div>
+
+          <div class="mega-column">
+            <div class="mega-title">
+              <img src="/image/telegram.png" alt="Telegram" class="mega-img-icon" /> 
+              Telegram
+            </div>
+            <div class="mega-links-grid">
+              <a href="/member-telegram/">Member Telegram</a>
+              <a href="/member-group-telegram/">Member Group Telegram</a>
+              <a href="/like-telegram/">Reaction Telegram</a>
+              <a href="/invite-telegram/">Invite Bot Telegram</a>
+              <a href="/vote-telegram/">Vote Telegram</a>
+            </div>
+          </div>
+
+          <div class="mega-column">
+            <div class="mega-title">
+              <img src="/image/marketplace.png" alt="Marketplace" class="mega-img-icon" /> 
+              Marketplace
+            </div>
+            <div class="mega-links-grid">
+              <a href="/like-produk/">Like Product Marketplace</a>
+              <a href="/like-ulasan/">Like Ulasan Product</a>
+              <a href="/ulasan-produk/">Ulasan Product Marketplace</a>
+              <a href="/produk-terjual/">Product Terjual Marketplace</a>
+            </div>
+          </div>
+
+          <div class="mega-column">
+            <div class="mega-title">
+              <img src="/image/pinters.png" alt="Pinters" class="mega-img-icon" /> 
+              Pinters
+            </div>
+            <div class="mega-links-grid">
+              <a href="/like-pinters/">Like Pinters</a>
+              <a href="/follower-pinters/">Follower Pinters</a>
+              <a href="/komentar-pinters/">Komentar Pinters</a>
+              <a href="/like-komentar-pinters/">Like Komentar Pinters</a>
+            </div>
+          </div>
+
+          <div class="mega-column">
+            <div class="mega-title">
+              <img src="/image/discord.png" alt="Discord" class="mega-img-icon" /> 
+              Discord
+            </div>
+            <div class="mega-links-grid">
+              <a href="/invite-discord/">Invite Discord</a>
+              <a href="/vote-discord/">Vote Discord</a>
+              <a href="/vote-meme-discord/">Vote Meme Discord</a>
+              <a href="/airdrop-discord/">Airdrop Discord</a>
+            </div>
+          </div>
+
+          <div class="mega-column">
+            <div class="mega-title">
+              <img src="/image/soundcloud.png" alt="Soundcloud" class="mega-img-icon" /> 
+              Soundcloud
+            </div>
+            <div class="mega-links-grid">
+              <a href="/play-soundcloud/">Play Soundcloud</a>
+              <a href="/follower-soundcloud/">Follower Soundcloud</a>
+              <a href="/like-soundcloud/">Like Soundcloud</a>
+              <a href="/share-soundcloud/">Share Soundcloud</a>
+              <a href="/repost-soundcloud/">Repost Soundcloud</a>
+            </div>
+          </div>
+
+          <div class="mega-column">
+            <div class="mega-title">
+              <img src="/image/vote.png" alt="Jasa Vote" class="mega-img-icon" /> 
+              Jasa Vote
+            </div>
+            <div class="mega-links-grid">
+              <a href="/vote-instagram/">Vote Instagram</a>
+              <a href="/vote-instagram/">Vote Story Instagram</a>
+              <a href="/vote-twitter/">Vote Twitter</a>
+              <a href="/vote-telegram/">Vote Telegram</a>
+              <a href="/vote-discord/">Vote Discord</a>
+              <a href="/vote-lomba/">Vote Lomba Kontes</a>
+              <a href="/vote-polling/">Vote Polling Kita</a>
+              <a href="/vote-web/">Vote Website</a>
+            </div>
+          </div>
+          
+          <div class="mega-column mega-view-all">
+            <a href="/layanan/" class="view-all-btn">
+              Lihat Semua Layanan <Icon name="lucide:arrow-right" class="inline w-4 h-4" />
+            </a>
+          </div>
+
+        </li>
+      </ul>
+
+    <li class="menu-item"><a href="/tentang-kami/">Tentang Kami</a></li>
+    <li class="menu-item"><a href="/blog/">Blog</a></li>
+    <li class="menu-item"><a href="/kontak/">Kontak</a></li>
+
+    <li class="menu-spacer" aria-hidden="true"></li>
+  </Navigation>
+</header>
+
+<style lang="scss" is:global>
+  /* ==========================================
+     1. HEADER BACKGROUND & LAYOUT
+     ========================================== */
+  header#main-header {
+    transition: all 0.4s ease-in-out !important;
+    border-bottom: 1px solid transparent;
+  }
+
+  /* PAKSA LOGO & MENU JADI PUTIH SAAT DI POSISI ATAS (TRANSPARAN) */
+  /* Mengubah teks menu menjadi hitam saat di-scroll */
+  header#main-header.scrolled #main-navigation a,
+  header#main-header.scrolled #main-navigation button,
+  header#main-header.scrolled #main-navigation span,
+  header#main-header.scrolled #main-navigation svg,
+  header#main-header.scrolled #main-navigation svg path {
+    color: #0f172a !important; /* Warna hitam pekat / slate-900 */
+    text-shadow: none !important; /* Menghapus efek cahaya putih di teks menu */
+  }
+
+  /* KUNCI: Saat halaman di-scroll, list (background) putih muncul */
+  header#main-header.scrolled {
+    background-color: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(10px) !important;
+    border-bottom-color: #e2e8f0 !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+  }
+
+/* ==========================================
+     🔥 KUNCI LOGO: UNGU PREMIUM BERSIH (TANPA EFEK PUTIH)
+     ========================================== */
+  header#main-header #main-navigation > .container > :first-child,
+  header#main-header #main-navigation > .container > :first-child a,
+  header#main-header #main-navigation > .container > :first-child span,
+  header#main-header #main-navigation > .container > :first-child svg,
+  header#main-header #main-navigation > .container > :first-child svg path {
+    /* Warna tetap ungu premium */
+    color: #7c3aed !important; 
+    fill: #7c3aed !important;
+    
+    /* 👇 EFEK PUTIH SUDAH DIHAPUS TOTAL 👇 */
+    text-shadow: none !important;
+    filter: none !important;
+  }
+  /* Mengembalikan struktur layout (agar tidak berantakan) */
+  header#main-header #main-navigation .desktop-menu ul {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1.5rem !important;
+    margin: 0 !important;
+  }
+
+  header#main-header .menu-item a, 
+  header#main-header .menu-item button {
+    padding: 0.5rem 0.25rem !important;
+    line-height: 1 !important;
+    font-size: 0.95rem !important;
+  }
+
+
+  /* ==========================================
+     2. MEGA MENU (KOTAK BISA DI-SCROLL & PREMIUM)
+     ========================================== */
+  header#main-header #main-navigation .dropdown-menu.mega-menu {
+    background-color: #ffffff !important; 
+    border: 1px solid #e2e8f0 !important;
+    padding: 2rem !important; 
+    border-radius: 1rem !important;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1) !important;
+    top: 100% !important;
+    margin-top: 0.5rem !important;
+    width: 1000px !important; 
+    max-width: 95vw !important;
+    left: -280px !important; 
+    
+    /* 👇 KUNCI TAMBAHAN AGAR BISA DI-SCROLL 👇 */
+    max-height: 75vh !important; /* Tinggi maksimal dibatasi 75% dari layar */
+    overflow-y: auto !important; /* Memunculkan scroll otomatis ke bawah */
+  }
+
+  /* 👇 TAMBAHAN SPESIAL: Mempercantik tampilan Scrollbar agar Premium 👇 */
+  header#main-header #main-navigation .dropdown-menu.mega-menu::-webkit-scrollbar {
+    width: 6px !important;
+  }
+  header#main-header #main-navigation .dropdown-menu.mega-menu::-webkit-scrollbar-track {
+    background: transparent !important;
+  }
+  header#main-header #main-navigation .dropdown-menu.mega-menu::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1 !important; /* Warna abu-abu elegan */
+    border-radius: 20px !important;
+  }
+  header#main-header #main-navigation .dropdown-menu.mega-menu::-webkit-scrollbar-thumb:hover {
+    background-color: #8b5cf6 !important; /* Berubah ungu saat digeser! */
+  }
+
+  header#main-header .mega-menu-container {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    /* 👇 KUNCI: Jarak kiri-kanan diubah ke ukuran ekstrem (10rem) 👇 */
+    gap: 2.5rem 10rem !important; 
+  }
+
+  header#main-header .mega-column {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.4rem !important;
+  }
+
+  /* MEMAKSA LINK MEGA MENU TETAP GELAP (Tidak peduli header transparan atau putih) */
+  header#main-header #main-navigation .dropdown-menu.mega-menu a,
+  header#main-header:not(.scrolled) #main-navigation .dropdown-menu.mega-menu a {
+    color: #475569 !important;
+    font-size: 0.9rem !important;
+    transition: color 0.2s ease !important;
+  }
+  
+  header#main-header #main-navigation .dropdown-menu.mega-menu a:hover,
+  header#main-header:not(.scrolled) #main-navigation .dropdown-menu.mega-menu a:hover {
+    color: #7c3aed !important;
+    text-decoration: none !important;
+  }
+
+  /* Judul Kategori Layanan (Hitam Pekat & Extra Bold) */
+  header#main-header #main-navigation .dropdown-menu.mega-menu .mega-title,
+  header#main-header #main-navigation .dropdown-menu.mega-menu .mega-title svg,
+  header#main-header #main-navigation .dropdown-menu.mega-menu .mega-title svg path,
+  header#main-header:not(.scrolled) #main-navigation .dropdown-menu.mega-menu .mega-title,
+  header#main-header:not(.scrolled) #main-navigation .dropdown-menu.mega-menu .mega-title svg,
+  header#main-header:not(.scrolled) #main-navigation .dropdown-menu.mega-menu .mega-title svg path {
+    font-weight: 800 !important; /* Dipertebal menjadi Extra Bold */
+    font-size: 1.05rem !important;
+    color: #0f172a !important; /* Diubah menjadi Hitam Pekat */
+    border-bottom: 1px solid #e2e8f0 !important; /* Garis bawah sedikit lebih jelas */
+    padding-bottom: 0.4rem !important;
+    margin-bottom: 0.4rem !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+  }
+
+  /* Tombol 'Lihat Semua' */
+  header#main-header .mega-column.mega-view-all {
+    grid-column: 1 / -1 !important;
+    margin-top: 1rem !important;
+    align-items: center !important;
+  }
+
+  header#main-header #main-navigation .mega-view-all .view-all-btn,
+  header#main-header:not(.scrolled) #main-navigation .mega-view-all .view-all-btn {
+    display: inline-flex !important;
+    background-color: #f3e8ff !important;
+    color: #7c3aed !important;
+    padding: 0.6rem 1.2rem !important;
+    border-radius: 0.5rem !important;
+    font-weight: 600 !important;
+    justify-content: center !important;
+  }
+
+  header#main-header #main-navigation .mega-view-all .view-all-btn:hover,
+  header#main-header:not(.scrolled) #main-navigation .mega-view-all .view-all-btn:hover {
+    background-color: #7c3aed !important;
+    color: #ffffff !important;
+  }
+  
+  header#main-header #main-navigation .mega-view-all .view-all-btn:hover svg,
+  header#main-header #main-navigation .mega-view-all .view-all-btn:hover svg path,
+  header#main-header:not(.scrolled) #main-navigation .mega-view-all .view-all-btn:hover svg,
+  header#main-header:not(.scrolled) #main-navigation .mega-view-all .view-all-btn:hover svg path {
+    color: #ffffff !important;
+  }
+
+  /* ==========================================
+     🖼️ KUNCI UKURAN GAMBAR LOGO MEGA MENU
+     ========================================== */
+  header#main-header #main-navigation .dropdown-menu.mega-menu .mega-img-icon {
+    width: 24px !important; /* Lebar dikunci kecil */
+    height: 24px !important; /* Tinggi dikunci kecil */
+    object-fit: contain !important; /* Biar gambar tidak gepeng */
+    display: inline-block !important;
+    margin-right: 8px !important; /* Jarak antara logo dan teks judul */
+    
+    /* Gembok tambahan agar teks SEO yang panjang tersembunyi jika gambar belum ada */
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    font-size: 0px !important;
+  }
+
+
+  /* ==========================================
+     🗂️ KUNCI SUSUNAN ANAK MENU (KARENA SUDAH SAH, JADI DEMPET)
+     ========================================== */
+  header#main-header .mega-links-grid {
+    display: flex !important; 
+    flex-direction: column !important; 
+    /* 👇 JARAK DIBUAT SANGAT RAPAT (Hampir nempel) 👇 */
+    gap: 0.1rem !important; 
+    margin-top: 0.3rem !important; 
+  }
+
+  header#main-header .mega-links-grid a {
+    display: block !important;
+    width: 100% !important;
+    /* 👇 TINGGI BARIS JUGA DIRAPATKAN 👇 */
+    line-height: 1.2 !important; 
+    padding-bottom: 2px !important;
+    color: #475569 !important; 
+  }
+
+</style>
+
+<script>
+  const handleHeaderScroll = () => {
+    const header = document.getElementById('main-header');
+    if (header) {
+      if (window.scrollY > 15) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }
+  };
+
+  window.addEventListener('scroll', handleHeaderScroll, { passive: true });
+  document.addEventListener('astro:page-load', handleHeaderScroll);
+  document.addEventListener('DOMContentLoaded', handleHeaderScroll);
+  handleHeaderScroll();
+
+
+</script>

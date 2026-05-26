@@ -1,0 +1,33 @@
+---
+// src/components/FloatingCS.astro
+import { Icon } from 'astro-icon/components'
+---
+
+<a
+  href="https://wa.me/6289634740308"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[100] group flex items-center gap-3 bg-[#0f172a] hover:bg-[#1e293b] border border-slate-700 p-2 pr-5 rounded-full shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 no-underline"
+  aria-label="Tanya CS JasaLike"
+>
+  <div class="bg-gradient-to-br from-blue-600 to-cyan-500 p-3 rounded-full group-hover:scale-110 transition-transform duration-300 shadow-md">
+    <Icon name="lucide:headset" class="w-5 h-5 text-white" />
+  </div>
+  
+  <span class="font-bold text-white text-sm md:text-base tracking-wide no-underline">
+    Tanya Team auradigital
+  </span>
+</a>
+
+<style>
+  /* Animasi melayang naik-turun halus (Floating Effect) */
+  a {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+  }
+</style>

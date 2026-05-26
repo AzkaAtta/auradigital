@@ -1,0 +1,90 @@
+---
+import DefaultLayout from '@layouts/DefaultLayout.astro'
+/* BARIS IMPORT YANG TADI KURANG */
+import PageHeader from '@components/PageHeader.astro'
+import { Card, Pagination } from 'accessible-astro-components'
+import type { PaginateFunction, Page } from 'astro'
+
+export async function getStaticPaths({ paginate }: { paginate: PaginateFunction }) {
+  // 1. Mengambil semua data artikel dari file .md
+  const allPosts = await Astro.glob('./*.md');
+
+  // 2. Mengurutkan postingan berdasarkan tanggal terbaru
+  const sortedPosts = allPosts.sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf());
+
+  // 3. Paginasi (menampilkan 6 artikel per halaman)
+  return paginate(sortedPosts, { pageSize: 6 })
+}
+
+interface Props {
+  page: Page<any>
+}
+
+const { page } = Astro.props as Props
+
+const title = "Blog Seputar Optimasi Media Sosial | JasaLike";
+const description = "Temukan tips, trik, dan edukasi terbaru seputar algoritma Instagram, TikTok, dan Facebook untuk menaikkan engagement secara organik.";
+---
+
+<DefaultLayout title="Blog Jasalike - Edukasi & Tips Sosial Media" description={description}>
+  
+  <PageHeader
+    title="Blog Jasalike"
+    subtitle="Kumpulan artikel edukasi dan tips seputar optimasi sosial media untuk meningkatkan bisnis Anda."
+    bgType="bordered"
+  />
+
+  <section class="my-12">
+    <div class="container">
+      <p class="text-sm opacity-70"><em>Halaman {page.currentPage} dari {page.lastPage}</em></p>
+      
+      <ul class="my-6 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {
+          page.data.map((post) => (
+            <li class="list-none">
+              <Card
+                imageComponent={post.frontmatter.heroImage || post.frontmatter.image || '/logo-jasalike.png'}
+                url={post.url}
+                title={post.frontmatter.title}
+                footer={new Date(post.frontmatter.pubDate).toLocaleDateString('id-ID', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
+              >
+                {post.frontmatter.description}
+              </Card>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="mt-16 grid place-content-center">
+        <Pagination
+          firstPage={page.url.prev ? '/blog' : null}
+          previousPage={page.url.prev ? page.url.prev : null}
+          nextPage={page.url.next ? page.url.next : null}
+          lastPage={page.url.next ? `/blog/${page.lastPage}` : null}
+          currentPage={`${page.currentPage}`}
+          totalPages={`${page.lastPage}`}
+          ariaLabel="Navigasi Blog"
+        />
+      </div>
+    </div>
+  </section>
+</DefaultLayout>
+
+<style lang="scss" is:global>
+  @use '../../assets/scss/base/mixins' as *;
+
+  // GAYA KARTU ASLI BAWAAN (GAMBAR PENUH, RAPI)
+  .card {
+    h3 {
+      margin-block-end: var(--space-xs);
+      line-height: 1.3;
+    }
+    a {
+      @include text-decoration(transparent, var(--foreground-color), 4px, 2px);
+    }
+  }
+</style>

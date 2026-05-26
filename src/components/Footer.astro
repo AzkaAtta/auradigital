@@ -1,0 +1,154 @@
+---
+// src/components/Footer.astro
+import ExternalLink from './ExternalLink.astro'
+import Logo from './Logo.astro'
+import { Icon } from 'astro-icon/components'
+---
+
+<footer class="relative bg-[#090514] text-white overflow-hidden border-t border-violet-900/30">
+  
+  <div class="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.45)_2px,transparent_2px)] [background-size:32px_32px] [background-position:16px_16px] z-0 animate-twinkle"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl h-[400px] bg-violet-600/35 blur-[120px] rounded-full pointer-events-none z-0"></div>
+
+  {/* ========================================== */}
+  {/* BAGIAN ATAS: GRID 4 KOLOM                  */}
+  {/* ========================================== */}
+  <section class="py-16 md:py-20 relative z-10 border-b border-violet-900/30">
+    <h2 class="sr-only">Footer</h2>
+    <div class="container grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4 mx-auto px-6 max-w-7xl">
+      
+      {/* Kolom 1: Navigation */}
+      <div class="flex flex-col gap-4">
+        <h3 class="text-lg md:text-xl font-bold text-white">Navigation</h3>
+        <ul class="flex flex-col gap-2 text-sm">
+          <li><a href="/" class="!text-white !no-underline hover:!text-violet-400 transition-colors block">Home</a></li>
+          <li><a href="/layanan/" class="!text-white !no-underline hover:!text-violet-400 transition-colors block">Layanan</a></li>
+          <li><a href="/blog/" class="!text-white !no-underline hover:!text-violet-400 transition-colors block">Blog</a></li>
+          <li><a href="/tentang-kami/" class="!text-white !no-underline hover:!text-violet-400 transition-colors block">Tentang Kami</a></li>
+          <li><a href="/kontak/" class="!text-white !no-underline hover:!text-violet-400 transition-colors block">Kontak</a></li>
+        </ul>
+      </div>
+
+      {/* Kolom 2: Layanan */}
+      <div class="flex flex-col gap-4">
+        <h3 class="text-lg md:text-xl font-bold text-white">Layanan</h3>
+        <ul class="flex flex-col gap-2 text-sm">
+          <li><a href="/like-instagram/" class="!text-white !no-underline hover:!text-violet-400 transition-colors block">Like Instagram</a></li>
+          <li><a href="/like-tiktok/" class="!text-white !no-underline hover:!text-violet-400 transition-colors block">Like Tiktok</a></li>
+          <li><a href="/like-facebook/" class="!text-white !no-underline hover:!text-violet-400 transition-colors block">Like Facebook</a></li>
+          <li><a href="/like-twitter/" class="!text-white !no-underline hover:!text-violet-400 transition-colors block">Like Twitter</a></li>
+          <li><a href="/like-youtube/" class="!text-white !no-underline hover:!text-violet-400 transition-colors block">Like YouTube</a></li>
+          <li><a href="/like-linkedin/" class="!text-white !no-underline hover:!text-violet-400 transition-colors block">Like LinkedIn</a></li>
+          <li><a href="/like-thread/" class="!text-white !no-underline hover:!text-violet-400 transition-colors block">Like Thread</a></li>
+        </ul>
+      </div>
+
+      {/* Kolom 3: Kontak */}
+      <div class="flex flex-col gap-4">
+        <h3 class="text-lg md:text-xl font-bold text-white">Kontak</h3>
+        <ul class="flex flex-col gap-2 text-sm">
+          <li>
+            <a href="https://wa.me/6289634740308" aria-label="WhatsApp AuraDigital" class="!text-white !no-underline hover:!text-violet-400 transition-colors block">
+              WhatsApp: +62 896-3474-0308
+            </a>
+          </li>
+          <li><a href="mailto:bisnis@auradigital.id" class="!text-white !no-underline hover:!text-violet-400 transition-colors block">Email: halo@auradigital.id</a></li>
+          <li class="!text-white block">Jam kerja: 09.00–22.00 WIB (darurat 24/7)</li>
+          
+          <li class="mt-2 text-xs md:text-sm leading-relaxed opacity-90 border-l-2 border-violet-500 pl-3 !text-white">
+            <strong class="!text-white font-bold">office auradigital:</strong><br />
+            Jl. Palabuan subang No. 15,<br />
+            Kecamatan, Subang Kota, Subang<br />
+            Provinsi, Jawa Barat Kode Pos 41211
+          </li>
+        </ul>
+
+        <div class="mt-2 flex items-center gap-2.5" aria-label="Ikuti kami di media sosial">
+          <a class="soc" href="https://wa.me/6289634740308" aria-label="WhatsApp">
+            <Icon name="lucide:phone" size="16" />
+          </a>
+          <a class="soc" href="https://www.instagram.com/jasa.like.asli" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <Icon name="lucide:instagram" size="16" />
+          </a>
+          <a class="soc" href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+            <Icon name="lucide:music-2" size="16" />
+          </a>
+          <a class="soc" href="mailto:bisnis@auradigital.id" aria-label="Email">
+            <Icon name="lucide:mail" size="16" />
+          </a>
+          <a class="soc" href="https://t.me/auradigitalID" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+            <Icon name="lucide:send" size="16" />
+          </a>
+          <a class="soc" href="https://twitter.com/auradigitalID" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <Icon name="lucide:twitter" size="16" />
+          </a>
+        </div>
+      </div>
+
+      {/* Kolom 4: Logo & Deskripsi (Ditambahkan pembungkus div agar rapi) */}
+      <div class="flex flex-col gap-4">
+        <div class="w-fit transform scale-90 origin-left">
+          <Logo isFooter={true} loading="lazy" />
+        </div>
+        <p class="leading-relaxed text-sm !text-white mt-2">
+          <strong class="font-bold">
+            <span class="text-white">aura</span><span class="text-violet-500">digital</span>
+          </strong> – Agensi Eskalasi Digital terpercaya. Kami menghadirkan solusi optimasi interaksi media sosial yang aman, cepat, dan profesional untuk membangun otoritas brand Anda.
+        </p>
+      </div>
+
+    </div> {/* <-- INI PENUTUP GRID YANG SEMPAT HILANG */}
+  </section> {/* <-- INI PENUTUP SECTION ATAS YANG SEMPAT HILANG */}
+
+
+  {/* ========================================== */}
+  {/* BAGIAN BAWAH: COPYRIGHT & LEGAL            */}
+  {/* ========================================== */}
+  <section class="py-6 relative z-10">
+    <div class="container flex flex-col gap-4 md:flex-row md:items-center md:justify-between mx-auto px-6 max-w-7xl">
+      <p class="text-xs md:text-sm !text-white">&copy; 2026 – <strong class="!text-white font-bold">AuraDigital</strong>. All rights reserved.</p>
+      <nav aria-label="Legal links">
+        <ul class="flex flex-wrap items-center gap-4 text-xs md:text-sm">
+          <li><a href="/privacy/" class="!text-white !no-underline hover:!text-violet-400 transition-colors">Privacy Policy</a></li>
+          <li><a href="/terms/" class="!text-white !no-underline hover:!text-violet-400 transition-colors">Terms of Service</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+</footer>
+
+<style lang="scss">
+  .soc {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 36px;
+    block-size: 36px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+
+    /* Efek Hover Ikon Sosmed: Diubah jadi Ungu Violet */
+    &:hover, &:focus {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 6px 16px rgba(124, 58, 237, 0.4); 
+      background: rgba(124, 58, 237, 0.8);
+      border-color: rgba(124, 58, 237, 1);
+      outline: none;
+    }
+  }
+</style>
+
+<style>
+  @keyframes smooth-twinkle {
+    0%, 100% { opacity: 0.12; }
+    50% { opacity: 0.35; } 
+  }
+  .animate-twinkle {
+    animation: smooth-twinkle 8s ease-in-out infinite;
+  }
+</style>

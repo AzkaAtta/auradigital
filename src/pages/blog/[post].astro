@@ -1,0 +1,110 @@
+---
+import DefaultLayout from '@layouts/DefaultLayout.astro'
+import PageHeader from '@components/PageHeader.astro'
+import SocialShares from '@components/SocialShares.astro'
+
+// 1. Mengambil data dari file lokal (.md) secara benar tanpa paginate
+export async function getStaticPaths() {
+  const posts = await Astro.glob('./*.md');
+
+  return posts.map((post) => {
+    const slug = post.frontmatter.title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)+/g, '');
+
+    return {
+      params: { post: slug },
+      props: { post },
+    };
+  });
+}
+
+const { post } = Astro.props;
+const { Content, frontmatter } = post;
+
+const { title, description, pubDate, updatedDate, heroImage } = frontmatter;
+
+// Menyesuaikan author ke Jasalike
+const author = {
+  name: frontmatter.author || 'Tim Jasalike',
+  image: '/logo-jasalike.png',
+  bio: 'Spesialis optimasi interaksi dan algoritma sosial media.',
+};
+
+// URL Dinamis untuk artikel ini
+const currentUrl = `https://jasalike.com/blog/${Astro.params.post}/`;
+---
+
+<DefaultLayout title={`${title} | Blog Jasalike`} description={description} url={currentUrl}>
+  
+ <script type="application/ld+json" is:inline define:vars={{ 
+  title, 
+  description, 
+  pubDate, 
+  updatedDate: updatedDate || pubDate, 
+  heroImage: heroImage || '/default-og-image.jpg', 
+  currentUrl
+}}>
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": currentUrl
+    },
+    "headline": title,
+    "description": description,
+    "image": heroImage,
+    "datePublished": pubDate,
+    "dateModified": updatedDate,
+    "author": {
+      "@type": "Organization",
+      "name": "Aura Digital Team",
+      "url": "https://jasalike.com/tentang-kami/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Aura Digital",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://jasalike.com/logo.png"
+      }
+    }
+  }
+</script>
+
+  <PageHeader
+    title={title}
+    subtitle={description}
+    author={author}
+    bgType="bordered"
+    featuredImage={heroImage || '/logo-jasalike.png'} 
+  />
+  
+  <section class="my-12">
+    <div class="narrow space-content container prose prose-lg max-w-none dark:prose-invert">
+      <Content />
+    </div>
+  </section>
+
+  <section class="my-16 border-t border-neutral-200 dark:border-neutral-800 pt-12">
+    <div class="narrow space-content container text-center">
+      <h2 class="text-3xl font-semibold mb-4">Bagikan Artikel Ini</h2>
+      <p class="opacity-80 mb-8">Bermanfaat? Jangan lupa bagikan tips ini ke rekan bisnis Anda!</p>
+      <div class="flex justify-center">
+        <SocialShares url={currentUrl} title={title} />
+      </div>
+    </div>
+  </section>
+</DefaultLayout>
+
+<style lang="scss" is:global>
+  .prose {
+    h2 { margin-top: 2em; margin-bottom: 0.5em; color: var(--color-primary-600); }
+    h3 { margin-top: 1.5em; margin-bottom: 0.5em; }
+    p { margin-bottom: 1.25em; line-height: 1.8; }
+    a { color: var(--color-primary-500); text-decoration: underline; font-weight: 500; }
+    img { border-radius: 1rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+  }
+</style>

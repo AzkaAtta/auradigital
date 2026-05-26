@@ -1,0 +1,141 @@
+---
+interface Slide {
+  imgSrc: string
+  title: string
+  text: string
+}
+
+interface Props {
+  slides: Slide[]
+}
+
+const { slides = [] }: Props = Astro.props
+---
+
+<section class="carousel">
+  <div class="container">
+    <div class="track" aria-live="polite">
+      {slides.map((s, i) => (
+        <article class="slide" aria-roledescription="slide" aria-label={`Slide ${i + 1} dari ${slides.length}`}>
+          <div class="media">
+            <!-- gunakan img biasa + width/height + style agar ada tinggi cadangan -->
+            <img
+              src={s.imgSrc}
+              alt=""
+              width="1200"
+              height="800"
+              loading={i === 0 ? 'eager' : 'lazy'}
+              decoding="async"
+              onerror="this.classList.add('img-fallback')"
+            />
+            <!-- fallback warna/gradient bila img error -->
+            <div class="media-fallback" aria-hidden="true"></div>
+          </div>
+          <div class="content">
+            <h2>{s.title}</h2>
+            <p>{s.text}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="controls">
+      <button class="prev" aria-label="Sebelumnya">‹</button>
+      <button class="next" aria-label="Berikutnya">›</button>
+      <div class="dots">
+        {slides.map((_, i) => <button class="dot" aria-label={`Ke slide ${i + 1}`}></button>)}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .carousel { margin-block: 6rem; }
+  .container { max-width: 1200px; margin: 0 auto; padding-inline: 1rem; }
+
+  /* Track */
+  .track { position: relative; overflow: hidden; }
+
+  /* Slide layout: zig-zag di desktop */
+  .slide {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+    /* kunci tinggi minimum agar tidak kosong */
+    min-block-size: 420px;
+    padding-block: 1rem;
+  }
+
+  /* zig-zag */
+  @media (min-width: 992px) {
+    .slide { grid-template-columns: 1fr 1fr; }
+    .slide:nth-child(even) .media { order: 2; }
+    .slide:nth-child(even) .content { order: 1; }
+  }
+
+  /* Media box dengan rasio pasti agar tidak collapse */
+  .media { position: relative; border-radius: var(--radius-l, 1rem); overflow: clip; }
+  .media img {
+    inline-size: 100%;
+    block-size: auto;
+    aspect-ratio: 3 / 2;     /* jaga rasio */
+    object-fit: cover;
+    display: block;
+  }
+  /* kalau img gagal/404, kasih fallback background */
+  .media img.img-fallback { display: none; }
+  .media .media-fallback {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #95f, #5cf);
+  }
+
+  .content h2 { font-size: clamp(1.5rem, 2.5vw, 2.25rem); margin: 0 0 .5rem 0; }
+  .content p  { font-size: clamp(1rem, 1.2vw, 1.125rem); line-height: 1.65; margin: 0; color: var(--muted-foreground, #555); }
+
+  /* Controls */
+  .controls {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: .75rem;
+    margin-top: 1rem;
+  }
+  .prev, .next {
+    border: none; border-radius: .5rem; padding: .5rem .75rem;
+    background: var(--accent, #ff6be6); color: #000; cursor: pointer;
+  }
+
+  .dots { justify-self: end; display: flex; gap: .5rem; }
+  .dot {
+    inline-size: .6rem; block-size: .6rem; border-radius: 999px; border: 0;
+    background: #000; opacity: .35; cursor: pointer;
+  }
+  .dot.is-active { opacity: 1; }
+</style>
+
+<script>
+  // slider sederhana (tanpa lib) – geser per slide
+  document.addEventListener('astro:page-load', () => {
+    const root = document.currentScript.closest('.carousel');
+    const track = root.querySelector('.track');
+    const slides = [...root.querySelectorAll('.slide')];
+    const prev = root.querySelector('.prev');
+    const next = root.querySelector('.next');
+    const dots = [...root.querySelectorAll('.dot')];
+
+    let index = 0;
+    const show = (i) => {
+      index = (i + slides.length) % slides.length;
+      slides.forEach((el, n) => el.style.display = n === index ? 'grid' : 'none');
+      dots.forEach((d, n) => d.classList.toggle('is-active', n === index));
+    };
+
+    prev.addEventListener('click', () => show(index - 1));
+    next.addEventListener('click', () => show(index + 1));
+    dots.forEach((d, n) => d.addEventListener('click', () => show(n)));
+
+    // init
+    show(0);
+  });
+</script>

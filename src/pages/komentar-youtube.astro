@@ -1,0 +1,275 @@
+---
+// src/pages/komentar-youtube.astro
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+
+// ==========================================
+// 1. IMPORT SEMUA KOMPONEN CETAKAN
+// ==========================================
+import Hero from '../components/Hero.astro'
+import MasalahClient from '../components/MasalahClient.astro' 
+import ApaItuauradigital from '../components/ApaItuauradigital.astro'
+import Manfaatauradigital from '../components/Manfaatauradigital.astro'
+import MengapaMemilihauradigital from '../components/MengapaMemilihauradigital.astro'
+import CaraOrder from '../components/CaraOrder.astro'
+import Solusi from '../components/Solusi.astro'
+import HargaPaket from '../components/HargaPaket.astro'
+import Testimonials from '../components/Testimonials.astro'
+import DaftarHarga from '../components/DaftarHarga.astro'
+import MetodePembayaran from '../components/MetodePembayaran.astro'
+import Faqauradigital from '../components/Faqauradigital.astro'
+
+// ==========================================
+// 2. DATA SEO & META 
+// ==========================================
+const title = "Jasa Komentar YouTube Indonesia Profesional & Real";
+const description = "Jasa komentar YouTube Indonesia terpercaya untuk tingkatkan interaksi video. Beli komentar YouTube real dan aman untuk optimasi algoritma channel Anda secara profesional.";
+const keywords = "jasa komentar YouTube indonesia, jasa komentar YouTube, jasa comment YouTube, beli komentar YouTube, cara beli komentar YouTube, komentar YouTube murah, komentar YouTube real, komentar YouTube cepat, layanan komentar YouTube, jasa komen, jasa komentar terbaik, cari jasa komentar";
+
+// ==========================================
+// 3. DATA KONTEN KHUSUS YOUTUBE COMMENTS
+// ==========================================
+
+const dataHero = {
+  tipe: "service" as const,
+  labelTeks: "Layanan YouTube Premium",
+  labelIcon: "lucide:youtube",
+  judulUtama: 'Jasa <span class="text-red-500">Komentar YouTube</span> <br class="hidden md:block"/> Profesional & Terukur',
+  deskripsi: "Tingkatkan retensi interaksi dan validasi kualitas video Anda di mata audiens baru. Kami menyediakan jasa komentar YouTube Indonesia dengan distribusi yang terlihat natural untuk memperkuat otoritas channel Anda secara jangka panjang. <br class='hidden md:block mt-2' /> <span class='text-red-400 font-semibold block mt-4'>✓ Narasi Komentar Fleksibel &nbsp; ✓ Privasi Terjamin &nbsp; ✓ Distribusi Aman & Stabil</span>",
+  teksTombol1: "Lihat Paket Layanan",
+  linkTombol1: "#harga-paket",
+  teksTombol2: "Konsultasi Strategi",
+  linkTombol2: "https://wa.me/6289634740308",
+  gambarHero: "/image/hero-youtube.png" 
+};
+
+const dataMasalah = {
+  judulUtama: 'Tantangan Retensi pada <span class="text-red-500">Video YouTube</span>',
+  deskripsiUtama: "Memproduksi video berkualitas tinggi saja belum cukup jika tidak diimbangi dengan interaksi awal yang memadai. Berikut adalah kendala yang sering menghambat distribusi konten:",
+  ms1Teks: '<strong class="text-red-500 font-bold">Minimnya Validasi Audiens:</strong> Kolom diskusi yang kosong seringkali membuat penonton baru ragu untuk memberikan tanggapan organik.',
+  ms2Teks: '<strong class="text-red-500 font-bold">Stagnasi Algoritma:</strong> Sistem rekomendasi platform sangat bergantung pada tingginya rasio interaksi (termasuk komentar) di jam-jam pertama penayangan.',
+  ms3Teks: '<strong class="text-red-500 font-bold">Kredibilitas Promosi:</strong> Khusus untuk konten ulasan atau promosi belanja online, ketiadaan ulasan pihak ketiga menurunkan tingkat kepercayaan.',
+  ms4Teks: '<strong class="text-red-500 font-bold">Daya Saing Berkurang:</strong> Konten Anda berisiko tertinggal oleh kompetitor yang sudah memiliki ekosistem interaksi yang lebih aktif.'
+};
+
+const dataApaItu = {
+  judulUtama: 'Memahami Jasa Komentar <span class="text-red-500">YouTube</span>',
+  deskripsiUtama: "Layanan eskalasi digital yang dirancang untuk mengisi ruang diskusi pada video Anda, memberikan persepsi aktivitas yang tinggi dan memicu ketertarikan audiens organik.",
+  k1Judul: "Optimasi Interaksi Awal",
+  k1Teks: "Kami mendistribusikan komentar yang relevan dengan narasi video Anda, memastikan kolom diskusi terlihat hidup sejak awal konten dipublikasikan.",
+  k2Judul: "Infrastruktur Lokal",
+  k2Teks: "Sebagai penyedia jasa komentar YouTube Indonesia, kami memastikan setiap tanggapan yang diberikan menggunakan gaya bahasa yang relevan dan natural bagi target pasar lokal."
+};
+
+const dataManfaat = {
+  judulUtama: 'Dampak Strategis Beli Komentar <span class="text-red-500">YouTube</span>',
+  deskripsiUtama: "Keputusan untuk mengelola interaksi secara terstruktur akan memberikan dampak signifikan terhadap pertumbuhan jangka panjang aset digital Anda.",
+  m1Judul: "Akselerasi Visibilitas",
+  m1Teks: "Volume komentar yang konsisten memberikan sinyal positif kepada algoritma, memperbesar peluang video direkomendasikan pada beranda pengguna lain.",
+  m2Judul: "Membangun Otoritas",
+  m2Teks: "Audiens cenderung lebih menghargai konten yang telah divalidasi oleh banyak tanggapan positif, memperkuat posisi Anda di industri tersebut.",
+  m3Judul: "Pemicu Diskusi Organik",
+  m3Teks: "Komentar awal yang kami sediakan berfungsi sebagai pemantik, mendorong penonton riil untuk tidak ragu ikut menyuarakan pendapat mereka.",
+  m4Judul: "Efisiensi Pemasaran",
+  m4Teks: "Untuk kebutuhan bisnis, kustomisasi ulasan positif pada kolom diskusi sangat efektif dalam mendukung tingkat konversi penjualan."
+};
+
+const dataMengapaMemilih = {
+  judulUtama: 'Keunggulan auradigital Sebagai <span class="text-violet-400">Jasa Komentar Terbaik</span>',
+  deskripsiUtama: "Kami mengedepankan keamanan dan kualitas operasional. Berikut alasan korporasi dan kreator mempercayakan optimasi interaksinya kepada kami.",
+  mk1Judul: "Keamanan Privasi Mutlak",
+  mk1Teks: "Proses distribusi sepenuhnya berjalan di luar sistem Anda. Kami tidak pernah meminta kredensial atau otorisasi internal akun Anda.",
+  mk2Judul: "Kualitas Tanggapan Relevan",
+  mk2Teks: "Kami memfasilitasi komentar YouTube real yang disesuaikan dengan konteks video Anda, menghindari kesan repetitif atau tidak natural.",
+  mk3Judul: "Eksekusi Terukur",
+  mk3Teks: "Distribusi interaksi dilakukan secara bertahap (drip-feed) untuk memastikan setiap metrik terekam sempurna oleh sistem platform.",
+  mk4Judul: "Jangkauan Layanan Luas",
+  mk4Teks: "Baik untuk kebutuhan personal branding maupun kampanye korporat berskala besar, infrastruktur kami siap mengakomodasi kebutuhan Anda.",
+  mk5Judul: "Pendampingan Profesional",
+  mk5Teks: "Tim ahli kami siap memberikan rekomendasi strategi dan memantau jalannya distribusi interaksi secara menyeluruh.",
+  mk6Judul: "Integritas Layanan",
+  mk6Teks: "Kami menjamin bahwa proses yang digunakan mematuhi standar keamanan, meminimalisasi segala bentuk risiko pembatasan akun."
+};
+
+const dataSolusi = {
+  judulUtama: 'Pendekatan Taktis untuk <span class="text-red-500">Pertumbuhan YouTube</span>',
+  deskripsiUtama: "Metode beli komentar YouTube yang aman, profesional, dan memberikan dampak nyata terhadap kredibilitas konten Anda.",
+  sol1Icon: "lucide:message-square-text",
+  sol1Judul: "Penyesuaian Topik Diskusi",
+  sol1Teks: "Anda memiliki kendali penuh atas arah diskusi. Tentukan narasinya, dan sistem kami akan menyampaikannya secara elegan.",
+  sol2Icon: "lucide:shield-check",
+  sol2Judul: "Operasional Eksternal",
+  sol2Teks: "Dengan hanya bermodalkan tautan publik, kami menjalankan proses optimasi tanpa menyentuh struktur keamanan akun utama Anda.",
+  sol3Icon: "lucide:bar-chart-3",
+  sol3Judul: "Fokus pada Stabilitas",
+  sol3Teks: "Layanan kami memprioritaskan retensi jangka panjang, memastikan nilai investasi digital Anda tidak terbuang sia-sia."
+};
+
+const dataCaraOrder = {
+  judulUtama: 'Prosedur Layanan <span class="text-violet-400">Komentar YouTube</span>',
+  deskripsiUtama: "Langkah mudah untuk memulai kampanye optimasi interaksi pada saluran digital Anda.",
+  co1Judul: "Penentuan Strategi",
+  co1Teks: "Pilih volume layanan komentar YouTube yang paling sejalan dengan target eksposur video Anda.",
+  co2Judul: "Konsultasi Narasi",
+  co2Teks: "Siapkan arahan atau draf tanggapan yang Anda inginkan, lalu koordinasikan dengan tim operasional kami.",
+  co3Judul: "Penyerahan Tautan",
+  co3Teks: "Kirimkan URL publik dari video target Anda. Pastikan visibilitas konten tidak dalam status privat.",
+  co4Judul: "Implementasi Sistem",
+  co4Teks: "Tim kami akan memvalidasi pesanan dan segera memulai proses distribusi interaksi secara profesional."
+};
+
+const dataHargaPaket = {
+  judulHarga: "Penawaran Jasa Komentar YouTube",
+  deskripsiHarga: "Investasi rasional untuk eskalasi kredibilitas digital yang terukur dan profesional.",
+
+  // Paket Kiri (100 Komentar)
+  p1Gambar: "/image/paket-harga-komentaryoutube.png",
+  p1Nama: "100 Komentar Custom",
+  p1Fitur1: "Distribusi Terukur & Aman",
+  p1Fitur2: "Kustomisasi Narasi Sesuai Kebutuhan",
+  p1Fitur3: "Ideal untuk Validasi Awal",
+  p1Harga: "Rp 200.000",
+  p1Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%20100%20Komentar%20YouTube",
+
+  // Paket Kanan (1000 Komentar)
+  p2Label: "REKOMENDASI KORPORAT",
+  p2Gambar: "/image/paket-harga-komentaryoutube.png",
+  p2Nama: "1.000 Komentar Custom",
+  p2Fitur1: "Prioritas Alokasi Jaringan",
+  p2Fitur2: "Sangat Efektif untuk Kampanye Masif",
+  p2Fitur3: "Dukungan Konsultasi Strategis",
+  // p2HargaCoret SUDAH DIHAPUS TOTAL JADI TIDAK PERLU DITULIS SAMA SEKALI
+  p2Harga: "Rp 2.000.000",
+  p2Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%201.000%20Komentar%20YouTube" // <-- PASTIKAN BARIS INI ADA
+};
+
+const dataFaq = {
+  judulUtama: 'Pusat Informasi Layanan <span class="text-red-500">YouTube</span>',
+  deskripsiUtama: "Klarifikasi teknis seputar operasional jasa comment YouTube kami.",
+  linkWhatsapp: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital,%20saya%20memiliki%20pertanyaan%20seputar%20Jasa%20Komentar%20YouTube",
+  faq1Judul: "Apakah materi komentar dapat sepenuhnya disesuaikan?",
+  faq1Teks: "Tentu. Fleksibilitas narasi adalah keunggulan utama layanan kami. Anda berhak menentukan keseluruhan teks untuk mendukung ulasan positif, edukasi, maupun diskusi seputar bisnis Anda.",
+  faq2Judul: "Bagaimana tingkat kepatuhan keamanan terhadap channel monetisasi?",
+  faq2Teks: "Infrastruktur kami beroperasi sepenuhnya dari luar dengan mengikuti pola distribusi organik. Ini memastikan bahwa channel Anda aman dan proses monetisasi yang sedang berjalan tidak akan terdampak.",
+  faq3Judul: "Berapa lama estimasi penyelesaian kampanye?",
+  faq3Teks: "Untuk menjaga stabilitas akun dan memastikan penerimaan sistem yang natural, komentar YouTube cepat didistribusikan secara bertahap (drip-feed) segera setelah pesanan terverifikasi.",
+  faq4Judul: "Apakah profil pemberi komentar memiliki relevansi lokal?",
+  faq4Teks: "Ya, sebagai penyedia jasa komentar YouTube Indonesia, kami mengalokasikan profil dengan identitas dan gaya komunikasi yang merepresentasikan demografi lokal secara akurat.",
+  faq5Judul: "Apakah volume interaksi dapat dibagi ke beberapa aset video?",
+  faq5Teks: "Sangat memungkinkan. Apabila Anda memesan paket skala besar, Anda dapat menginstruksikan tim kami untuk mendistribusikan komentar tersebut ke beberapa tautan video yang berbeda secara proporsional.",
+  faq6Judul: "Informasi apa saja yang dibutuhkan untuk memulai?",
+  faq6Teks: "Kami memprioritaskan keamanan berlapis. Anda hanya perlu memberikan tautan URL video publik dan daftar instruksi narasi. Tidak akan pernah ada permintaan akses internal untuk kebutuhan ini."
+};
+---
+
+<DefaultLayout title={title} description={description} keywords={keywords}>
+
+<Fragment slot="head">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "Jasa Komentar YouTube Indonesia Profesional",
+    "image": "https://auradigital.id/image/paket-harga-komentaryoutube.png",
+    "description": "Layanan jasa komentar YouTube Indonesia yang aman dan profesional. Tersedia opsi beli komentar YouTube real untuk optimasi interaksi secara terukur.",
+    "brand": {
+      "@type": "Brand",
+      "name": "auradigital"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "945"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "200000",
+      "highPrice": "2000000",
+      "priceCurrency": "IDR",
+      "offerCount": "2"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Beranda",
+        "item": "https://auradigital.id/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Layanan",
+        "item": "https://auradigital.id/layanan/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Jasa Komentar YouTube"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Apakah materi komentar dapat sepenuhnya disesuaikan?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tentu. Fleksibilitas narasi adalah keunggulan utama layanan kami. Anda berhak menentukan keseluruhan teks untuk mendukung ulasan positif maupun diskusi."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Bagaimana tingkat kepatuhan keamanan terhadap channel monetisasi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Infrastruktur kami beroperasi sepenuhnya dari luar dengan mengikuti pola distribusi organik. Ini memastikan bahwa channel Anda sangat aman."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Berapa lama estimasi penyelesaian kampanye?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Untuk menjaga stabilitas akun, komentar didistribusikan secara bertahap (drip-feed) segera setelah pesanan terverifikasi."
+        }
+      }
+    ]
+  }
+]
+</script>
+</Fragment>
+
+  <Hero {...dataHero} />
+
+  <MasalahClient {...dataMasalah} />
+
+  <ApaItuauradigital {...dataApaItu} />
+
+  <Manfaatauradigital {...dataManfaat} />
+
+  <MengapaMemilihauradigital {...dataMengapaMemilih} />
+
+  <Solusi {...dataSolusi} />
+
+  <CaraOrder {...dataCaraOrder} />
+
+  <DaftarHarga />
+
+  <HargaPaket {...dataHargaPaket} />
+
+  <Testimonials />
+
+  <MetodePembayaran />
+
+  <Faqauradigital {...dataFaq} />
+
+</DefaultLayout>

@@ -1,0 +1,70 @@
+---
+// src/layouts/DefaultLayout.astro
+import '../styles/tailwind.css'
+import '../assets/scss/index.scss'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import FloatingCS from '../components/FloatingCS.astro'
+import { ClientRouter } from 'astro:transitions'
+
+// 1. Import komponen SEO khusus AuraDigital
+import SEO from '@components/SEO.astro'
+
+// 👇 PENGATURAN SEO UTAMA UNTUK AURADIGITAL
+const {
+  title = 'AuraDigital | Agensi Eskalasi Digital & Optimasi Media Sosial Premium', 
+  description = 'Tingkatkan otoritas dan kredibilitas brand Anda bersama AuraDigital. Solusi manajemen engagement, followers, likes, views, dan votes profesional untuk TikTok, Instagram, Facebook, dan Twitter.', 
+  keywords, 
+  image = '/logo-auradigital.png', 
+} = Astro.props
+---
+
+<html lang="id" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <SEO title={title} description={description} keywords={keywords} image={image} />
+
+    <slot name="head" />
+
+    <ClientRouter />
+  </head>
+  <body>
+    <Header />
+    <main id="main-content" transition:animate="fade">
+      <slot />
+    </main>
+    <Footer />
+    <FloatingCS />
+
+    <style lang="scss" is:global>
+      html, body { height: 100%; }
+      body { display: flex; flex-direction: column; overflow-x: clip; }
+      main { flex: 1 0 auto; }
+      footer { flex-shrink: 0; }
+      pre { border: 2px solid var(--link-color); border-radius: .35rem; padding: 1rem; }
+    </style>
+
+    <script>
+      document.addEventListener('astro:page-load', () => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+            }
+          });
+        }, {
+          threshold: 0.1 // Memicu animasi ketika 10% elemen sudah terlihat di layar
+        });
+
+        // Minta script untuk mengawasi semua elemen yang punya class reveal di seluruh website
+        document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right').forEach((el) => {
+          observer.observe(el);
+        });
+      });
+    </script>
+  </body>
+</html>

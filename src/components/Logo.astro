@@ -1,0 +1,28 @@
+---
+// src/components/Logo.astro
+import { Image } from 'astro:assets'
+import logoSvg from '../assets/img/logo-auradigital.svg'
+
+// Kita tambahkan 'loading' ke dalam kamus supaya TypeScript tidak protes
+interface Props {
+  isFooter?: boolean;
+  loading?: 'eager' | 'lazy';
+}
+
+const { isFooter = false, loading = 'eager' } = Astro.props;
+---
+
+<a href="/" class="flex items-center gap-2.5 !no-underline group">
+  
+  <Image 
+    src={logoSvg} 
+    alt="Logo auradigital" 
+    loading={loading}
+    class="w-10 h-10 object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-md" 
+  />
+  
+  <span class={`font-black text-2xl tracking-tight transition-colors duration-300 ${isFooter ? 'text-white' : 'text-slate-900'}`}>
+    aura<span class="text-violet-600">digital</span>
+  </span>
+
+</a>

@@ -1,0 +1,82 @@
+---
+interface FAQ { q: string; a: string }
+
+interface Props {
+  site?: string                // asal domain, tanpa trailing slash
+  siteName?: string
+  pageUrl?: string             // canonical URL halaman ini
+  pageTitle?: string
+  description?: string
+  image?: string               // absolute URL gambar og
+  hasSearch?: boolean
+  searchPath?: string          // path untuk SearchAction, ex: /search
+  faqItems?: FAQ[]             // [{ q, a }, ...]
+}
+
+const {
+  site = 'https://auradigital.id/',
+  siteName = 'AuraDigital',
+  pageUrl = 'https://auradigital.id/',
+  pageTitle = 'AuraDigital | Agensi Eskalasi Digital & Optimasi Media Sosial',
+  description = 'Tingkatkan otoritas dan kredibilitas brand Anda bersama AuraDigital. Solusi manajemen engagement profesional untuk TikTok, Instagram, Facebook, dan Twitter.',
+  image = 'https://auradigital.id/hero-dashboard.png',
+  hasSearch = true,
+  searchPath = '/search',
+  faqItems = [],
+}: Props = Astro.props
+
+const origin = site.replace(/\/$/, '')
+const canonical = pageUrl.replace(/\/?$/, '/')
+
+const graph: any[] = [
+  {
+    '@type': 'WebSite',
+    '@id': `${origin}/#website`,
+    url: `${origin}/`,
+    name: siteName,
+    publisher: { '@id': `${origin}/#organization` },
+    ...(hasSearch
+      ? {
+          potentialAction: {
+            '@type': 'SearchAction',
+            target: `${origin}${searchPath}?q={search_term_string}`,
+            'query-input': 'required name=search_term_string',
+          },
+        }
+      : {}),
+  },
+  {
+    '@type': 'WebPage',
+    '@id': `${origin}/#webpage`,
+    url: canonical,
+    name: pageTitle,
+    description,
+    isPartOf: { '@id': `${origin}/#website` },
+    primaryImageOfPage: { '@type': 'ImageObject', url: image },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    '@id': `${origin}/#breadcrumb`,
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${origin}/` },
+    ],
+  },
+]
+
+// FAQ opsional
+if (faqItems.length) {
+  graph.push({
+    '@type': 'FAQPage',
+    '@id': `${origin}/#faq`,
+    mainEntity: faqItems.map(({ q, a }) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
+  })
+}
+
+const jsonld = { '@context': 'https://schema.org', '@graph': graph }
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(jsonld)} />

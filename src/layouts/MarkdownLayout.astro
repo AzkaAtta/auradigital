@@ -1,0 +1,40 @@
+---
+import DefaultLayout from './DefaultLayout.astro'
+
+const { frontmatter } = Astro.props
+---
+
+<DefaultLayout title={frontmatter.title}>
+  <div class="container my-12">
+    <div class="max-w-3xl mx-auto">
+      <!-- Tombol Kembali -->
+      <a href="/blog/" class="text-blue-600 mb-8 inline-block hover:underline">← Kembali ke Blog</a>
+      
+      <!-- Judul dan Meta -->
+      <header class="mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">{frontmatter.title}</h1>
+        <p class="opacity-60 text-lg">{frontmatter.pubDate || 'Mei 2026'} · Oleh Admin Jasalike</p>
+        
+        {frontmatter.image && (
+          <img 
+            src={frontmatter.image} 
+            alt={frontmatter.title} 
+            class="w-full h-auto rounded-3xl mt-8 shadow-lg"
+          />
+        )}
+      </header>
+
+      <!-- Isi Artikel dengan Style "Prose" -->
+      <article class="prose prose-lg dark:prose-invert max-w-none prose-img:rounded-3xl prose-headings:text-primary-500">
+        <slot />
+      </article>
+      
+      <!-- Penutup/CTA -->
+      <div class="mt-16 p-8 rounded-3xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-center">
+        <h3 class="text-2xl font-bold mb-4">Butuh Dorongan Interaksi Awal?</h3>
+        <p class="mb-6">Jadikan konten Anda lebih dipercaya dengan jasa Like dari Jasalike.</p>
+        <a href="/layanan/" class="button px-8 py-3">Lihat Layanan Kami</a>
+      </div>
+    </div>
+  </div>
+</DefaultLayout>
