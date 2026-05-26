@@ -1,0 +1,276 @@
+---
+// src/pages/follower-instagram.astro
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+
+// ==========================================
+// 1. IMPORT SEMUA KOMPONEN CETAKAN
+// ==========================================
+import Hero from '../components/Hero.astro'
+import MasalahClient from '../components/MasalahClient.astro' 
+import ApaItuauradigital from '../components/ApaItuauradigital.astro'
+import Manfaatauradigital from '../components/Manfaatauradigital.astro'
+import MengapaMemilihauradigital from '../components/MengapaMemilihauradigital.astro'
+import CaraOrder from '../components/CaraOrder.astro'
+import Solusi from '../components/Solusi.astro'
+import HargaPaket from '../components/HargaPaket.astro'
+import Testimonials from '../components/Testimonials.astro'
+import DaftarHarga from '../components/DaftarHarga.astro'
+import MetodePembayaran from '../components/MetodePembayaran.astro'
+import Faqauradigital from '../components/Faqauradigital.astro'
+
+// ==========================================
+// 2. DATA SEO & META 
+// ==========================================
+const title = "Jasa Followers Instagram Aktif & Permanen | AuraDigital";
+const description = "Jasa tambah followers Instagram terbaik tanpa password. Solusi beli followers IG permanen. Kami juga ahlinya jasa komentar YouTube indonesia & jasa report akun tiktok.";
+const keywords = "jasa followers instagram, beli followers ig, jasa tambah followers instagram, jasa followers ig permanen, beli followers instagram aktif, tambah follower ig murah, beli followers instagram tanpa password, jasa komentar YouTube indonesia, jasa report akun tiktok, jasa hapus akun tiktok, jasa trending topik twitter, jual akun tiktok, auradigital";
+
+// ==========================================
+// 3. DATA KONTEN KHUSUS FOLLOWER INSTAGRAM
+// ==========================================
+
+const dataHero = {
+  tipe: "service" as const,
+  labelTeks: "Layanan Instagram Premium",
+  labelIcon: "lucide:instagram",
+  judulUtama: 'Jasa <span class="text-fuchsia-500">Followers Instagram</span> <br class="hidden md:block"/> Aktif & Permanen',
+  deskripsi: "Tingkatkan kredibilitas dan social proof akun bisnis Anda seketika. Kami menyediakan layanan beli followers IG dengan distribusi natural yang aman, privasi terjamin, dan tanpa perlu password. <br class='hidden md:block mt-2' /> <span class='text-fuchsia-400 font-semibold block mt-4'>✓ 100% Tanpa Password &nbsp; ✓ Privasi Terjamin &nbsp; ✓ Kualitas Real & Aktif</span>",
+  teksTombol1: "Lihat Paket Layanan",
+  linkTombol1: "#harga-paket",
+  teksTombol2: "Konsultasi Strategi",
+  linkTombol2: "https://wa.me/6289634740308",
+  gambarHero: "/image/hero-instagram.png" // Pastikan gambar ini ada di folder public/image
+};
+
+const dataMasalah = {
+  judulUtama: 'Tantangan Profil Minim <span class="text-fuchsia-500">Followers IG</span>',
+  deskripsiUtama: "Membangun kepercayaan audiens dan algoritma dari nol adalah proses yang berat. Berikut adalah kendala yang sering menghambat bisnis Anda di Instagram:",
+  ms1Teks: '<strong class="text-fuchsia-500 font-bold">Krisis Kepercayaan (Trust Issue):</strong> Calon klien atau pembeli seringkali ragu dan membatalkan transaksi pada akun dengan jumlah pengikut yang terlalu sedikit.',
+  ms2Teks: '<strong class="text-fuchsia-500 font-bold">Kalah Reputasi:</strong> Kompetitor yang memiliki ribuan followers selalu terlihat lebih mapan, meyakinkan, dan mendominasi psikologi pasar.',
+  ms3Teks: '<strong class="text-fuchsia-500 font-bold">Trafik Iklan Terbuang:</strong> Konversi ads (iklan berbayar) sering gagal karena pengunjung yang klik merasa profil Anda kurang kredibel.',
+  ms4Teks: '<strong class="text-fuchsia-500 font-bold">Stagnasi Algoritma:</strong> Konten Anda berisiko tertahan karena algoritma Instagram memprioritaskan penyebaran profil dengan otoritas (followers) tinggi.'
+};
+
+const dataApaItu = {
+  judulUtama: 'Solusi Cerdas: Beli Followers <span class="text-fuchsia-500">Instagram</span>',
+  deskripsiUtama: "Layanan optimasi profil yang dirancang khusus untuk memanipulasi persepsi audiens menjadi positif melalui injeksi angka pengikut berkualitas secara instan.",
+  k1Judul: "Injeksi Otoritas Visual",
+  k1Teks: "Kami mendistribusikan pengikut yang akan membuat tampilan profil bisnis Anda langsung terlihat bagaikan brand besar berskala nasional.",
+  k2Judul: "Sistem Keamanan Berlapis",
+  k2Teks: "Sebagai penyedia jasa tambah followers instagram tepercaya, operasional kami murni berjalan dari luar sistem. Akun Anda 100% terlindungi dari risiko pembatasan."
+};
+
+const dataManfaat = {
+  judulUtama: 'Dampak Ekstrem Tambah Followers <span class="text-fuchsia-500">IG</span>',
+  deskripsiUtama: "Keputusan untuk membeli pengikut bukanlah sekadar menambah angka, melainkan strategi psikologi marketing dengan dampak luar biasa.",
+  m1Judul: "Social Proof Maksimal",
+  m1Teks: "Meningkatkan rasio konversi secara drastis. Audiens baru akan langsung menaruh rasa hormat pada profil yang sudah divalidasi oleh ribuan orang.",
+  m2Judul: "Akselerasi Brand Awareness",
+  m2Teks: "Profil Anda lebih menonjol di kolom pencarian dan rekomendasi eksplor, memicu ketertarikan organik yang masif.",
+  m3Judul: "Daya Tarik Partnership",
+  m3Teks: "Bagi kreator, memiliki ribuan followers adalah syarat wajib untuk dilirik oleh brand besar demi kebutuhan sponsorship dan endorsement.",
+  m4Judul: "Efisiensi Waktu Bisnis",
+  m4Teks: "Menghemat tenaga berbulan-bulan yang biasanya dihabiskan untuk strategi mencari pengikut organik, memungkinkan Anda fokus pada kualitas konten."
+};
+
+const dataMengapaMemilih = {
+  judulUtama: 'Alasan auradigital Adalah <span class="text-violet-400">Pilihan Terbaik</span>',
+  deskripsiUtama: "Lebih dari sekadar agensi Instagram, auradigital adalah pusat komando eskalasi digital yang melayani korporasi dengan standar keamanan tertinggi.",
+  mk1Judul: "Keamanan Tanpa Password",
+  mk1Teks: "Kami hanya membutuhkan Username Instagram Anda. Privasi dan kredensial akun tetap berada dalam kontrol penuh Anda.",
+  mk2Judul: "Kualitas Followers Aktif",
+  mk2Teks: "Berbeda dengan layanan murahan, kami menyediakan opsi followers berkualitas dengan foto profil dan rasio yang menyerupai akun organik.",
+  mk3Judul: "Garansi Drop Refill",
+  mk3Teks: "Untuk menjaga kenyamanan, kami menyediakan jasa followers ig permanen yang dilindungi oleh asuransi isi ulang (refill) apabila terjadi penurunan.",
+  mk4Judul: "Layanan Lintas Platform",
+  mk4Teks: "Kami tidak hanya pakar di Instagram. Klien juga mempercayakan kami untuk jasa komentar YouTube indonesia dan jasa trending topik twitter.",
+  mk5Judul: "Pakar Penanganan Masalah",
+  mk5Teks: "Infrastruktur kami sangat kuat, mencakup layanan resolusi konflik taktis seperti jasa report akun tiktok hingga jasa hapus akun tiktok.",
+  mk6Judul: "Dukungan Konsultatif",
+  mk6Teks: "Tim ahli kami berdedikasi penuh merespons kebutuhan Anda, memastikan setiap transaksi berjalan lancar tanpa hambatan komunikasi."
+};
+
+const dataSolusi = {
+  judulUtama: 'Metode Aman Penambahan <span class="text-fuchsia-500">Followers</span>',
+  deskripsiUtama: "Metodologi kami dirancang mengikuti pola pembacaan algoritma terkini demi memastikan keamanan aset Anda.",
+  sol1Icon: "lucide:users-2",
+  sol1Judul: "Filter Kualitas Akun",
+  sol1Teks: "Kami menyeleksi server injeksi dengan ketat agar followers yang masuk tidak memicu alarm sistem spam pada aplikasi target.",
+  sol2Icon: "lucide:shield-alert",
+  sol2Judul: "Prosedur External Link",
+  sol2Teks: "Beli followers instagram di auradigital berarti bekerja secara remote; tidak perlu tautan API maupun hak akses login.",
+  sol3Icon: "lucide:timer",
+  sol3Judul: "Kecepatan Adaptif",
+  sol3Teks: "Kecepatan masuknya pengikut disesuaikan dengan volume pesanan agar tampak seperti eskalasi viral organik yang wajar."
+};
+
+const dataCaraOrder = {
+  judulUtama: 'Prosedur Order <span class="text-violet-400">Jasa Followers</span>',
+  deskripsiUtama: "Hanya butuh beberapa menit untuk mulai merubah total tampilan profil Instagram bisnis Anda.",
+  co1Judul: "Pilih Volume Layanan",
+  co1Teks: "Tentukan jumlah followers yang paling sesuai dengan target branding atau kebutuhan awal profil perusahaan Anda.",
+  co2Judul: "Hubungi Admin Kami",
+  co2Teks: "Klik tombol order untuk terhubung dengan tim dukungan kami melalui WhatsApp dan sampaikan pesanan Anda.",
+  co3Judul: "Serahkan Target Username",
+  co3Teks: "Kirimkan cukup Username akun Anda (pastikan akun disetting Publik, bukan Private).",
+  co4Judul: "Proses & Konfirmasi",
+  co4Teks: "Selesaikan administrasi, dan sistem kami akan langsung merespons dengan memproses masuknya pengikut secara otomatis."
+};
+
+const dataHargaPaket = {
+  judulHarga: "Penawaran Investasi Followers",
+  deskripsiHarga: "Opsi harga yang rasional untuk membangun pilar kepercayaan profil media sosial Anda.",
+
+  // Paket Kiri 
+  p1Gambar: "/image/paket-harga-followerig.png",
+  p1Nama: "1.000 Followers IG",
+  p1Fitur1: "Kualitas High Quality / Real",
+  p1Fitur2: "Proses Cepat & Eksekusi Aman",
+  p1Fitur3: "Hanya Butuh Username (Tanpa Login)",
+  p1Harga: "Rp 100.000",
+  p1Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%201.000%20Followers%20Instagram",
+
+  // Paket Kanan 
+  p2Label: "PILIHAN FAVORIT BISNIS",
+  p2Gambar: "/image/paket-harga-followerig.png",
+  p2Nama: "5.000 Followers IG",
+  p2Fitur1: "Garansi Drop Refill Terjamin",
+  p2Fitur2: "Eskalasi Social Proof Maksimal",
+  p2Fitur3: "Layanan Prioritas Konsultasi",
+  p2Harga: "Rp 450.000",
+  p2Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%205.000%20Followers%20Instagram" 
+};
+
+const dataFaq = {
+  judulUtama: 'Pusat Bantuan <span class="text-fuchsia-500">Layanan Instagram</span>',
+  deskripsiUtama: "Jawaban cepat atas pertanyaan seputar mekanisme beli followers ig di auradigital.",
+  linkWhatsapp: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital,%20saya%20punya%20pertanyaan%20seputar%20Jasa%20Followers%20Instagram",
+  faq1Judul: "Apakah penambahan followers ini aman dari banned?",
+  faq1Teks: "Sangat terjamin aman. Karena sistem kami tidak membutuhkan password dan hanya menyuntikkan pengikut dari luar, Instagram tidak akan menganggapnya sebagai pelanggaran akun Anda.",
+  faq2Judul: "Apakah followersnya bisa menurun (drop)?",
+  faq2Teks: "Fluktuasi pada layanan media sosial adalah hal yang wajar karena adanya update algoritma global. Namun, kami menyediakan paket jasa followers ig permanen dengan asuransi pengisian ulang (refill) gratis.",
+  faq3Judul: "Apakah akun target harus disetting Publik?",
+  faq3Teks: "Wajib. Sistem otomatis kami tidak dapat mendistribusikan pengikut jika akun Anda dalam mode Terkunci (Private). Harap pastikan gembok akun terbuka selama masa proses.",
+  faq4Judul: "Berapa lama estimasi followers akan masuk?",
+  faq4Teks: "Sebagian besar pesanan mulai merespons dan masuk dalam hitungan menit hingga beberapa jam setelah pembayaran dikonfirmasi, menyesuaikan dengan stabilitas jaringan.",
+  faq5Judul: "Layanan apa lagi yang bisa dipesan di AuraDigital?",
+  faq5Teks: "Kami melayani hampir semua optimasi. Klien yang memesan Instagram biasanya juga memanfaatkan keahlian kami di platform lain seperti jasa komentar YouTube indonesia, jasa report tiktok, dan jual akun tiktok.",
+  faq6Judul: "Bolehkah saya mengubah username saat proses berjalan?",
+  faq6Teks: "Dilarang keras. Mengubah username saat pesanan belum tuntas akan membuat sistem gagal menemukan tujuan (error), dan garansi otomatis hangus."
+};
+---
+
+<DefaultLayout title={title} description={description} keywords={keywords}>
+
+<Fragment slot="head">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "Jasa Tambah Followers Instagram Aktif & Permanen",
+    "image": "https://auradigital.id/image/paket-harga-followerig.png",
+    "description": "Layanan jasa followers instagram yang aman 100% tanpa password. Beli followers IG untuk naikkan social proof bisnis Anda secara instan bersama AuraDigital.",
+    "brand": {
+      "@type": "Brand",
+      "name": "auradigital"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "1250"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "200000",
+      "highPrice": "2000000",
+      "priceCurrency": "IDR",
+      "offerCount": "2"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Beranda",
+        "item": "https://auradigital.id/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Layanan",
+        "item": "https://auradigital.id/layanan/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Jasa Followers Instagram"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Apakah penambahan followers ini aman dari banned?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sangat terjamin aman. Karena sistem kami tidak membutuhkan password dan hanya menyuntikkan pengikut dari luar, Instagram tidak akan menganggapnya sebagai pelanggaran."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Apakah followersnya bisa menurun (drop)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fluktuasi adalah hal wajar karena algoritma. Namun, kami menyediakan paket jasa followers ig permanen dengan asuransi pengisian ulang (refill) gratis."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Apakah akun target harus disetting Publik?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Wajib. Sistem otomatis kami tidak dapat mendistribusikan pengikut jika akun Anda dalam mode Terkunci (Private)."
+        }
+      }
+    ]
+  }
+]
+</script>
+</Fragment>
+
+  <Hero {...dataHero} />
+
+  <MasalahClient {...dataMasalah} />
+
+  <ApaItuauradigital {...dataApaItu} />
+
+  <Manfaatauradigital {...dataManfaat} />
+
+  <MengapaMemilihauradigital {...dataMengapaMemilih} />
+
+  <Solusi {...dataSolusi} />
+
+  <CaraOrder {...dataCaraOrder} />
+
+  <DaftarHarga />
+
+  <HargaPaket {...dataHargaPaket} />
+
+  <Testimonials />
+
+  <MetodePembayaran />
+
+  <Faqauradigital {...dataFaq} />
+
+</DefaultLayout>
+
+
