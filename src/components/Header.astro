@@ -259,7 +259,7 @@ import { Icon } from 'astro-icon/components'
   }
 
   /* ==========================================
-     2. MODE DESKTOP KHUSUS (Layar PC/Laptop)
+     2. MODE DESKTOP KHUSUS (Layar PC/Laptop) - TETAP MEGAH
      ========================================== */
   @media (min-width: 1025px) {
     header#main-header.scrolled {
@@ -304,10 +304,7 @@ import { Icon } from 'astro-icon/components'
     }
     header#main-header #main-navigation .dropdown-menu.mega-menu::-webkit-scrollbar { width: 6px !important; }
     header#main-header #main-navigation .dropdown-menu.mega-menu::-webkit-scrollbar-track { background: transparent !important; }
-    header#main-header #main-navigation .dropdown-menu.mega-menu::-webkit-scrollbar-thumb {
-      background-color: #cbd5e1 !important; 
-      border-radius: 20px !important;
-    }
+    header#main-header #main-navigation .dropdown-menu.mega-menu::-webkit-scrollbar-thumb { background-color: #cbd5e1 !important; border-radius: 20px !important; }
     header#main-header #main-navigation .dropdown-menu.mega-menu::-webkit-scrollbar-thumb:hover { background-color: #8b5cf6 !important; }
 
     header#main-header .mega-menu-container {
@@ -316,14 +313,11 @@ import { Icon } from 'astro-icon/components'
       gap: 2.5rem 10rem !important; 
     }
     header#main-header .mega-column { display: flex !important; flex-direction: column !important; gap: 0.4rem !important; }
-    header#main-header #main-navigation .dropdown-menu.mega-menu a {
-      color: #475569 !important; font-size: 0.9rem !important; transition: color 0.2s ease !important;
-    }
+    header#main-header #main-navigation .dropdown-menu.mega-menu a { color: #475569 !important; font-size: 0.9rem !important; transition: color 0.2s ease !important; }
     header#main-header #main-navigation .dropdown-menu.mega-menu a:hover { color: #7c3aed !important; text-decoration: none !important; }
     header#main-header #main-navigation .dropdown-menu.mega-menu .mega-title {
       font-weight: 800 !important; font-size: 1.05rem !important; color: #0f172a !important; 
-      border-bottom: 1px solid #e2e8f0 !important; padding-bottom: 0.4rem !important;
-      margin-bottom: 0.4rem !important; display: flex !important; align-items: center !important; gap: 0.5rem !important;
+      border-bottom: 1px solid #e2e8f0 !important; padding-bottom: 0.4rem !important; margin-bottom: 0.4rem !important; display: flex !important; align-items: center !important; gap: 0.5rem !important;
     }
     header#main-header .mega-column.mega-view-all { grid-column: 1 / -1 !important; margin-top: 1rem !important; align-items: center !important; }
     header#main-header #main-navigation .mega-view-all .view-all-btn {
@@ -331,14 +325,13 @@ import { Icon } from 'astro-icon/components'
       padding: 0.6rem 1.2rem !important; border-radius: 0.5rem !important; font-weight: 600 !important; justify-content: center !important;
     }
     header#main-header #main-navigation .mega-view-all .view-all-btn:hover { background-color: #7c3aed !important; color: #ffffff !important; }
-    
     header#main-header .mega-links-grid { display: flex !important; flex-direction: column !important; gap: 0.1rem !important; margin-top: 0.3rem !important; }
     header#main-header .mega-links-grid a { display: block !important; width: 100% !important; line-height: 1.2 !important; padding-bottom: 2px !important; }
   }
 
 
   /* ==========================================
-     3. JURUS SMACKDOWN MOBILE (SCROLL FIX & COUPLE VIOLET) 💥
+     3. JURUS SMACKDOWN MOBILE: 1 KOTAK SCROLL 💥
      ========================================== */
   @media (max-width: 1024px) {
     
@@ -357,56 +350,53 @@ import { Icon } from 'astro-icon/components'
       padding: 1rem 0 !important;
     }
 
-    /* 💥 KUNCI SCROLL: Paksa Daftar Menu HP Bisa Digeser 💥 */
-    header#main-header .navigation ul,
-    header#main-header #main-navigation > ul {
-      max-height: 85vh !important; /* Batasi maksimal 85% tinggi layar HP */
-      overflow-y: auto !important; /* NYALAKAN fungsi scroll vertical */
-      padding-bottom: 3rem !important; /* Beri jarak longgar di bawah */
-    }
-
-    /* Percantik Scrollbar di dalam Menu HP */
-    header#main-header #main-navigation > ul::-webkit-scrollbar { width: 4px !important; }
-    header#main-header #main-navigation > ul::-webkit-scrollbar-track { background: transparent !important; }
-    header#main-header #main-navigation > ul::-webkit-scrollbar-thumb { background-color: #8b5cf6 !important; border-radius: 10px !important; }
-
-
-    /* Lepas tinggi kotak mega-menu, biarkan mengalir ikuti scroll parent-nya */
+    /* 💥 KUNCI UTAMA: BIKIN 1 KOTAK (WINDOW) DENGAN SCROLL DI DALAMNYA 💥 */
     header#main-header #main-navigation .dropdown-menu.mega-menu {
       position: relative !important;
       width: 100% !important;
       left: 0 !important;
-      background: transparent !important;
-      box-shadow: none !important;
-      border: none !important;
-      padding: 1rem 0 !important;
-      max-height: none !important; 
-      overflow-y: visible !important;
+      
+      /* Ini background 1 kotak utama */
+      background-color: rgba(15, 23, 42, 0.95) !important; 
+      border: 1px solid rgba(124, 58, 237, 0.4) !important;
+      border-radius: 1rem !important;
+      padding: 1.2rem !important;
+      margin-top: 0.5rem !important;
+      
+      /* BATASI TINGGI & PAKSA SCROLL INTERNAL */
+      max-height: 60vh !important; /* Maksimal 60% layar HP */
+      overflow-y: auto !important; /* Nyalakan scroll di DALAM kotak */
+      pointer-events: auto !important; /* Anti-lock dari script Astro */
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8) !important;
     }
 
-    /* Susun layanan ke bawah (Card Vertikal) */
+    /* Percantik desain scrollbar khusus di kotak ini */
+    header#main-header #main-navigation .dropdown-menu.mega-menu::-webkit-scrollbar { width: 5px !important; }
+    header#main-header #main-navigation .dropdown-menu.mega-menu::-webkit-scrollbar-track { background: rgba(0,0,0,0.2) !important; border-radius: 10px; }
+    header#main-header #main-navigation .dropdown-menu.mega-menu::-webkit-scrollbar-thumb { background-color: #8b5cf6 !important; border-radius: 10px !important; }
+
+    /* Susun konten di dalamnya jadi ke bawah */
     header#main-header .mega-menu-container {
       display: flex !important;
       flex-direction: column !important;
-      gap: 1.5rem !important; 
+      gap: 1.5rem !important; /* Jarak antar bagian (TikTok, FB, dll) */
     }
 
-    /* Kotak Ungu Premium */
+    /* Hilangkan background dari tiap kategori agar menyatu di 1 kotak besar */
     header#main-header .mega-column {
-      background-color: rgba(15, 23, 42, 0.6) !important; 
-      border: 1px solid rgba(124, 58, 237, 0.3) !important; 
-      border-radius: 1rem !important;
-      padding: 1.5rem !important;
+      background: transparent !important; 
+      border: none !important; 
+      padding: 0 !important;
     }
 
-    /* Judul Kategori HP */
+    /* Teks Judul Kategori HP (Instagram, TikTok, dll) */
     header#main-header #main-navigation .dropdown-menu.mega-menu .mega-title {
       color: #ffffff !important;
       font-weight: 800 !important;
-      font-size: 1.2rem !important;
+      font-size: 1.1rem !important;
       border-bottom: 1px solid rgba(124, 58, 237, 0.4) !important;
-      padding-bottom: 1rem !important;
-      margin-bottom: 1rem !important;
+      padding-bottom: 0.5rem !important;
+      margin-bottom: 0.5rem !important;
       display: flex !important;
       align-items: center !important;
       gap: 0.5rem !important;
@@ -416,19 +406,19 @@ import { Icon } from 'astro-icon/components'
     header#main-header .mega-links-grid {
       display: flex !important;
       flex-direction: column !important;
-      gap: 0.2rem !important;
+      gap: 0.1rem !important;
     }
     header#main-header #main-navigation .dropdown-menu.mega-menu a {
       color: #c4b5fd !important; 
-      font-size: 1rem !important;
-      padding: 0.6rem 0 !important;
-      border-bottom: 1px dashed rgba(255, 255, 255, 0.1) !important; 
+      font-size: 0.95rem !important;
+      padding: 0.5rem 0 !important;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.05) !important; 
     }
     header#main-header #main-navigation .dropdown-menu.mega-menu a:hover {
       color: #ffffff !important; 
     }
 
-    /* Tombol Lihat Semua */
+    /* Tombol Lihat Semua di posisi paling bawah scroll */
     header#main-header #main-navigation .mega-view-all .view-all-btn {
       display: block !important;
       width: 100% !important;
