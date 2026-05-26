@@ -229,13 +229,14 @@ import { Icon } from 'astro-icon/components'
 
 <style lang="scss" is:global>
   /* ==========================================
-     1. PENGATURAN UMUM / GLOBAL
+     1. RESET NAVBAR AGAR TIDAK TAWURAN
      ========================================== */
   header#main-header {
     transition: all 0.4s ease-in-out !important;
     border-bottom: 1px solid transparent;
   }
 
+  /* Warna Logo */
   header#main-header #main-navigation > .container > :first-child,
   header#main-header #main-navigation > .container > :first-child a,
   header#main-header #main-navigation > .container > :first-child span,
@@ -253,183 +254,141 @@ import { Icon } from 'astro-icon/components'
     object-fit: contain !important; 
     display: inline-block !important;
     margin-right: 8px !important; 
-    overflow: hidden !important;
-    white-space: nowrap !important;
-    font-size: 0px !important;
   }
 
-  /* ==========================================
-     2. MODE DESKTOP KHUSUS (Layar PC/Laptop) - TETAP MEGAH
-     ========================================== */
-  @media (min-width: 1025px) {
-    header#main-header.scrolled {
-      background-color: rgba(255, 255, 255, 0.98) !important;
-      backdrop-filter: blur(10px) !important;
-      border-bottom-color: #e2e8f0 !important;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+  /* PAKSA MENU UTAMA TETAP JADI BARIS HORIZONTAL DI LAYAR LEBAR/DESKTOP MODE */
+  @media (min-width: 900px) {
+    header#main-header .navigation ul {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      justify-content: flex-end !important;
+      gap: 1.5rem !important;
+      margin: 0 !important;
+      padding: 0 !important;
     }
+  }
+
+  /* Efek Scroll Background */
+  header#main-header.scrolled {
+    background-color: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(10px) !important;
+    border-bottom-color: #e2e8f0 !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  @media (min-width: 900px) {
     header#main-header.scrolled #main-navigation a,
     header#main-header.scrolled #main-navigation button,
     header#main-header.scrolled #main-navigation span,
-    header#main-header.scrolled #main-navigation svg,
-    header#main-header.scrolled #main-navigation svg path {
+    header#main-header.scrolled #main-navigation svg {
       color: #0f172a !important; 
       text-shadow: none !important; 
     }
-    header#main-header #main-navigation .desktop-menu ul {
-      display: flex !important;
-      align-items: center !important;
-      gap: 1.5rem !important;
-      margin: 0 !important;
-    }
-    header#main-header .menu-item a, 
-    header#main-header .menu-item button {
-      padding: 0.5rem 0.25rem !important;
-      line-height: 1 !important;
-      font-size: 0.95rem !important;
-    }
-    header#main-header #main-navigation .dropdown-menu.mega-menu {
-      background-color: #ffffff !important; 
-      border: 1px solid #e2e8f0 !important;
-      padding: 2rem !important; 
-      border-radius: 1rem !important;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1) !important;
-      top: 100% !important;
-      margin-top: 0.5rem !important;
-      width: 1000px !important; 
-      max-width: 95vw !important;
-      left: -280px !important; 
-      max-height: 75vh !important; 
-      overflow-y: auto !important; 
-    }
-    header#main-header #main-navigation .dropdown-menu.mega-menu::-webkit-scrollbar { width: 6px !important; }
-    header#main-header #main-navigation .dropdown-menu.mega-menu::-webkit-scrollbar-track { background: transparent !important; }
-    header#main-header #main-navigation .dropdown-menu.mega-menu::-webkit-scrollbar-thumb { background-color: #cbd5e1 !important; border-radius: 20px !important; }
-    header#main-header #main-navigation .dropdown-menu.mega-menu::-webkit-scrollbar-thumb:hover { background-color: #8b5cf6 !important; }
-
-    header#main-header .mega-menu-container {
-      display: grid !important;
-      grid-template-columns: repeat(3, 1fr) !important;
-      gap: 2.5rem 10rem !important; 
-    }
-    header#main-header .mega-column { display: flex !important; flex-direction: column !important; gap: 0.4rem !important; }
-    header#main-header #main-navigation .dropdown-menu.mega-menu a { color: #475569 !important; font-size: 0.9rem !important; transition: color 0.2s ease !important; }
-    header#main-header #main-navigation .dropdown-menu.mega-menu a:hover { color: #7c3aed !important; text-decoration: none !important; }
-    header#main-header #main-navigation .dropdown-menu.mega-menu .mega-title {
-      font-weight: 800 !important; font-size: 1.05rem !important; color: #0f172a !important; 
-      border-bottom: 1px solid #e2e8f0 !important; padding-bottom: 0.4rem !important; margin-bottom: 0.4rem !important; display: flex !important; align-items: center !important; gap: 0.5rem !important;
-    }
-    header#main-header .mega-column.mega-view-all { grid-column: 1 / -1 !important; margin-top: 1rem !important; align-items: center !important; }
-    header#main-header #main-navigation .mega-view-all .view-all-btn {
-      display: inline-flex !important; background-color: #f3e8ff !important; color: #7c3aed !important;
-      padding: 0.6rem 1.2rem !important; border-radius: 0.5rem !important; font-weight: 600 !important; justify-content: center !important;
-    }
-    header#main-header #main-navigation .mega-view-all .view-all-btn:hover { background-color: #7c3aed !important; color: #ffffff !important; }
-    header#main-header .mega-links-grid { display: flex !important; flex-direction: column !important; gap: 0.1rem !important; margin-top: 0.3rem !important; }
-    header#main-header .mega-links-grid a { display: block !important; width: 100% !important; line-height: 1.2 !important; padding-bottom: 2px !important; }
   }
 
+  /* ==========================================
+     2. MEGA MENU (1 KOTAK & BISA DI-SCROLL)
+     ========================================== */
+  header#main-header .dropdown-menu.mega-menu {
+    background-color: #ffffff !important; 
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 1rem !important;
+    padding: 1.5rem !important; 
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2) !important;
+    
+    /* 💥 KUNCI UTAMA: 1 Kotak yang Bisa Di-Scroll 💥 */
+    max-height: 65vh !important; /* Tinggi dikunci maksimal 65% layar */
+    overflow-y: auto !important; /* Fungsi Scroll Aktif */
+  }
+
+  /* Percantik Scrollbar di Dalam Kotak */
+  header#main-header .dropdown-menu.mega-menu::-webkit-scrollbar { width: 6px !important; }
+  header#main-header .dropdown-menu.mega-menu::-webkit-scrollbar-track { background: transparent !important; }
+  header#main-header .dropdown-menu.mega-menu::-webkit-scrollbar-thumb { background-color: #8b5cf6 !important; border-radius: 20px !important; }
+  header#main-header .dropdown-menu.mega-menu::-webkit-scrollbar-thumb:hover { background-color: #7c3aed !important; }
+
+  /* Grid Dasar Mega Menu */
+  header#main-header .mega-menu-container {
+    display: grid !important;
+    gap: 2rem !important; 
+  }
+
+  /* Judul & Link Standar (Akan ditimpa jika masuk Mobile) */
+  header#main-header .mega-column { display: flex !important; flex-direction: column !important; gap: 0.4rem !important; background: transparent !important; border: none !important; padding: 0 !important; }
+  header#main-header #main-navigation .dropdown-menu.mega-menu a { color: #475569 !important; font-size: 0.9rem !important; transition: color 0.2s ease !important; }
+  header#main-header #main-navigation .dropdown-menu.mega-menu a:hover { color: #7c3aed !important; text-decoration: none !important; }
+  header#main-header #main-navigation .dropdown-menu.mega-menu .mega-title {
+    font-weight: 800 !important; font-size: 1.05rem !important; color: #0f172a !important; 
+    border-bottom: 1px solid #e2e8f0 !important; padding-bottom: 0.4rem !important; margin-bottom: 0.4rem !important; display: flex !important; align-items: center !important; gap: 0.5rem !important;
+  }
+  header#main-header .mega-links-grid { display: flex !important; flex-direction: column !important; gap: 0.1rem !important; margin-top: 0.3rem !important; }
+  header#main-header .mega-links-grid a { display: block !important; width: 100% !important; line-height: 1.2 !important; padding-bottom: 2px !important; }
+  
+  /* Tombol Lihat Semua */
+  header#main-header .mega-column.mega-view-all { grid-column: 1 / -1 !important; margin-top: 1rem !important; align-items: center !important; }
+  header#main-header #main-navigation .mega-view-all .view-all-btn {
+    display: inline-flex !important; background-color: #f3e8ff !important; color: #7c3aed !important;
+    padding: 0.6rem 1.2rem !important; border-radius: 0.5rem !important; font-weight: 600 !important; justify-content: center !important;
+  }
+  header#main-header #main-navigation .mega-view-all .view-all-btn:hover { background-color: #7c3aed !important; color: #ffffff !important; }
 
   /* ==========================================
-     3. JURUS SMACKDOWN MOBILE: 1 KOTAK SCROLL 💥
+     3. UKURAN SPESIFIK DESKTOP (Termasuk Mode Desktop di HP)
      ========================================== */
-  @media (max-width: 1024px) {
-    
+  @media (min-width: 900px) {
+    header#main-header .dropdown-menu.mega-menu {
+      position: absolute !important;
+      top: 100% !important;
+      left: -280px !important; 
+      width: 900px !important; 
+      max-width: 90vw !important;
+    }
+    header#main-header .mega-menu-container {
+      grid-template-columns: repeat(3, 1fr) !important;
+    }
+  }
+
+  /* ==========================================
+     4. UKURAN SPESIFIK MOBILE KECIL
+     ========================================== */
+  @media (max-width: 899px) {
     header#main-header.scrolled {
       background-color: rgba(9, 5, 20, 0.98) !important;
       border-bottom-color: rgba(124, 58, 237, 0.3) !important;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5) !important;
     }
-    
     header#main-header.scrolled #main-navigation a,
-    header#main-header.scrolled #main-navigation button,
-    header#main-header #main-navigation .menu-item a,
-    header#main-header #main-navigation .menu-item button {
+    header#main-header.scrolled #main-navigation button {
       color: #f8fafc !important; 
-      font-size: 1.1rem !important;
-      padding: 1rem 0 !important;
     }
 
-    /* 💥 KUNCI UTAMA: BIKIN 1 KOTAK (WINDOW) DENGAN SCROLL DI DALAMNYA 💥 */
-    header#main-header #main-navigation .dropdown-menu.mega-menu {
+    /* Kotak Mega Menu Mode HP Kecil (Tema Gelap) */
+    header#main-header .dropdown-menu.mega-menu {
       position: relative !important;
       width: 100% !important;
       left: 0 !important;
-      
-      /* Ini background 1 kotak utama */
       background-color: rgba(15, 23, 42, 0.95) !important; 
-      border: 1px solid rgba(124, 58, 237, 0.4) !important;
-      border-radius: 1rem !important;
-      padding: 1.2rem !important;
+      border-color: rgba(124, 58, 237, 0.4) !important;
       margin-top: 0.5rem !important;
-      
-      /* BATASI TINGGI & PAKSA SCROLL INTERNAL */
-      max-height: 60vh !important; /* Maksimal 60% layar HP */
-      overflow-y: auto !important; /* Nyalakan scroll di DALAM kotak */
-      pointer-events: auto !important; /* Anti-lock dari script Astro */
-      box-shadow: 0 10px 30px rgba(0,0,0,0.8) !important;
     }
-
-    /* Percantik desain scrollbar khusus di kotak ini */
-    header#main-header #main-navigation .dropdown-menu.mega-menu::-webkit-scrollbar { width: 5px !important; }
-    header#main-header #main-navigation .dropdown-menu.mega-menu::-webkit-scrollbar-track { background: rgba(0,0,0,0.2) !important; border-radius: 10px; }
-    header#main-header #main-navigation .dropdown-menu.mega-menu::-webkit-scrollbar-thumb { background-color: #8b5cf6 !important; border-radius: 10px !important; }
-
-    /* Susun konten di dalamnya jadi ke bawah */
     header#main-header .mega-menu-container {
-      display: flex !important;
-      flex-direction: column !important;
-      gap: 1.5rem !important; /* Jarak antar bagian (TikTok, FB, dll) */
+      grid-template-columns: 1fr !important; /* 1 Kolom saja */
+      gap: 1.5rem !important;
     }
-
-    /* Hilangkan background dari tiap kategori agar menyatu di 1 kotak besar */
-    header#main-header .mega-column {
-      background: transparent !important; 
-      border: none !important; 
-      padding: 0 !important;
-    }
-
-    /* Teks Judul Kategori HP (Instagram, TikTok, dll) */
     header#main-header #main-navigation .dropdown-menu.mega-menu .mega-title {
       color: #ffffff !important;
-      font-weight: 800 !important;
-      font-size: 1.1rem !important;
-      border-bottom: 1px solid rgba(124, 58, 237, 0.4) !important;
-      padding-bottom: 0.5rem !important;
-      margin-bottom: 0.5rem !important;
-      display: flex !important;
-      align-items: center !important;
-      gap: 0.5rem !important;
-    }
-
-    /* List Layanan HP */
-    header#main-header .mega-links-grid {
-      display: flex !important;
-      flex-direction: column !important;
-      gap: 0.1rem !important;
+      border-bottom-color: rgba(124, 58, 237, 0.4) !important;
     }
     header#main-header #main-navigation .dropdown-menu.mega-menu a {
       color: #c4b5fd !important; 
-      font-size: 0.95rem !important;
       padding: 0.5rem 0 !important;
       border-bottom: 1px dashed rgba(255, 255, 255, 0.05) !important; 
     }
     header#main-header #main-navigation .dropdown-menu.mega-menu a:hover {
       color: #ffffff !important; 
     }
-
-    /* Tombol Lihat Semua di posisi paling bawah scroll */
     header#main-header #main-navigation .mega-view-all .view-all-btn {
-      display: block !important;
       width: 100% !important;
-      text-align: center !important;
-      background-color: #7c3aed !important;
-      color: #ffffff !important;
-      padding: 1rem !important;
-      border-radius: 0.75rem !important;
-      font-weight: bold !important;
-      margin-top: 1rem !important;
-      border: none !important;
     }
   }
 
