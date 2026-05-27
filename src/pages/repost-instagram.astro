@@ -1,0 +1,274 @@
+---
+// src/pages/repost-instagram.astro
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+
+// ==========================================
+// 1. IMPORT SEMUA KOMPONEN CETAKAN
+// ==========================================
+import Hero from '../components/Hero.astro'
+import MasalahClient from '../components/MasalahClient.astro' 
+import ApaItuauradigital from '../components/ApaItuauradigital.astro'
+import Manfaatauradigital from '../components/Manfaatauradigital.astro'
+import MengapaMemilihauradigital from '../components/MengapaMemilihauradigital.astro'
+import CaraOrder from '../components/CaraOrder.astro'
+import Solusi from '../components/Solusi.astro'
+import HargaPaket from '../components/HargaPaket.astro'
+import Testimonials from '../components/Testimonials.astro'
+import DaftarHarga from '../components/DaftarHarga.astro'
+import MetodePembayaran from '../components/MetodePembayaran.astro'
+import Faqauradigital from '../components/Faqauradigital.astro'
+
+// ==========================================
+// 2. DATA SEO & META 
+// ==========================================
+const title = "Jasa Repost Instagram Aktif & Real | AuraDigital";
+const description = "Lipatgandakan jangkauan konten Anda dengan jasa repost Instagram aktif. Solusi beli repost IG terpercaya. Kami juga ahli jasa komentar YouTube indonesia.";
+const keywords = "jasa repost instagram, beli repost ig, jasa tambah repost instagram, beli repost postingan ig, tambah repost ig murah, jasa komentar YouTube indonesia, jasa report akun tiktok, jasa hapus akun tiktok, jasa trending topik twitter, jual akun tiktok, jasa report tiktok, auradigital";
+
+// ==========================================
+// 3. DATA KONTEN KHUSUS REPOST INSTAGRAM
+// ==========================================
+
+const dataHero = {
+  tipe: "service" as const,
+  labelTeks: "Layanan Instagram Premium",
+  labelIcon: "lucide:repeat",
+  judulUtama: 'Jasa <span class="text-fuchsia-500">Repost Instagram</span> <br class="hidden md:block"/> Lipatgandakan Jangkauan Brand',
+  deskripsi: "Bikin konten promosi Anda tersebar masif di beranda orang lain! Layanan jasa repost IG kami siap ngebantu foto, video, atau produk jaoan Anda dibagikan ulang oleh jaringan profil aktif. Cara kerjanya sangat aman, privasi aman terjaga, dan pastinya bikin reputasi brand Anda makin meroket. <br class='hidden md:block mt-2' /> <span class='text-fuchsia-400 font-semibold block mt-4'>✓ Efek Viral Natural &nbsp; ✓ Privasi Aman Terjaga &nbsp; ✓ Eksekusi Rapi</span>",
+  teksTombol1: "Lihat Paket Layanan",
+  linkTombol1: "#harga-paket",
+  teksTombol2: "Konsultasi Strategi",
+  linkTombol2: "https://wa.me/6289634740308",
+  gambarHero: "/image/hero-instagram.png" 
+};
+
+const dataMasalah = {
+  judulUtama: 'Masalah Saat Konten <span class="text-fuchsia-500">Gak Ada Yang Repost</span>',
+  deskripsiUtama: "Udah bikin promo menarik atau konten edukasi yang padat, tapi gak ada satu pun audiens yang mau nge-post ulang? Ini dampaknya buat bisnis Anda:",
+  ms1Teks: '<strong class="text-fuchsia-500 font-bold">Kelihatan Kurang Menarik:</strong> Konten yang gak ada yang me-repost sering dianggap biasa aja atau kurang berbobot di mata audiens baru.',
+  ms2Teks: '<strong class="text-fuchsia-500 font-bold">Jangkauan Segitu-Gitu Aja:</strong> Tanpa adanya distribusi ulang dari akun lain, promosi Anda bakal mentok di lingkaran pengikut lama saja.',
+  ms3Teks: '<strong class="text-fuchsia-500 font-bold">Rendah Validasi Sosial:</strong> Calon pelanggan bakal ragu buat beli kalau ngeliat konten testimoni atau produk Anda gak pernah dibagikan kembali sama orang lain.',
+  ms4Teks: '<strong class="text-fuchsia-500 font-bold">Kalah Cetar dari Pesaing:</strong> Kompetitor yang postingannya banyak di-repost selalu kelihatan punya komunitas yang loyal dan dipercaya pasar.'
+};
+
+const dataApaItu = {
+  judulUtama: 'Solusi Pintar: Beli Repost <span class="text-fuchsia-500">Instagram</span>',
+  deskripsiUtama: "Ini adalah strategi eskalasi buat mendistribusikan konten jualan Anda ke berbagai profil aktif agar kelihatan viral secara luas.",
+  k1Judul: "Perluas Circle Promosi",
+  k1Teks: "Kami mendatangkan interaksi yang bikin postingan Anda diposting ulang, ngasih kesan kalau produk Anda beneran lagi dicari banyak orang.",
+  k2Judul: "Kerahasiaan Terjamin Aman",
+  k2Teks: "Sebagai penyedia jasa tambah repost instagram terpercaya, kami bekerja murni dari eksternal. Anda cukup kirim link postingannya aja tanpa data sensitif lainnya."
+};
+
+const dataManfaat = {
+  judulUtama: 'Dampak Keren Hasil Tambah Repost <span class="text-fuchsia-500">IG</span>',
+  deskripsiUtama: "Mendapatkan banyak distribusi ulang itu kunci utama buat ngakalin algoritma sekaligus ngebangun kredibilitas tanpa batas.",
+  m1Judul: "Efek Bola Salju (Viral)",
+  m1Teks: "Makin banyak akun yang me-repost, makin besar peluang konten Anda menjangkau ribuan mata audiens baru yang gak terduga sebelumnya.",
+  m2Judul: "Kepercayaan Konsumen Naik",
+  m2Teks: "Orang jauh lebih gampang belanja pas ngeliat konten edukasi produk Anda banyak dibagikan ulang oleh profil-profil lain di platform.",
+  m3Judul: "Meningkatkan Branding Profil",
+  m3Teks: "Dashboard insight akun IG bisnis Anda bakal makin sehat karena impresi dan jangkauan konten meningkat tajam secara bersamaan.",
+  m4Judul: "Hemat Budget Iklan",
+  m4Teks: "Gak perlu lagi sewa jasa sebar brosur atau keluar budget iklan besar cuma buat nyari jangkauan awal. Semuanya kami handle dengan efisien."
+};
+
+const dataMengapaMemilih = {
+  judulUtama: 'Kenapa auradigital Selalu Jadi <span class="text-violet-400">Juara?</span>',
+  deskripsiUtama: "Kami ngerti cara kerja algoritma terbaru. AuraDigital adalah partner eskalasi digital yang udah biasa nanganin kebutuhan branding korporasi dengan rapi.",
+  mk1Judul: "Privasi Anda Prioritas Kami",
+  mk1Teks: "Kami memproses semuanya dari sistem luar. Kerahasiaan data pesanan Anda terjamin aman bersama tim profesional kami.",
+  mk2Judul: "Kualitas Akun Natural",
+  mk2Teks: "Layanan beli repost ig di kami selalu mastiin profil yang ikutan membagikan ulang itu rapi biar nilai estetika brand Anda terjaga.",
+  mk3Judul: "Ada Garansi Proteksi",
+  mk3Teks: "Layanan premium kami dilengkapi dengan asuransi pengisian ulang (refill) buat kenyamanan dan kepuasan investasi digital Anda.",
+  mk4Judul: "Solusi Digital Terlengkap",
+  mk4Teks: "Klien setia kami biasanya gak cuma rapiin IG, mereka juga order jasa komentar YouTube indonesia dan jasa trending topik twitter biar makin mendominasi.",
+  mk5Judul: "Pakar Solusi Pelik",
+  mk5Teks: "Butuh pengamanan aset digital? Tim kami juga ahlinya urusan taktis, mulai dari jasa hapus akun tiktok sampai jasa report akun tiktok.",
+  mk6Judul: "Admin Responsif & Informatif",
+  mk6Teks: "Bingung cara mulainya? Langsung chat aja, CS kami asyik banget diajak ngobrol santai buat ngerancang strategi promosi terbaik Anda."
+};
+
+const dataSolusi = {
+  judulUtama: 'Mekanisme Aman Distribusi <span class="text-fuchsia-500">Repost</span>',
+  deskripsiUtama: "Cara kerja kami didesain senatural mungkin agar postingan promosi Anda tersebar dengan rapi dan aman.",
+  sol1Icon: "lucide:refresh-cw",
+  sol1Judul: "Penyebaran Tepat Sasaran",
+  sol1Teks: "Kami memfokuskan aliran distribusi ulang ke postingan jagoan yang pengen Anda tonjolkan biar dilirik calon pembeli.",
+  sol2Icon: "lucide:shield-check",
+  sol2Judul: "Operasional Jarak Jauh",
+  sol2Teks: "Cukup kasih tautan publik kontennya aja. Anda bisa fokus urusin bisnis sambil mantau perkembangan interaksi yang masuk.",
+  sol3Icon: "lucide:timer",
+  sol3Judul: "Ritme Masuk yang Wajar",
+  sol3Teks: "Proses pengerjaan diatur kecepatannya sedemikian rupa agar terkesan mengalir alami layaknya konten yang beneran lagi trending."
+};
+
+const dataCaraOrder = {
+  judulUtama: 'Tiga Langkah Gampang Order <span class="text-violet-400">Jasa Repost</span>',
+  deskripsiUtama: "Cuma butuh beberapa menit buat bikin konten jualan Anda mulai menyebar luas ke beranda audiens baru.",
+  co1Judul: "Pilih Jumlah Kebutuhan",
+  co1Teks: "Tentukan mau nambah berapa banyak sebaran repost yang pas buat mendongkrak popularitas produk terbaru Anda hari ini.",
+  co2Judul: "Hubungi Admin WhatsApp",
+  co2Teks: "Tinggal klik tombol pesan yang tersedia, sapa admin kami yang ramah, dan informasikan detail pesanan Anda.",
+  co3Judul: "Kirim Link Postingan",
+  co3Teks: "Copy tautan foto atau video dari akun IG Anda (pastiin akunnya gak digembok alias di-setting Publik) lalu kirim ke kami.",
+  co4Judul: "Santai & Lihat Hasilnya",
+  co4Teks: "Selesai tervalidasi, sistem langsung jalan otomatis. Anda tinggal duduk manis menikmati trafik jangkauan yang merangkak naik!"
+};
+
+const dataHargaPaket = {
+  judulHarga: "Penawaran Investasi Repost Instagram",
+  deskripsiHarga: "Harga yang super masuk akal untuk melipatgandakan kredibilitas dan jangkauan pasar produk Anda.",
+
+  // Paket Kiri (100 Repost)
+  p1Gambar: "/image/paket-harga-repostig.png",
+  p1Nama: "100 Repost IG",
+  p1Fitur1: "Kualitas Akun Natural",
+  p1Fitur2: "Proses Cepat & Eksekusi Aman",
+  p1Fitur3: "Cukup Siapkan Link Konten",
+  p1Harga: "Rp 200.000",
+  p1Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%20100%20Repost%20Instagram",
+
+  // Paket Kanan (1.000 Repost)
+  p2Label: "PILIHAN FAVORIT BRANDING VIRAL",
+  p2Gambar: "/image/paket-harga-repostig.png",
+  p2Nama: "1.000 Repost IG",
+  p2Fitur1: "Garansi Aman Drop Refill",
+  p2Fitur2: "Akselerasi Brand Awareness Masif",
+  p2Fitur3: "Prioritas Layanan Konsultasi",
+  p2Harga: "Rp 2.000.000",
+  p2Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%201.000%20Repost%20Instagram" 
+};
+
+const dataFaq = {
+  judulUtama: 'Tanya Jawab Seputar <span class="text-fuchsia-500">Repost IG</span>',
+  deskripsiUtama: "Masih penasaran? Ini rangkuman obrolan santai yang paling sering ditanyain klien seputar layanan beli repost ig di auradigital.",
+  linkWhatsapp: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital,%20saya%20mau%20konsultasi%20dulu%20soal%20Jasa%20Repost%20Instagram",
+  faq1Judul: "Apakah penambahan repost ini aman buat toko online saya?",
+  faq1Teks: "Dijamin aman sentosa Kak! Cara kerja kami murni dari luar jaringan tanpa perlu akses sensitif ke dalam akun. Algoritma membaca proses ini sebagai distribusi wajar.",
+  faq2Judul: "Apakah angkanya nanti bisa ngurang atau luntur?",
+  faq2Teks: "Update dari sistem pusat kadang bikin grafik sedikit naik turun, itu lumrah. Tapi jangan panik, paket jasa repost ig permanen kami sudah di-cover garansi refill gratis.",
+  faq3Judul: "Akun saya boleh dikunci (Private) gak pas proses?",
+  faq3Teks: "Gak boleh ya Kak. Akun wajib disetting Publik selama masa pengerjaan biar sistem kami bisa ngebaca link-nya buat diposting ulang dengan lancar.",
+  faq4Judul: "Bisa buat ngeramein postingan video Reels juga?",
+  faq4Teks: "Bisa banget! Mau foto biasa, carousel produk, sampai video Reels jagoan Anda semuanya siap kami sebar luaskan biar performanya makin maksimal.",
+  faq5Judul: "Di AuraDigital melayani platform apa lagi selain IG?",
+  faq5Teks: "Banyak pilihan Kak! Mulai dari ngeramein video via jasa komentar YouTube indonesia, ngebantu beresin akun lewat jasa report tiktok, sampai optimasi trending di Twitter kami siap.",
+  faq6Judul: "Berapa lama estimasi pengerjaannya selesai?",
+  faq6Teks: "Begitu orderan tervalidasi di WA, sistem langsung menjadwalkan. Proses sebarannya sengaja diatur mengalir biar ritmenya senatural mungkin."
+};
+---
+
+<DefaultLayout title={title} description={description} keywords={keywords}>
+
+<Fragment slot="head">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "Jasa Tambah Repost Instagram Aktif & Real",
+    "image": "https://auradigital.id/image/paket-harga-repostig.png",
+    "description": "Layanan jasa repost instagram yang terbukti aman. Beli repost IG untuk melipatgandakan sebaran konten jualan Anda bersama AuraDigital.",
+    "brand": {
+      "@type": "Brand",
+      "name": "auradigital"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "740"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "200000",
+      "highPrice": "2000000",
+      "priceCurrency": "IDR",
+      "offerCount": "2"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Beranda",
+        "item": "https://auradigital.id/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Layanan",
+        "item": "https://auradigital.id/layanan/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Jasa Repost Instagram"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Apakah penambahan repost ini aman buat toko online saya?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dijamin aman sentosa Kak! Cara kerja kami murni dari luar jaringan tanpa perlu akses sensitif ke dalam akun. Algoritma membaca proses ini sebagai distribusi wajar."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Apakah angkanya nanti bisa ngurang atau luntur?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Update dari sistem pusat kadang bikin grafik sedikit naik turun, itu lumrah. Tapi jangan panik, paket kami sudah di-cover garansi refill gratis."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Akun saya boleh dikunci (Private) gak pas proses?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Gak boleh ya Kak. Akun wajib disetting Publik selama masa pengerjaan biar sistem kami bisa ngebaca link-nya buat diposting ulang dengan lancar."
+        }
+      }
+    ]
+  }
+]
+</script>
+</Fragment>
+
+  <Hero {...dataHero} />
+
+  <MasalahClient {...dataMasalah} />
+
+  <ApaItuauradigital {...dataApaItu} />
+
+  <Manfaatauradigital {...dataManfaat} />
+
+  <MengapaMemilihauradigital {...dataMengapaMemilih} />
+
+  <Solusi {...dataSolusi} />
+
+  <CaraOrder {...dataCaraOrder} />
+
+  <DaftarHarga />
+
+  <HargaPaket {...dataHargaPaket} />
+
+  <Testimonials />
+
+  <MetodePembayaran />
+
+  <Faqauradigital {...dataFaq} />
+
+</DefaultLayout>
