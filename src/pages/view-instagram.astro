@@ -1,0 +1,273 @@
+---
+// src/pages/view-instagram.astro
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+
+// ==========================================
+// 1. IMPORT SEMUA KOMPONEN CETAKAN
+// ==========================================
+import Hero from '../components/Hero.astro'
+import MasalahClient from '../components/MasalahClient.astro' 
+import ApaItuauradigital from '../components/ApaItuauradigital.astro'
+import Manfaatauradigital from '../components/Manfaatauradigital.astro'
+import MengapaMemilihauradigital from '../components/MengapaMemilihauradigital.astro'
+import CaraOrder from '../components/CaraOrder.astro'
+import Solusi from '../components/Solusi.astro'
+import HargaPaket from '../components/HargaPaket.astro'
+import Testimonials from '../components/Testimonials.astro'
+import DaftarHarga from '../components/DaftarHarga.astro'
+import MetodePembayaran from '../components/MetodePembayaran.astro'
+import Faqauradigital from '../components/Faqauradigital.astro'
+
+// ==========================================
+// 2. DATA SEO & META 
+// ==========================================
+const title = "Jasa View Instagram Aktif & Real | AuraDigital";
+const description = "Bikin video Reels Anda banjir penonton dengan jasa tambah view Instagram aktif. Solusi eskalasi jangkauan video terpercaya. Kami juga ahli jasa komentar YouTube indonesia.";
+const keywords = "jasa view instagram, beli view ig, jasa tambah view instagram, beli view instagram aktif, tambah view ig murah, beli view reels instagram, jasa komentar YouTube indonesia, jasa report akun tiktok, jasa hapus akun tiktok, jasa trending topik twitter, jual akun tiktok, jasa report tiktok, auradigital";
+
+// ==========================================
+// 3. DATA KONTEN KHUSUS VIEW INSTAGRAM
+// ==========================================
+
+const dataHero = {
+  tipe: "service" as const,
+  labelTeks: "Layanan Instagram Premium",
+  labelIcon: "lucide:eye",
+  judulUtama: 'Jasa <span class="text-fuchsia-500">View Instagram</span> <br class="hidden md:block"/> Meledakkan Penonton Video',
+  deskripsi: "Bikin video promosi dan Reels Anda kebanjiran penonton dalam waktu singkat! Layanan jasa view IG kami siap membantu mendongkrak angka tayangan video Anda secara aman, rapi, dan privasi terjaga penuh. Saatnya tampil meyakinkan di mata calon pelanggan dan mitra bisnis. <br class='hidden md:block mt-2' /> <span class='text-fuchsia-400 font-semibold block mt-4'>✓ Tayangan Terlihat Alami &nbsp; ✓ Privasi Aman Terjaga &nbsp; ✓ Proses Cepat</span>",
+  teksTombol1: "Lihat Paket Layanan",
+  linkTombol1: "#harga-paket",
+  teksTombol2: "Konsultasi Strategi",
+  linkTombol2: "https://wa.me/6289634740308",
+  gambarHero: "/image/hero-instagram.png" 
+};
+
+const dataMasalah = {
+  judulUtama: 'Masalah Saat Video IG <span class="text-fuchsia-500">Sepi Penonton</span>',
+  deskripsiUtama: "Udah capek-capek editing video Reels sampai estetik, tapi pas di-upload angka tayangannya seret? Ini kendala psikologis dan algoritma yang bakal Anda hadapi:",
+  ms1Teks: '<strong class="text-fuchsia-500 font-bold">Kelihatan Gak Menarik:</strong> Secara psikologis, audiens cenderung langsung skip video yang angka view-nya kecil karena dianggap kurang seru atau gak bermanfaat.',
+  ms2Teks: '<strong class="text-fuchsia-500 font-bold">Dilewati Algoritma:</strong> Sistem Instagram butuh bukti kalau video Anda diminati di awal penayangan. Kalau sepi view, video bakal tenggelam dan susah direkomendasikan.',
+  ms3Teks: '<strong class="text-fuchsia-500 font-bold">Kepercayaan Konsumen Rendah:</strong> Video ulasan produk jualan yang sepi penonton bikin calon pembeli mikir dua kali buat transaksi karena toko kelihatan kurang laku.',
+  ms4Teks: '<strong class="text-fuchsia-500 font-bold">Rendah Jangkauan Iklan:</strong> Capek keluar budget iklan kalau video utamanya sendiri kelihatan sepi interaksi, konversi penjualan malah bisa jeblok.'
+};
+
+const dataApaItu = {
+  judulUtama: 'Solusi Jitu: Beli View <span class="text-fuchsia-500">Instagram</span>',
+  deskripsiUtama: "Ini strategi paling taktis untuk menaikkan angka tayangan video jagoan Anda demi menciptakan persepsi keramaian yang positif dan memancing audiens asli.",
+  k1Judul: "Ngedongkrak Validasi Visual",
+  k1Teks: "Kami mendatangkan tayangan yang bikin metrik video Anda langsung melesat tinggi, memberikan kesan kalau konten Anda beneran lagi ramai ditonton publik.",
+  k2Judul: "Kerahasiaan Dijamin Aman",
+  k2Teks: "Sebagai penyedia jasa tambah view instagram yang profesional, operasional kami murni berjalan dari luar jaringan. Cukup kirim link video tanpa data sensitif lainnya."
+};
+
+const dataManfaat = {
+  judulUtama: 'Keuntungan Keren Hasil Nambah View <span class="text-fuchsia-500">IG</span>',
+  deskripsiUtama: "Memiliki angka tayangan video yang melimpah itu kunci utama buat memenangkan persaingan konten digital hari ini.",
+  m1Judul: "Sinyal Positif ke Algoritma",
+  m1Teks: "Akselerasi angka view di awal memberikan sinyal ke sistem kalau video Anda menarik, membuka peluang lebih besar buat tembus ke halaman Explore atau tab Reels.",
+  m2Judul: "Konversi Jualan Makin Bagus",
+  m2Teks: "Video promosi produk yang ditonton puluhan ribu orang bakal ngebangun rasa percaya yang kuat, bikin calon pembeli gak ragu buat langsung order.",
+  m3Judul: "Daya Jual Akun Meningkat",
+  m3Teks: "Buat para kreator, statistik tayangan video yang stabil dan ramai adalah modal paling kuat buat pamer ke brand besar biar gampang dapet endorsement.",
+  m4Judul: "Hemat Waktu & Tenaga",
+  m4Teks: "Gak perlu lagi repot sebar link video ke grup saling tonton atau nunggu organik yang lambat. Serahkan pada kami untuk hasil yang cepat dan terukur."
+};
+
+const dataMengapaMemilih = {
+  judulUtama: 'Kenapa auradigital Selalu Jadi <span class="text-violet-400">Pilihan Utama?</span>',
+  deskripsiUtama: "Kami mengutamakan kualitas operasional. AuraDigital adalah partner tepercaya untuk urusan eskalasi reputasi digital bisnis Anda dengan standar premium.",
+  mk1Judul: "Privasi Anda Terjaga Penuh",
+  mk1Teks: "Kami memproses semuanya secara eksternal. Privasi klien adalah prioritas nomor satu, kami tidak membutuhkan informasi sensitif dari profil Anda.",
+  mk2Judul: "Kualitas Penonton Natural",
+  mk2Teks: "Layanan beli view ig di tempat kami selalu memprioritaskan kualitas sebaran yang rapi demi estetika dan kesehatan dashboard akun Anda.",
+  mk3Judul: "Garansi Proteksi Investasi",
+  mk3Teks: "Tenang aja, layanan jasa view ig permanen kami dilengkapi dengan jaminan asuransi pengisian ulang (refill) gratis jika terjadi fluktuasi angka.",
+  mk4Judul: "Layanan Digital Lintas Platform",
+  mk4Teks: "Infrastruktur kami sangat luas. Klien loyal kami juga biasa order jasa komentar YouTube indonesia hingga optimasi trending topik twitter biar promosi makin masif.",
+  mk5Judul: "Pakar Solusi Isu Pelik",
+  mk5Teks: "Ada persaingan bisnis yang kurang sehat? Tim handal kami siap sedia melayani penanganan taktis lewat jasa hapus akun tiktok sampai jasa report akun tiktok.",
+  mk6Judul: "Admin Ramah & Enak Diajak Ngobrol",
+  mk6Teks: "CS kami sangat komunikatif dan responsif. Anda bebas diskusi santai kapan saja buat nentuin paket yang paling pas sesuai kebutuhan konten Anda."
+};
+
+const dataSolusi = {
+  judulUtama: 'Cara Aman & Rapi Tambah <span class="text-fuchsia-500">View Video</span>',
+  deskripsiUtama: "Proses pengerjaan kami diatur sedemikian rupa agar tampak wajar dan menghasilkan dampak grafik yang maksimal.",
+  sol1Icon: "lucide:play-circle",
+  sol1Judul: "Fokus Injeksi Tayangan",
+  sol1Teks: "Kami mengarahkan aliran penonton ke link video spesifik yang Anda pilih, memastikan metrik tayangannya meroket dengan rapi.",
+  sol2Icon: "lucide:shield-check",
+  sol2Judul: "Operasional Jarak Jauh",
+  sol2Teks: "Anda cukup upload video seperti biasa, kirimkan link-nya ke kami, lalu tinggal santai mantau grafik views merangkak naik di dashboard.",
+  sol3Icon: "lucide:timer",
+  sol3Judul: "Ritme Mengalir Natural",
+  sol3Teks: "Kecepatan masuknya view diatur ritmenya sedemikian rupa agar terkesan mengalir alami layaknya konten yang beneran lagi hangat diperbincangkan."
+};
+
+const dataCaraOrder = {
+  judulUtama: 'Tiga Langkah Gampang Order <span class="text-violet-400">Jasa View</span>',
+  deskripsiUtama: "Cuma butuh waktu singkat buat menyulap video Instagram Anda menjadi pusat perhatian audiens baru.",
+  co1Judul: "Tentukan Angka Target",
+  co1Teks: "Pilih paket kebutuhan tayangan video yang paling pas buat ngedongkrak reputasi brand atau promosi produk terbaru Anda hari ini.",
+  co2Judul: "Hubungi Admin via WA",
+  co2Teks: "Tinggal klik tombol pesan yang tersedia, sapa CS kami yang ramah, dan informasikan paket view mana yang mau Anda eksekusi secepatnya.",
+  co3Judul: "Kirim Link & Lihat Hasilnya",
+  co3Teks: "Kirim link video atau Reels Anda ke admin (pastikan akun tidak diprivate). Setelah administrasi beres, sistem langsung bekerja otomatis!"
+};
+
+const dataHargaPaket = {
+  judulHarga: "Penawaran Investasi View Video",
+  deskripsiHarga: "Opsi harga terbaik untuk menciptakan efek populer instan pada setiap konten video jaoan Anda.",
+
+  // Paket Kiri (100 View)
+  p1Gambar: "/image/paket-harga-viewig.png",
+  p1Nama: "100 View IG",
+  p1Fitur1: "Kualitas Penonton Rapi",
+  p1Fitur2: "Proses Eksekusi Cepat",
+  p1Fitur3: "Cukup Kirim Tautan Video",
+  p1Harga: "Rp 200.000",
+  p1Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%20100%20View%20Instagram",
+
+  // Paket Kanan (1.000 View)
+  p2Label: "PILIHAN FAVORIT ONLINE SHOP",
+  p2Gambar: "/image/paket-harga-viewig.png",
+  p2Nama: "1.000 View IG",
+  p2Fitur1: "Garansi Aman Jaminan Refill",
+  p2Fitur2: "Peluang Masuk Reels & Explore Tinggi",
+  p2Fitur3: "Prioritas Layanan Konsultasi",
+  p2Harga: "Rp 2.000.000",
+  p2Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%201.000%20View%20Instagram" 
+};
+
+const dataFaq = {
+  judulUtama: 'Tanya Jawab Seputar <span class="text-fuchsia-500">Layanan View IG</span>',
+  deskripsiUtama: "Masih penasaran dengan sistem pengerjaannya? Ini jawaban santai atas hal-hal yang paling sering ditanyain klien sebelum pesan di auradigital.",
+  linkWhatsapp: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital,%20saya%20mau%20tanya-tanya%20dulu%20soal%20Jasa%20View%20Instagram",
+  faq1Judul: "Apakah penambahan view ini aman buat akun jualan saya?",
+  faq1Teks: "Super aman Kak! Cara kerja kami murni dari luar sistem tanpa minta kredensial internal Anda. Algoritma membaca proses ini sebagai tayangan video yang wajar.",
+  faq2Judul: "Bisa buat ngeramein video jenis apa aja di Instagram?",
+  faq2Teks: "Layanan kami sangat fleksibel. Anda bisa kirim link untuk video feeds biasa, video carousel, maupun video Reels terbaru Anda biar makin meroket jangkauannya.",
+  faq3Judul: "Apakah angka view-nya nanti bisa menurun (drop)?",
+  faq3Teks: "Fluktuasi angka karena pembaharuan sistem global itu hal yang wajar. Tapi jangan panik, layanan paket jasa view ig permanen di AuraDigital sudah dilengkapi jaminan asuransi refill gratis.",
+  faq4Judul: "Akun saya wajib di-setting Publik juga ya?",
+  faq4Teks: "Iya, wajib banget Kak. Kalau akun Anda dalam kondisi Private (digembok), jaringan kami tidak akan bisa mengakses link kodenya buat nonton video Anda.",
+  faq5
+  faq5Judul: "Di AuraDigital melayani optimasi platform apa lagi selain IG?",
+  faq5Teks: "Banyak pilihan Kak! Mulai dari ngeramein interaksi via jasa komentar YouTube indonesia, ngebantu beresin akun bermasalah lewat jasa report tiktok, sampai push branding Twitter kami siap.",
+  faq6Judul: "Kapan view-nya mulai merangkak naik setelah order?",
+  faq6Teks: "Begitu orderan tervalidasi di WA dan administrasi beres, sistem langsung menjadwalkan. Proses sebarannya sengaja diatur mengalir biar ritmenya senatural mungkin sepanjang hari."
+};
+---
+
+<DefaultLayout title={title} description={description} keywords={keywords}>
+
+<Fragment slot="head">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "Jasa Tambah View Instagram Aktif & Real",
+    "image": "https://auradigital.id/image/paket-harga-viewig.png",
+    "description": "Layanan jasa view instagram yang terbukti aman. Beli view IG untuk melipatgandakan penonton video Reels jualan Anda bersama AuraDigital.",
+    "brand": {
+      "@type": "Brand",
+      "name": "auradigital"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "910"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "200000",
+      "highPrice": "2000000",
+      "priceCurrency": "IDR",
+      "offerCount": "2"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Beranda",
+        "item": "https://auradigital.id/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Layanan",
+        "item": "https://auradigital.id/layanan/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Jasa View Instagram"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Apakah penambahan view ini aman buat akun jualan saya?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Super aman Kak! Cara kerja kami murni dari luar sistem tanpa minta kredensial internal Anda. Algoritma membaca proses ini sebagai tayangan video yang wajar."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Apakah angka view-nya nanti bisa menurun (drop)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fluktuasi angka wajar terjadi akibat update sistem. Namun, layanan paket kami sudah dilengkapi jaminan asuransi refill (isi ulang) gratis."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Akun saya wajib di-setting Publik juga ya?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Iya, wajib banget Kak. Kalau akun Anda dalam kondisi Private (digembok), jaringan kami tidak akan bisa mengakses link kodenya buat nonton video Anda."
+        }
+      }
+    ]
+  }
+]
+</script>
+</Fragment>
+
+  <Hero {...dataHero} />
+
+  <MasalahClient {...dataMasalah} />
+
+  <ApaItuauradigital {...dataApaItu} />
+
+  <Manfaatauradigital {...dataManfaat} />
+
+  <MengapaMemilihauradigital {...dataMengapaMemilih} />
+
+  <Solusi {...dataSolusi} />
+
+  <CaraOrder {...dataCaraOrder} />
+
+  <DaftarHarga />
+
+  <HargaPaket {...dataHargaPaket} />
+
+  <Testimonials />
+
+  <MetodePembayaran />
+
+  <Faqauradigital {...dataFaq} />
+
+</DefaultLayout>
