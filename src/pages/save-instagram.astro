@@ -1,0 +1,274 @@
+---
+// src/pages/save-instagram.astro
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+
+// ==========================================
+// 1. IMPORT SEMUA KOMPONEN CETAKAN
+// ==========================================
+import Hero from '../components/Hero.astro'
+import MasalahClient from '../components/MasalahClient.astro' 
+import ApaItuauradigital from '../components/ApaItuauradigital.astro'
+import Manfaatauradigital from '../components/Manfaatauradigital.astro'
+import MengapaMemilihauradigital from '../components/MengapaMemilihauradigital.astro'
+import CaraOrder from '../components/CaraOrder.astro'
+import Solusi from '../components/Solusi.astro'
+import HargaPaket from '../components/HargaPaket.astro'
+import Testimonials from '../components/Testimonials.astro'
+import DaftarHarga from '../components/DaftarHarga.astro'
+import MetodePembayaran from '../components/MetodePembayaran.astro'
+import Faqauradigital from '../components/Faqauradigital.astro'
+
+// ==========================================
+// 2. DATA SEO & META 
+// ==========================================
+const title = "Jasa Save Instagram Aktif & Real | AuraDigital";
+const description = "Jadikan konten Anda bernilai tinggi di mata algoritma dengan jasa tambah save Instagram aktif. Tembus Explore lebih mudah. Kami juga ahli jasa komentar YouTube indonesia.";
+const keywords = "jasa save instagram, beli save ig, jasa tambah save instagram, beli save instagram aktif, tambah save ig murah, beli save postingan ig, jasa komentar YouTube indonesia, jasa report akun tiktok, jasa hapus akun tiktok, jasa trending topik twitter, jual akun tiktok, jasa report tiktok, auradigital";
+
+// ==========================================
+// 3. DATA KONTEN KHUSUS SAVE INSTAGRAM
+// ==========================================
+
+const dataHero = {
+  tipe: "service" as const,
+  labelTeks: "Layanan Instagram Premium",
+  labelIcon: "lucide:bookmark",
+  judulUtama: 'Jasa <span class="text-fuchsia-500">Save Instagram</span> <br class="hidden md:block"/> Sinyal Terkuat Algoritma',
+  deskripsi: "Bikin algoritma jatuh cinta sama postingan Anda! Layanan jasa save IG kami ngebantu konten edukasi, katalog produk, atau video Anda dinilai sangat bermanfaat oleh sistem. Makin banyak yang 'Simpan', makin gampang konten Anda nangkring di halaman Explore. <br class='hidden md:block mt-2' /> <span class='text-fuchsia-400 font-semibold block mt-4'>✓ Privasi Aman Terjaga &nbsp; ✓ Peluang FYP/Explore &nbsp; ✓ Eksekusi Rapi</span>",
+  teksTombol1: "Lihat Paket Layanan",
+  linkTombol1: "#harga-paket",
+  teksTombol2: "Konsultasi Strategi",
+  linkTombol2: "https://wa.me/6289634740308",
+  gambarHero: "/image/hero-instagram.png" 
+};
+
+const dataMasalah = {
+  judulUtama: 'Masalah Saat Postingan <span class="text-fuchsia-500">Jarang Disimpan</span>',
+  deskripsiUtama: "Metrik 'Save' (Simpan) adalah raja dari semua interaksi. Kalau konten Anda sering di-like tapi jarang di-save, ini kendala yang bakal menghambat akun Anda:",
+  ms1Teks: '<strong class="text-fuchsia-500 font-bold">Dianggap Kurang Bermanfaat:</strong> Algoritma IG menilai konten yang gak pernah disimpan audiens sebagai postingan numpang lewat yang gak punya nilai edukasi atau daya tarik lebih.',
+  ms2Teks: '<strong class="text-fuchsia-500 font-bold">Gagal Tembus Explore:</strong> Syarat utama biar konten bisa viral dan direkomendasikan secara organik adalah tingginya persentase orang yang nge-save postingan tersebut.',
+  ms3Teks: '<strong class="text-fuchsia-500 font-bold">Jangkauan Cepat Mati:</strong> Konten yang metrik simpannya rendah biasanya cuma bertahan beberapa jam di beranda, lalu cepat tenggelam ditelan konten kompetitor.',
+  ms4Teks: '<strong class="text-fuchsia-500 font-bold">Capek Bikin Konten Edukasi:</strong> Udah bikin desain infografis atau tips jualan yang bagus, tapi wibawa brand gak naik gara-gara audiens gak ngerasa perlu nyimpen postingan Anda.'
+};
+
+const dataApaItu = {
+  judulUtama: 'Solusi Jitu: Beli Save <span class="text-fuchsia-500">Instagram</span>',
+  deskripsiUtama: "Ini adalah trik rahasia para kreator besar buat ngasih sinyal kuat ke algoritma kalau konten yang mereka upload itu sangat berharga.",
+  k1Judul: "Injeksi Metrik Berkualitas",
+  k1Teks: "Kami mendatangkan interaksi yang bikin postingan Anda banyak disimpan oleh pengguna lain, menciptakan efek psikologis dan teknis yang luar biasa.",
+  k2Judul: "Keamanan Eksternal Penuh",
+  k2Teks: "Sebagai penyedia jasa tambah save instagram tepercaya, operasional kami dikerjakan murni dari luar. Anda cukup fokus bikin konten, sisanya kami yang push."
+};
+
+const dataManfaat = {
+  judulUtama: 'Dampak Sakti Tambah Save <span class="text-fuchsia-500">IG</span>',
+  deskripsiUtama: "Dibandingkan cuma like biasa, metrik simpan punya kekuatan berkali-kali lipat buat ngangkat pamor profil jualan Anda.",
+  m1Judul: "Umur Konten Lebih Panjang",
+  m1Teks: "Postingan yang banyak di-save bakal terus disodorkan oleh sistem IG ke audiens selama berhari-hari, gak gampang mati atau tenggelam.",
+  m2Judul: "Masuk Halaman Explore",
+  m2Teks: "Ini jalan tol paling cepat buat bikin postingan Anda nangkring di menu Explore, ngebawa ratusan bahkan ribuan pengunjung baru ke profil Anda.",
+  m3Judul: "Kredibilitas Brand Meroket",
+  m3Teks: "Saat melihat insight yang hijau merona dengan angka save tinggi, Anda bisa lebih pede ngejadiin akun tersebut portofolio bisnis utama.",
+  m4Judul: "Bagus Buat Katalog Produk",
+  m4Teks: "Cocok banget buat postingan katalog atau price list. Angka save tinggi ngasih kesan kalau produk itu emang jadi incaran banyak orang."
+};
+
+const dataMengapaMemilih = {
+  judulUtama: 'Kenapa auradigital Jadi <span class="text-violet-400">Pilihan Pebisnis?</span>',
+  deskripsiUtama: "Kami tahu persis cara kerja algoritma. AuraDigital hadir buat ngebantu brand Anda mendominasi persaingan dengan cara yang elegan dan terukur.",
+  mk1Judul: "Privasi Sangat Dijaga",
+  mk1Teks: "Semua proses dieksekusi secara aman dari luar sistem. Anda gak perlu ngasih info rahasia apa pun buat pakai layanan premium kami.",
+  mk2Judul: "Kualitas Akun Natural",
+  mk2Teks: "Layanan beli save instagram aktif kami dikerjakan dengan jaringan profil yang rapi biar algoritma ngebacanya sebagai interaksi audiens beneran.",
+  mk3Judul: "Garansi Kepuasan",
+  mk3Teks: "Gak usah khawatir soal fluktuasi, layanan premium kami udah di-cover fasilitas refill gratis biar investasi digital Anda tetap aman.",
+  mk4Judul: "Pusat Eskalasi Digital",
+  mk4Teks: "Banyak klien yang puas lalu sekalian order platform lain, kayak jasa komentar YouTube indonesia atau jasa trending topik twitter buat scale up bisnis.",
+  mk5Judul: "Pakar Penanganan Akun",
+  mk5Teks: "Kami juga punya tim khusus buat urusan taktis korporat, dari nanganin masalah kompetitor pakai jasa report akun tiktok sampai jual akun tiktok.",
+  mk6Judul: "Admin Responsif & Informatif",
+  mk6Teks: "Bebas diskusi kapan aja! Admin kami asyik banget diajak ngobrol soal strategi naikin jangkauan yang paling pas buat akun Anda."
+};
+
+const dataSolusi = {
+  judulUtama: 'Cara Rapi Nambahin <span class="text-fuchsia-500">Save Postingan</span>',
+  deskripsiUtama: "Langkah kerja kami disusun sangat natural biar metrik akun Anda naik dengan mulus tanpa memicu sistem deteksi spam.",
+  sol1Icon: "lucide:bookmark-plus",
+  sol1Judul: "Targeting Akurat",
+  sol1Teks: "Kami memfokuskan aliran interaksi 'Simpan' ke link konten jagoan yang bener-bener pengen Anda viral-kan.",
+  sol2Icon: "lucide:shield-check",
+  sol2Judul: "Operasional Jarak Jauh",
+  sol2Teks: "Anda tinggal upload foto, infografis, atau Reels seperti biasa. Kasih kami link-nya, dan biar jaringan kami yang ngasih sinyal bagus ke algoritma.",
+  sol3Icon: "lucide:timer",
+  sol3Judul: "Ritme Mengalir Estetik",
+  sol3Teks: "Proses pengerjaan diatur kecepatannya sedemikian rupa biar terkesan kontennya emang lagi banyak dicari dan disimpen sama publik."
+};
+
+const dataCaraOrder = {
+  judulUtama: 'Tiga Langkah Gampang Order <span class="text-violet-400">Jasa Save</span>',
+  deskripsiUtama: "Cuma butuh beberapa langkah kecil buat ngirim sinyal sakti ke algoritma Instagram.",
+  co1Judul: "Tentukan Angka Target",
+  co1Teks: "Pilih mau nambah 100 atau 1.000 save yang paling pas buat nge-push visibilitas katalog atau postingan promosi Anda hari ini.",
+  co2Judul: "Chat Lewat WA",
+  co2Teks: "Klik tombol pesan ke admin kami yang ramah ini, lalu infokan paket mana yang mau dieksekusi secepatnya.",
+  co3Judul: "Kirim Tautan (Link) Publik",
+  co3Teks: "Copy tautan kontennya ke WA kami. Ingat ya, pastikan gembok akun dibuka dulu (setting Publik) biar sistem kami bisa ngebaca postingannya.",
+  co4Judul: "Pantau Insight Meroket",
+  co4Teks: "Selesai tervalidasi, sistem otomatis jalan. Anda tinggal cek menu Insight dan lihat jumlah 'Simpan' merangkak naik!"
+};
+
+const dataHargaPaket = {
+  judulHarga: "Penawaran Investasi Algoritma",
+  deskripsiHarga: "Harga yang worth-it banget buat ngebikin tiap karya edukasi atau promo jualan Anda dihargai tinggi oleh sistem.",
+
+  // Paket Kiri (100 Save)
+  p1Gambar: "/image/paket-harga-saveig.png",
+  p1Nama: "100 Save IG",
+  p1Fitur1: "Kualitas Interaksi Natural",
+  p1Fitur2: "Proses Sangat Cepat",
+  p1Fitur3: "Cukup Kirim Link Postingan",
+  p1Harga: "Rp 200.000",
+  p1Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%20100%20Save%20Instagram",
+
+  // Paket Kanan (1.000 Save)
+  p2Label: "PILIHAN FAVORIT BISNIS",
+  p2Gambar: "/image/paket-harga-saveig.png",
+  p2Nama: "1.000 Save IG",
+  p2Fitur1: "Garansi Aman Jaminan Refill",
+  p2Fitur2: "Dorongan Maksimal Tembus Explore",
+  p2Fitur3: "Bisa Dipecah Untuk Beberapa Link",
+  p2Harga: "Rp 2.000.000",
+  p2Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%201.000%20Save%20Instagram" 
+};
+
+const dataFaq = {
+  judulUtama: 'Tanya Jawab Seputar <span class="text-fuchsia-500">Layanan Save IG</span>',
+  deskripsiUtama: "Masih ragu? Ini jawaban dari obrolan santai yang paling sering ditanyain klien sebelum pesen layanan keren ini di auradigital.",
+  linkWhatsapp: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital,%20saya%20mau%20tanya-tanya%20dulu%20soal%20Jasa%20Save%20Instagram",
+  faq1Judul: "Layanan ini beneran aman buat kelangsungan akun saya?",
+  faq1Teks: "Aman 100%! Operasional kami murni dijalankan dari luar. Algoritma cuma bakal ngebaca kalau konten Anda itu lagi dianggap sangat bermanfaat sama banyak audiens.",
+  faq2Judul: "Bisa dipakai buat postingan model apa aja?",
+  faq2Teks: "Sangat fleksibel Kak! Mulai dari foto feeds, gambar carousel, katalog produk, sampai video Reels, semuanya bisa kita push metrik simpannya biar makin gacor.",
+  faq3Judul: "Apakah angka save-nya nanti bisa menurun (drop)?",
+  faq3Teks: "Kadang ada penyesuaian dari sistem pusat yang bikin sedikit fluktuasi, itu wajar. Tapi tenang aja, paket premium kami udah di-cover sama asuransi refill gratis.",
+  faq4Judul: "Akun saya harus di-setting Publik pas proses jalan?",
+  faq4Teks: "Betul banget. Kalau akunnya di-Private (digembok), jaringan kami gak bakal bisa nembus buat nge-save postingan Anda. Jadi buka dulu gemboknya sementara ya.",
+  faq5Judul: "Di AuraDigital melayani optimasi platform lain gak?",
+  faq5Teks: "Tentu dong! Klien kami juga sering order optimasi kelas kakap seperti jasa komentar YouTube indonesia, nanganin akun nakal lewat jasa report tiktok, sampai push branding Twitter.",
+  faq6Judul: "Berapa lama prosesnya sampai angka save kelihatan?",
+  faq6Teks: "Begitu orderan tervalidasi di WA, sistem bakal langsung ngatur ritmenya. Prosesnya bakal kelihatan mengalir secara rapi dan natural di Insight Anda."
+};
+---
+
+<DefaultLayout title={title} description={description} keywords={keywords}>
+
+<Fragment slot="head">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "Jasa Tambah Save Instagram Aktif & Real",
+    "image": "https://auradigital.id/image/paket-harga-saveig.png",
+    "description": "Layanan jasa save instagram yang 100% aman. Beli save IG untuk ngasih sinyal positif ke algoritma dan tembus halaman Explore bersama AuraDigital.",
+    "brand": {
+      "@type": "Brand",
+      "name": "auradigital"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "810"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "200000",
+      "highPrice": "2000000",
+      "priceCurrency": "IDR",
+      "offerCount": "2"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Beranda",
+        "item": "https://auradigital.id/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Layanan",
+        "item": "https://auradigital.id/layanan/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Jasa Save Instagram"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Layanan ini beneran aman buat kelangsungan akun saya?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Aman 100%! Operasional kami murni dijalankan dari luar. Algoritma cuma bakal ngebaca kalau konten Anda itu lagi dianggap sangat bermanfaat sama banyak audiens."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Bisa dipakai buat postingan model apa aja?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sangat fleksibel Kak! Mulai dari foto feeds, gambar carousel, katalog produk, sampai video Reels, semuanya bisa kita push metrik simpannya biar makin gacor."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Akun saya harus di-setting Publik pas proses jalan?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Betul banget. Kalau akunnya di-Private (digembok), jaringan kami gak bakal bisa nembus buat nge-save postingan Anda."
+        }
+      }
+    ]
+  }
+]
+</script>
+</Fragment>
+
+  <Hero {...dataHero} />
+
+  <MasalahClient {...dataMasalah} />
+
+  <ApaItuauradigital {...dataApaItu} />
+
+  <Manfaatauradigital {...dataManfaat} />
+
+  <MengapaMemilihauradigital {...dataMengapaMemilih} />
+
+  <Solusi {...dataSolusi} />
+
+  <CaraOrder {...dataCaraOrder} />
+
+  <DaftarHarga />
+
+  <HargaPaket {...dataHargaPaket} />
+
+  <Testimonials />
+
+  <MetodePembayaran />
+
+  <Faqauradigital {...dataFaq} />
+
+</DefaultLayout>
