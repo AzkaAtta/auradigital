@@ -1,0 +1,272 @@
+---
+// src/pages/repost-story-instagram.astro
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+
+// ==========================================
+// 1. IMPORT SEMUA KOMPONEN CETAKAN
+// ==========================================
+import Hero from '../components/Hero.astro'
+import MasalahClient from '../components/MasalahClient.astro' 
+import ApaItuauradigital from '../components/ApaItuauradigital.astro'
+import Manfaatauradigital from '../components/Manfaatauradigital.astro'
+import MengapaMemilihauradigital from '../components/MengapaMemilihauradigital.astro'
+import CaraOrder from '../components/CaraOrder.astro'
+import Solusi from '../components/Solusi.astro'
+import HargaPaket from '../components/HargaPaket.astro'
+import Testimonials from '../components/Testimonials.astro'
+import DaftarHarga from '../components/DaftarHarga.astro'
+import MetodePembayaran from '../components/MetodePembayaran.astro'
+import Faqauradigital from '../components/Faqauradigital.astro'
+
+// ==========================================
+// 2. DATA SEO & META 
+// ==========================================
+const title = "Jasa Repost Story Instagram Aktif & Real | AuraDigital";
+const description = "Bikin promo Anda viral lewat Snapgram dengan jasa repost story Instagram aktif. Solusi eskalasi brand terpercaya. Kami juga ahli jasa komentar YouTube indonesia.";
+const keywords = "jasa repost story instagram, beli repost story ig, jasa tambah repost story instagram, beli repost story instagram aktif, tambah repost story ig murah, jasa komentar YouTube indonesia, jasa report akun tiktok, jasa hapus akun tiktok, jasa trending topik twitter, jual akun tiktok, jasa report tiktok, auradigital";
+
+// ==========================================
+// 3. DATA KONTEN KHUSUS REPOST STORY INSTAGRAM
+// ==========================================
+
+const dataHero = {
+  tipe: "service" as const,
+  labelTeks: "Layanan Instagram Premium",
+  labelIcon: "lucide:history",
+  judulUtama: 'Jasa <span class="text-fuchsia-500">Repost Story IG</span> <br class="hidden md:block"/> Push Viral Konten Kilat',
+  deskripsi: "Bikin promo produk atau event Anda memenuhi Story orang lain dalam sekejap! Layanan jasa repost story IG kami siap mendistribusikan konten Anda agar dibagikan kembali lewat Snapgram oleh jaringan profil aktif. Prosesnya super rapi, privasi terjaga aman, dan pastinya bikin brand Anda mendadak viral. <br class='hidden md:block mt-2' /> <span class='text-fuchsia-400 font-semibold block mt-4'>✓ Efek FOMO Maksimal &nbsp; ✓ Privasi Terjaga Aman &nbsp; ✓ Distribusi Cepat</span>",
+  teksTombol1: "Lihat Paket Layanan",
+  linkTombol1: "#harga-paket",
+  teksTombol2: "Konsultasi Strategi",
+  linkTombol2: "https://wa.me/6289634740308",
+  gambarHero: "/image/hero-instagram.png" 
+};
+
+const dataMasalah = {
+  judulUtama: 'Masalah Saat Story IG <span class="text-fuchsia-500">Sepi Penonton & Repost</span>',
+  deskripsiUtama: "Udah bikin desain Story yang estetik buat info diskon atau giveaway, tapi gak ada satu pun audiens yang mau bantu share ulang? Ini kendala besarnya:",
+  ms1Teks: '<strong class="text-fuchsia-500 font-bold">Promo Lewat Gitu Aja:</strong> Sifat Story yang hilang dalam 24 jam bikin konten promosi Anda gampang banget dicuekin kalau gak ada efek viral di awal.',
+  ms2Teks: '<strong class="text-fuchsia-500 font-bold">Kurang Memancing Antusiasme:</strong> Secara psikologis, audiens asli cenderung malas ikutan membagikan atau merespon Story yang kelihatan sepi peminat.',
+  ms3Teks: '<strong class="text-fuchsia-500 font-bold">Jangkauan Profil Terbatas:</strong> Info penting seputar bisnis Anda cuma muter-muter di follower lama saja, susah nembus target pasar yang baru.',
+  ms4Teks: '<strong class="text-fuchsia-500 font-bold">Kehilangan Momentum Emas:</strong> Event flash sale atau kupon terbatas bisa zonk besar kalau dalam hitungan jam pertama gak ada interaksi sebaran yang masif.'
+};
+
+const dataApaItu = {
+  judulUtama: 'Solusi Cerdas: Beli Repost <span class="text-fuchsia-500">Story Instagram</span>',
+  deskripsiUtama: "Ini strategi paling taktis buat menyebarkan pamflet promosi digital Anda langsung ke dalam ruang harian audiens secara massal dan rapi.",
+  k1Judul: "Ngebangun Efek Viral (Hype)",
+  k1Teks: "Kami mendatangkan interaksi sebaran yang bikin postingan Anda dipajang di Story banyak akun, bikin brand Anda kelihatan lagi hits banget.",
+  k2Judul: "Sistem Kerja Eksternal & Aman",
+  k2Teks: "Sebagai penyedia jasa tambah repost story instagram terpercaya, kami menjaga privasi Anda dengan ketat. Cukup infokan tautan postingannya saja."
+};
+
+const dataManfaat = {
+  judulUtama: 'Dampak Gila Hasil Nambah Repost <span class="text-fuchsia-500">Story</span>',
+  deskripsiUtama: "Memanfaatkan ruang Story buat promosi berantai itu trik marketing modern yang konversinya sangat tinggi.",
+  m1Judul: "Memicu Kepenasaranan Massal",
+  m1Teks: "Ketika audiens umum melihat postingan Anda sering berseliweran di Story orang lain, mereka bakal kena efek FOMO dan langsung kepo mampir.",
+  m2Judul: "Trafik Profil Meningkat Tajam",
+  m2Teks: "Setiap tautan atau tag akun di dalam Story yang direpost menjadi gerbang masuk bagi ratusan calon pelanggan baru buat kepoin produk Anda.",
+  m3Judul: "Sangat Pas Buat Event & Giveaway",
+  m3Teks: "Bikin acara giveaway atau launching produk Anda sukses besar dengan menciptakan keramaian tiruan yang kelihatan super seru.",
+  m4Judul: "Efisien & Gak Ribet",
+  m4Teks: "Gak usah pusing bikin grup saling share atau bayar mahal influencer satu per satu. Serahkan ke tim kami untuk distribusi yang terukur."
+};
+
+const dataMengapaMemilih = {
+  judulUtama: 'Kenapa auradigital Selalu Jadi <span class="text-violet-400">Pilihan Terbaik?</span>',
+  deskripsiUtama: "Kami mengutamakan kualitas eksekusi. AuraDigital adalah partner tepercaya untuk urusan eskalasi reputasi digital bisnis dengan standar premium.",
+  mk1Judul: "Kerahasiaan Data Terjamin",
+  mk1Teks: "Proses pengerjaan berjalan murni dari luar. Kami sangat menjaga privasi klien dan tidak membutuhkan informasi sensitif dari profil Anda.",
+  mk2Judul: "Jaringan Akun Rapi",
+  mk2Teks: "Layanan beli repost story instagram aktif di tempat kami selalu memprioritaskan profil yang terlihat natural demi estetika promosi Anda.",
+  mk3Judul: "Garansi Layanan Premium",
+  mk3Teks: "Investasi digital Anda aman bersama kami. Layanan jasa repost story ig permanen kami dilindungi jaminan refill untuk kepuasan Anda.",
+  mk4Judul: "Layanan Digital Multi Platform",
+  mk4Teks: "Pebisnis besar biasanya gak cuma pakai IG. Mereka juga order jasa komentar YouTube indonesia dan jasa trending topik twitter biar makin mendominasi pasar.",
+  mk5Judul: "Pakar Solusi Isu Akun",
+  mk5Teks: "Ada kendala persaingan? Tim handal kami siap sedia membantu urusan pelik seperti jasa hapus akun tiktok hingga jasa report akun tiktok.",
+  mk6Judul: "Admin Enak Diajak Ngobrol",
+  mk6Teks: "CS kami sangat komunikatif dan ramah. Anda bisa bebas konsultasi dulu buat nentuin jam tayang repost story yang paling pas buat campaign Anda."
+};
+
+const dataSolusi = {
+  judulUtama: 'Cara Rapi Menyebarkan <span class="text-fuchsia-500">Repost Story</span>',
+  deskripsiUtama: "Metode pengerjaan kami diatur sedemikian rupa agar tampak wajar dan menghasilkan dampak sebaran yang maksimal.",
+  sol1Icon: "lucide:layers",
+  sol1Judul: "Fokus Penyebaran Kilat",
+  sol1Teks: "Kami mengarahkan jaringan akun untuk membagikan konten jagoan Anda ke dalam Story mereka dengan penataan tag yang rapi.",
+  sol2Icon: "lucide:shield-check",
+  sol2Judul: "Operasional Jarak Jauh",
+  sol2Teks: "Anda cukup posting konten seperti biasa, kirim tautannya ke kami, lalu tinggal santai mantau grafik views Story Anda merangkak naik.",
+  sol3Icon: "lucide:clock-3",
+  sol3Judul: "Waktu Tayang yang Pas",
+  sol3Teks: "Distribusi diatur ritmenya agar masuk secara berkala, menciptakan kesan seolah-olah konten Anda beneran lagi ramai dibicarakan publik."
+};
+
+const dataCaraOrder = {
+  judulUtama: 'Tiga Langkah Gampang Order <span class="text-violet-400">Jasa Kami</span>',
+  deskripsiUtama: "Cuma butuh waktu singkat buat menyulap postingan Anda menjadi perbincangan hangat di ruang Story.",
+  co1Judul: "Tentukan Paket Target",
+  co1Teks: "Pilih mau nambah 100 atau 1.000 sebaran repost story yang paling pas buat ngedongkrak event besar Anda hari ini.",
+  co2Judul: "Hubungi Admin via WA",
+  co2Teks: "Klik tombol pesan yang ada di bawah, sapa CS kami yang ramah, dan kirimkan detail link postingan utama Anda.",
+  co3Judul: "Pantau Hasilnya Meledak",
+  co3Teks: "Pastikan profil Anda dalam mode Publik (tidak dikunci). Setelah administrasi beres, sistem langsung memproses secara otomatis!"
+};
+
+const dataHargaPaket = {
+  judulHarga: "Penawaran Investasi Repost Story",
+  deskripsiHarga: "Opsi harga terbaik untuk menciptakan efek viral instan pada promosi harian Anda.",
+
+  // Paket Kiri (100 Repost Story)
+  p1Gambar: "/image/paket-harga-repoststoryig.png",
+  p1Nama: "100 Repost Story IG",
+  p1Fitur1: "Kualitas Akun Natural",
+  p1Fitur2: "Proses Eksekusi Cepat",
+  p1Fitur3: "Cukup Kirim Tautan Postingan",
+  p1Harga: "Rp 300.000",
+  p1Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%20100%20Repost%20Story%20Instagram",
+
+  // Paket Kanan (1.000 Repost Story)
+  p2Label: "PILIHAN FAVORIT EVENT ORGANIZER",
+  p2Gambar: "/image/paket-harga-repoststoryig.png",
+  p2Nama: "1.000 Repost Story IG",
+  p2Fitur1: "Garansi Aman Jaminan Refill",
+  p2Fitur2: "Menciptakan Efek FOMO Massal",
+  p2Fitur3: "Prioritas Layanan Konsultasi",
+  p2Harga: "Rp 3.000.000",
+  p2Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%201.000%20Repost%20Story%20Instagram" 
+};
+
+const dataFaq = {
+  judulUtama: 'Tanya Jawab Seputar <span class="text-fuchsia-500">Repost Story IG</span>',
+  deskripsiUtama: "Masih penasaran dengan cara kerjanya? Ini jawaban santai atas hal-hal yang paling sering ditanyain klien sebelum pesan di auradigital.",
+  linkWhatsapp: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital,%20saya%20mau%20tanya-tanya%20dulu%20soal%20Jasa%20Repost%20Story%20Instagram",
+  faq1Judul: "Apakah aman buat akun jualan atau personal brand saya?",
+  faq1Teks: "Aman sekali dong! Semua proses dikerjakan secara eksternal tanpa menyentuh data rahasia akun Anda. Sistem membaca sebaran ini sebagai interaksi organik biasa.",
+  faq2Judul: "Postingan jenis apa aja yang bisa di-repost ke Story?",
+  faq2Teks: "Bebas Kak! Anda bisa share foto produk biasa, postingan feed carousel, video Reels terbaru, atau bahkan postingan feeds dari akun lain untuk dimasukkan ke Story jaringan kami.",
+  faq3Judul: "Apakah angkanya nanti bisa menurun atau luntur?",
+  faq3Teks: "Fluktuasi angka karena pembaharuan sistem berkala itu hal yang wajar. Tapi tenang, layanan paket jasa repost story ig permanen di AuraDigital sudah dilengkapi jaminan asuransi refill gratis.",
+  faq4Judul: "Akun saya wajib di-setting Publik juga ya?",
+  faq4Teks: "Iya, wajib banget Kak. Kalau akun Anda dalam kondisi Private (digembok), jaringan kami tidak akan bisa melihat atau membagikan ulang postingan Anda ke Story mereka.",
+  faq5Judul: "Bisa sekalian urus optimasi platform media sosial lain?",
+  faq5Teks: "Tentu bisa! Klien langganan kami biasanya mengombinasikan ini dengan layanan premium lain, seperti jasa komentar YouTube indonesia, penanganan akun via jasa report tiktok, atau optimasi Twitter.",
+  faq6Judul: "Berapa lama waktu pengerjaannya sampai kelar?",
+  faq6Teks: "Setelah obrolan di WA tervalidasi dan pembayaran selesai, sistem kami akan langsung berjalan. Masuknya diatur secara bertahap agar terlihat mengalir natural sepanjang hari."
+};
+---
+
+<DefaultLayout title={title} description={description} keywords={keywords}>
+
+<Fragment slot="head">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "Jasa Tambah Repost Story Instagram Aktif & Real",
+    "image": "https://auradigital.id/image/paket-harga-repoststoryig.png",
+    "description": "Layanan jasa repost story instagram yang terbukti aman. Beli repost story IG untuk melipatgandakan eksposur event atau promo kilat Anda bersama AuraDigital.",
+    "brand": {
+      "@type": "Brand",
+      "name": "auradigital"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "620"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "300000",
+      "highPrice": "3000000",
+      "priceCurrency": "IDR",
+      "offerCount": "2"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Beranda",
+        "item": "https://auradigital.id/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Layanan",
+        "item": "https://auradigital.id/layanan/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Jasa Repost Story Instagram"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Apakah aman buat akun jualan atau personal brand saya?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Aman sekali dong! Semua proses dikerjakan secara eksternal tanpa menyentuh data rahasia akun Anda. Sistem membaca sebaran ini sebagai interaksi organik biasa."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Apakah angkanya nanti bisa menurun atau luntur?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fluktuasi angka wajar terjadi. Tapi tenang, layanan kami sudah dilengkapi jaminan asuransi refill (isi ulang) gratis."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Akun saya wajib di-setting Publik juga ya?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Iya, wajib banget Kak. Kalau akun Anda dalam kondisi Private (digembok), jaringan kami tidak akan bisa melihat atau membagikan ulang postingan Anda."
+        }
+      }
+    ]
+  }
+]
+</script>
+</Fragment>
+
+  <Hero {...dataHero} />
+
+  <MasalahClient {...dataMasalah} />
+
+  <ApaItuauradigital {...dataApaItu} />
+
+  <Manfaatauradigital {...dataManfaat} />
+
+  <MengapaMemilihauradigital {...dataMengapaMemilih} />
+
+  <Solusi {...dataSolusi} />
+
+  <CaraOrder {...dataCaraOrder} />
+
+  <DaftarHarga />
+
+  <HargaPaket {...dataHargaPaket} />
+
+  <Testimonials />
+
+  <MetodePembayaran />
+
+  <Faqauradigital {...dataFaq} />
+
+</DefaultLayout>
