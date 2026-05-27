@@ -1,0 +1,274 @@
+---
+// src/pages/like-komentar-instagram.astro
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+
+// ==========================================
+// 1. IMPORT SEMUA KOMPONEN CETAKAN
+// ==========================================
+import Hero from '../components/Hero.astro'
+import MasalahClient from '../components/MasalahClient.astro' 
+import ApaItuauradigital from '../components/ApaItuauradigital.astro'
+import Manfaatauradigital from '../components/Manfaatauradigital.astro'
+import MengapaMemilihauradigital from '../components/MengapaMemilihauradigital.astro'
+import CaraOrder from '../components/CaraOrder.astro'
+import Solusi from '../components/Solusi.astro'
+import HargaPaket from '../components/HargaPaket.astro'
+import Testimonials from '../components/Testimonials.astro'
+import DaftarHarga from '../components/DaftarHarga.astro'
+import MetodePembayaran from '../components/MetodePembayaran.astro'
+import Faqauradigital from '../components/Faqauradigital.astro'
+
+// ==========================================
+// 2. DATA SEO & META 
+// ==========================================
+const title = "Jasa Like Komentar Instagram Aktif | AuraDigital";
+const description = "Jadikan ulasan Anda sebagai Top Comment! Layanan jasa like komentar IG aktif untuk tingkatkan reputasi. Kami juga sedia jasa komentar YouTube indonesia.";
+const keywords = "jasa like komentar instagram, beli like komentar ig, jasa tambah like komentar instagram, beli like komen ig, tambah like komentar ig murah, jasa komentar YouTube indonesia, jasa report akun tiktok, jasa hapus akun tiktok, jasa trending topik twitter, jual akun tiktok, jasa report tiktok, auradigital";
+
+// ==========================================
+// 3. DATA KONTEN KHUSUS LIKE KOMENTAR INSTAGRAM
+// ==========================================
+
+const dataHero = {
+  tipe: "service" as const,
+  labelTeks: "Layanan Instagram Premium",
+  labelIcon: "lucide:message-circle-heart",
+  judulUtama: 'Jasa <span class="text-fuchsia-500">Like Komentar IG</span> <br class="hidden md:block"/> Dominasi Top Comment',
+  deskripsi: "Pengen komentar promosi Anda atau ulasan positif dari pelanggan selalu nangkring di urutan paling atas? Beli like komentar IG di AuraDigital adalah rahasia jitu buat ngebikin ulasan Anda jadi sorotan utama. Prosesnya sangat rapi, privasi terjaga penuh, dan pastinya bikin brand Anda makin mendominasi. <br class='hidden md:block mt-2' /> <span class='text-fuchsia-400 font-semibold block mt-4'>✓ Privasi Aman Terjaga &nbsp; ✓ Kualitas Akun Natural &nbsp; ✓ Eksekusi Cepat</span>",
+  teksTombol1: "Lihat Paket Layanan",
+  linkTombol1: "#harga-paket",
+  teksTombol2: "Konsultasi Strategi",
+  linkTombol2: "https://wa.me/6289634740308",
+  gambarHero: "/image/hero-instagram.png" 
+};
+
+const dataMasalah = {
+  judulUtama: 'Masalah Saat Ulasan Bagus <span class="text-fuchsia-500">Tenggelam</span>',
+  deskripsiUtama: "Udah dapat testimoni bintang lima dari pelanggan, tapi malah hilang tertumpuk komentar lain? Ini dampaknya kalau ulasan positif Anda sepi interaksi:",
+  ms1Teks: '<strong class="text-fuchsia-500 font-bold">Susah Jadi Top Comment:</strong> Komentar yang sepi like bakal gampang banget tenggelam ke bawah dan gak kelihatan sama calon pembeli lain yang baru mampir.',
+  ms2Teks: '<strong class="text-fuchsia-500 font-bold">Gagal Ngebangun Persepsi:</strong> Ulasan bagus yang posisinya ada di dasar postingan gak punya kekuatan buat meyakinkan audiens.',
+  ms3Teks: '<strong class="text-fuchsia-500 font-bold">Kalah Saing Sama Spam:</strong> Kadang komentar negatif atau spam dari kompetitor malah naik ke atas cuma gara-gara dapat respon dari audiens lain.',
+  ms4Teks: '<strong class="text-fuchsia-500 font-bold">Promosi Terlewatkan:</strong> Buat Anda yang suka komen di postingan artis/viral buat promosi bisnis, komen yang sepi like pasti langsung di-skip sama audiens.'
+};
+
+const dataApaItu = {
+  judulUtama: 'Solusi Tepat: Beli Like <span class="text-fuchsia-500">Komentar IG</span>',
+  deskripsiUtama: "Ini adalah strategi pintar buat ngedongkrak posisi ulasan atau komentar promosi Anda biar otomatis masuk ke jajaran elit (Top Comment).",
+  k1Judul: "Bikin Testimoni Jadi Bintang",
+  k1Teks: "Kami mendatangkan interaksi yang bikin komentar positif di postingan Anda langsung meroket ke atas, siap dibaca oleh siapa pun yang buka kolom diskusi.",
+  k2Judul: "Kerahasiaan Data Terjamin",
+  k2Teks: "Sebagai penyedia jasa tambah like komentar instagram tepercaya, cara kerja kami sangat simpel. Cukup infokan link postingan dan nama akun yang komen, sisanya serahkan ke kami."
+};
+
+const dataManfaat = {
+  judulUtama: 'Efek Sakti Tambah Like <span class="text-fuchsia-500">Komentar</span>',
+  deskripsiUtama: "Ngeramein interaksi di kolom komentar itu strategi psikologi marketing yang efeknya kerasa banget buat ngebangun reputasi brand.",
+  m1Judul: "Ulasan Makin Menonjol",
+  m1Teks: "Testimoni pelanggan yang dapat banyak like otomatis naik ke atas. Calon pembeli baru pasti langsung baca dan gampang banget buat percaya.",
+  m2Judul: "Pansos Elegan di Akun Viral",
+  m2Teks: "Komen promosi Anda di postingan akun viral bakal dapat eksposur maksimal kalau sukses jadi Top Comment berkat like yang melimpah.",
+  m3Judul: "Mengubur Komentar Negatif",
+  m3Teks: "Komentar positif yang di-push pakai like bakal otomatis menekan komentar negatif atau spam ke urutan paling bawah sampai gak kelihatan.",
+  m4Judul: "Hemat Waktu & Tenaga",
+  m4Teks: "Gak perlu lagi repot minta tolong ke teman atau grup WhatsApp buat nge-like ulasan satu-satu. Semuanya tereksekusi rapi dan cepat."
+};
+
+const dataMengapaMemilih = {
+  judulUtama: 'Kenapa auradigital Jadi <span class="text-violet-400">Pilihan Cerdas?</span>',
+  deskripsiUtama: "Kami mengerti cara main algoritma biar komentar Anda mendominasi dengan rapi. AuraDigital adalah ahlinya merapikan ekosistem reputasi digital.",
+  mk1Judul: "Sistem Kerja Eksternal",
+  mk1Teks: "Kami bekerja murni dari luar. Privasi data Anda sepenuhnya aman karena kami hanya butuh tautan (link) publik saja.",
+  mk2Judul: "Kualitas Interaksi Natural",
+  mk2Teks: "Kami sedia layanan beli like komentar instagram aktif biar interaksi yang nge-like komen Anda kelihatan senatural mungkin.",
+  mk3Judul: "Ada Garansi Refill",
+  mk3Teks: "Layanan premium kami udah di-cover asuransi isi ulang buat jaga-jaga kalau misal ada sedikit penurunan angka karena update sistem.",
+  mk4Judul: "Layanan Digital Terlengkap",
+  mk4Teks: "Klien VIP kami juga sering banget order optimasi lain, seperti jasa komentar YouTube indonesia sampai jasa trending topik twitter buat scale-up bisnis.",
+  mk5Judul: "Pakar Berantas Isu Akun",
+  mk5Teks: "Butuh penanganan krusial? Tim kami ahlinya urusan di balik layar, mulai dari jasa hapus akun tiktok sampai jual akun tiktok buat korporat.",
+  mk6Judul: "Admin Responsif & Asyik",
+  mk6Teks: "Gak usah ragu, admin kami asyik banget diajak diskusi santai buat ngatur strategi konten yang paling pas buat bisnis Anda hari ini."
+};
+
+const dataSolusi = {
+  judulUtama: 'Cara Rapi Tambah <span class="text-fuchsia-500">Like Komentar</span>',
+  deskripsiUtama: "Proses pengerjaan kami didesain senatural mungkin biar posisi komentar Anda naik perlahan tapi pasti.",
+  sol1Icon: "lucide:arrow-up-circle",
+  sol1Judul: "Targeting Tepat Sasaran",
+  sol1Teks: "Kami fokus ngarahin like ke komentar spesifik yang Anda pilih, memastikan cuma ulasan itu aja yang jadi juara pertama.",
+  sol2Icon: "lucide:shield-check",
+  sol2Judul: "Pengerjaan dari Luar",
+  sol2Teks: "Semuanya dieksekusi rapi dari sistem kami. Anda cukup santai dan biarkan jaringan kami yang bekerja nge-push komentar target.",
+  sol3Icon: "lucide:timer",
+  sol3Judul: "Kecepatan yang Wajar",
+  sol3Teks: "Masuknya like bisa diatur biar kelihatan mengalir natural, bikin audiens lain makin yakin buat ikutan nimbrung baca komentarnya."
+};
+
+const dataCaraOrder = {
+  judulUtama: 'Gampang Banget Cara Order <span class="text-violet-400">Jasa Kami</span>',
+  deskripsiUtama: "Cuma butuh tiga langkah simpel buat bikin ulasan jagoan Anda nangkring di posisi teratas.",
+  co1Judul: "Pilih Jumlah Target",
+  co1Teks: "Tentukan berapa banyak like yang mau ditambahkan buat ngangkat pamor komentar atau testimoni Anda.",
+  co2Judul: "Chat Admin Kami",
+  co2Teks: "Klik tombol WhatsApp, sapa admin kami yang ramah, dan sampaikan pesanan super kilat Anda hari ini.",
+  co3Judul: "Kirim Link & Nama Akun",
+  co3Teks: "Cukup copy link postingannya, lalu kasih tau kami nama akun (username) yang komentarnya mau ditambahin like. Beres deh!",
+  co4Judul: "Santai & Tunggu Hasilnya",
+  co4Teks: "Sistem kami bakal langsung merespons. Anda tinggal refresh HP dan lihat ulasan tersebut naik pelan-pelan ke posisi puncak!"
+};
+
+const dataHargaPaket = {
+  judulHarga: "Penawaran Investasi Top Comment",
+  deskripsiHarga: "Harga yang super terjangkau buat ngebikin ulasan positif Anda jadi pusat perhatian semua orang.",
+
+  // Paket Kiri 
+  p1Gambar: "/image/paket-harga-likekomentarig.png",
+  p1Nama: "100 Like Komentar IG",
+  p1Fitur1: "Kualitas Akun Natural",
+  p1Fitur2: "Proses Cepat & Rapih",
+  p1Fitur3: "Cukup Link & Nama Komen",
+  p1Harga: "Rp 200.000",
+  p1Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%20100%20Like%20Komentar%20IG",
+
+  // Paket Kanan 
+  p2Label: "PILIHAN FAVORIT SPONSOR",
+  p2Gambar: "/image/paket-harga-likekomentarig.png",
+  p2Nama: "1.000 Like Komentar IG",
+  p2Fitur1: "Garansi Drop Refill",
+  p2Fitur2: "Jaminan Masuk Top Comment",
+  p2Fitur3: "Bisa Dipecah Beberapa Komen",
+  p2Harga: "Rp 2.000.000",
+  p2Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%201.000%20Like%20Komentar%20IG" 
+};
+
+const dataFaq = {
+  judulUtama: 'Tanya Jawab Seputar <span class="text-fuchsia-500">Like Komentar IG</span>',
+  deskripsiUtama: "Ada pertanyaan? Ini rangkuman obrolan yang sering banget ditanyain klien soal layanan beli like komentar ig di auradigital.",
+  linkWhatsapp: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital,%20saya%20mau%20tanya-tanya%20dulu%20soal%20Jasa%20Like%20Komentar%20Instagram",
+  faq1Judul: "Beneran aman gak sih buat reputasi bisnis saya?",
+  faq1Teks: "Super aman! Kami bekerja sangat rapi dari luar sistem. Gak bakal ada kendala atau masalah pembatasan dari sistem aplikasinya.",
+  faq2Judul: "Gimana caranya admin tau komentar mana yang mau di-like?",
+  faq2Teks: "Gampang banget Kak, nanti pas order di WA, cukup kirim link postingannya trus kasih tau nama username dari komentar yang mau diramaikan. Langsung kita hajar!",
+  faq3Judul: "Satu paket bisa dibagi ke beberapa komentar gak?",
+  faq3Teks: "Tentu bisa! Khusus buat yang pesen paket besar, like-nya bisa kami pecah dan sebar ke beberapa komentar biar ulasan bagusnya naik semua.",
+  faq4Judul: "Akun targetnya harus Publik juga ya?",
+  faq4Teks: "Betul sekali. Postingan tempat komentarnya berada harus di akun Publik biar jaringan kami bisa baca komentarnya dan ngasih like dengan lancar.",
+  faq5Judul: "Bisa bantuin optimasi platform lain juga?",
+  faq5Teks: "Pasti! Selain Instagram, klien setia kami juga sering beresin reputasi YouTube pakai jasa komentar YouTube indonesia sampai jasa report tiktok buat berantas konten negatif.",
+  faq6Judul: "Kapan like-nya mulai masuk ke komentar saya?",
+  faq6Teks: "Kerja kami ngebut! Biasanya beberapa saat setelah order masuk antrean, komentar jagoan Anda bakal pelan-pelan naik ke urutan paling atas."
+};
+---
+
+<DefaultLayout title={title} description={description} keywords={keywords}>
+
+<Fragment slot="head">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "Jasa Tambah Like Komentar Instagram",
+    "image": "https://auradigital.id/image/paket-harga-likekomentarig.png",
+    "description": "Layanan jasa like komentar instagram yang aman. Jadikan ulasan Anda sebagai Top Comment secara instan dan rapi bersama AuraDigital.",
+    "brand": {
+      "@type": "Brand",
+      "name": "auradigital"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "1150"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "200000",
+      "highPrice": "2000000",
+      "priceCurrency": "IDR",
+      "offerCount": "2"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Beranda",
+        "item": "https://auradigital.id/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Layanan",
+        "item": "https://auradigital.id/layanan/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Jasa Like Komentar Instagram"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Beneran aman gak sih buat reputasi bisnis saya?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Super aman! Kami bekerja sangat rapi dari luar sistem. Gak bakal ada kendala atau masalah pembatasan dari sistem aplikasinya."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Gimana caranya admin tau komentar mana yang mau di-like?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nanti pas order di WA, cukup kirim link postingannya trus kasih tau nama username dari komentar yang mau diramaikan. Langsung kita hajar!"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Satu paket bisa dibagi ke beberapa komentar gak?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tentu bisa! Khusus buat yang pesen paket besar, like-nya bisa kami pecah dan sebar ke beberapa komentar biar ulasan bagusnya naik semua."
+        }
+      }
+    ]
+  }
+]
+</script>
+</Fragment>
+
+  <Hero {...dataHero} />
+
+  <MasalahClient {...dataMasalah} />
+
+  <ApaItuauradigital {...dataApaItu} />
+
+  <Manfaatauradigital {...dataManfaat} />
+
+  <MengapaMemilihauradigital {...dataMengapaMemilih} />
+
+  <Solusi {...dataSolusi} />
+
+  <CaraOrder {...dataCaraOrder} />
+
+  <DaftarHarga />
+
+  <HargaPaket {...dataHargaPaket} />
+
+  <Testimonials />
+
+  <MetodePembayaran />
+
+  <Faqauradigital {...dataFaq} />
+
+</DefaultLayout>
