@@ -7,7 +7,7 @@ import Footer from '../components/Footer.astro'
 import FloatingCS from '../components/FloatingCS.astro'
 import { ClientRouter } from 'astro:transitions'
 
-// 1. Import komponen SEO khusus AuraDigital
+// Import komponen SEO bawaan (kalau masih mau dipakai buat fitur lainnya)
 import SEO from '@components/SEO.astro'
 
 // 👇 PENGATURAN SEO UTAMA UNTUK AURADIGITAL
@@ -25,9 +25,21 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     
-    {/* 👇 JALUR FAVICON SUDAH DIGANTI KE LOGO AURADIGITAL */}
+    {/* ==========================================
+        SEO INTI: DITULIS MANUAL BIAR MESIN PENCARI LANGSUNG BACA!
+        ========================================== */}
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {keywords && <meta name="keywords" content={keywords} />}
+    
+    {/* Open Graph (Biar preview link di WA/Sosmed tampil cakep) */}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    
     <link rel="icon" type="image/svg+xml" href="/logo-auradigital.svg" />
 
+    {/* Eksekusi komponen SEO bawaan sebagai pelengkap tambahan */}
     <SEO title={title} description={description} keywords={keywords} image={image} />
 
     <slot name="head" />
@@ -59,10 +71,9 @@ const {
             }
           });
         }, {
-          threshold: 0.1 // Memicu animasi ketika 10% elemen sudah terlihat di layar
+          threshold: 0.1 
         });
 
-        // Minta script untuk mengawasi semua elemen yang punya class reveal di seluruh website
         document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right').forEach((el) => {
           observer.observe(el);
         });
