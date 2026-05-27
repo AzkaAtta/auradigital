@@ -1,7 +1,12 @@
 ---
 // src/pages/index.astro
 import DefaultLayout from '../layouts/DefaultLayout.astro'
-// Pastikan nama import file komponennya sesuai dengan yang ada di folder src/components kamu ya!
+
+// ==========================================
+// 1. IMPORT SEMUA KOMPONEN
+// ==========================================
+import HomeSchemas from '../components/HomeSchemas.astro'
+import OrganizationSchema from '../components/OrganizationSchema.astro'
 import Hero from '../components/Hero.astro'
 import Masalahauradigital from '../components/MasalahClient.astro'
 import ApaItuauradigital from '../components/ApaItuauradigital.astro'
@@ -14,11 +19,11 @@ import DaftarHarga from '../components/DaftarHarga.astro'
 import CaraOrder from '../components/CaraOrder.astro'
 
 // ==========================================
-// 1. DATA SEO
+// 2. DATA SEO KELAS BERAT (MIX SHORT & LONG-TAIL)
 // ==========================================
-const title = "auradigital | Agensi Eskalasi Digital & Optimasi Media Sosial";
-const description = "Mitra eskalasi digital terpercaya. Tingkatkan otoritas brand, retensi interaksi, dan potensi konversi organik di multi-platform secara profesional dan aman.";
-const keywords = "agensi digital, optimasi media sosial, manajemen interaksi, social proof, pertumbuhan organik, auradigital, eskalasi brand";
+const title = "AuraDigital | Jasa Komentar YouTube Indonesia & Jasa Report Akun TikTok Premium";
+const description = "Solusi eskalasi digital terpercaya untuk bisnis Anda. AuraDigital melayani jasa komentar YouTube indonesia, jasa report akun tiktok, jasa hapus akun tiktok, hingga jasa trending topik twitter secara profesional dan aman.";
+const keywords = "jasa komentar YouTube indonesia, jasa report akun tiktok, jasa hapus akun tiktok, jasa trending topik twitter, jasa report tiktok, jasa followers instagram, jasa like instagram, jasa follower instagram, agensi digital indonesia, optimasi media sosial, auradigital, eskalasi brand premium";
 
 // ==========================================
 // 2. DATA KONTEN HALAMAN (FRONTMATTER)
@@ -127,7 +132,7 @@ const dataFaq = {
           "@id": "https://auradigital.id/#website",
           "url": "https://auradigital.id",
           "name": "auradigital",
-          "description": "Agensi Eskalasi Digital & Optimasi Media Sosial Terpercaya",
+          "description": "Dominasi algoritma, bangun kredibilitas brand, dan maksimalkan potensi organik di multi-platform dengan strategi eskalasi interaksi yang terukur dan 100% aman.",
           "inLanguage": "id-ID"
         }
       ]
