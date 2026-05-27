@@ -1,0 +1,272 @@
+---
+// src/pages/livestreaming-instagram.astro
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+
+// ==========================================
+// 1. IMPORT SEMUA KOMPONEN CETAKAN
+// ==========================================
+import Hero from '../components/Hero.astro'
+import MasalahClient from '../components/MasalahClient.astro' 
+import ApaItuauradigital from '../components/ApaItuauradigital.astro'
+import Manfaatauradigital from '../components/Manfaatauradigital.astro'
+import MengapaMemilihauradigital from '../components/MengapaMemilihauradigital.astro'
+import CaraOrder from '../components/CaraOrder.astro'
+import Solusi from '../components/Solusi.astro'
+import HargaPaket from '../components/HargaPaket.astro'
+import Testimonials from '../components/Testimonials.astro'
+import DaftarHarga from '../components/DaftarHarga.astro'
+import MetodePembayaran from '../components/MetodePembayaran.astro'
+import Faqauradigital from '../components/Faqauradigital.astro'
+
+// ==========================================
+// 2. DATA SEO & META 
+// ==========================================
+const title = "Jasa Livestreaming Instagram Aktif & Terpercaya | AuraDigital";
+const description = "Bikin siaran langsung IG Anda ramai penonton dengan jasa livestreaming Instagram terpercaya. Meningkatkan interaksi live. Kami juga ahli jasa komentar YouTube indonesia.";
+const keywords = "jasa livestreaming instagram, beli livestreaming ig, jasa tambah penonton live instagram, beli penonton live ig, penonton live instagram murah, jasa komentar YouTube indonesia, jasa report akun tiktok, jasa hapus akun tiktok, jasa trending topik twitter, jual akun tiktok, jasa report tiktok, auradigital";
+
+// ==========================================
+// 3. DATA KONTEN KHUSUS LIVESTREAMING INSTAGRAM
+// ==========================================
+
+const dataHero = {
+  tipe: "service" as const,
+  labelTeks: "Layanan Instagram Premium",
+  labelIcon: "lucide:video",
+  judulUtama: 'Jasa <span class="text-fuchsia-500">Livestreaming IG</span> <br class="hidden md:block"/> Ramaikan Penonton Siaran Langsung',
+  deskripsi: "Bikin jualan atau acara Live IG Anda mendadak ramai dan penuh interaksi! Layanan jasa livestreaming Instagram kami hadir untuk mendatangkan penonton aktif saat siaran berlangsung. Prosesnya sangat aman, privasi terjaga penuh, dan pastinya bikin reputasi toko online Anda makin tepercaya di mata calon pembeli. <br class='hidden md:block mt-2' /> <span class='text-fuchsia-400 font-semibold block mt-4'>✓ Menaikkan Kepercayaan &nbsp; ✓ Privasi Aman Terjaga &nbsp; ✓ Proses Real-Time</span>",
+  teksTombol1: "Lihat Paket Layanan",
+  linkTombol1: "#harga-paket",
+  teksTombol2: "Konsultasi Strategi",
+  linkTombol2: "https://wa.me/6289634740308",
+  gambarHero: "/image/hero-instagram.png" 
+};
+
+const dataMasalah = {
+  judulUtama: 'Tantangan Saat Live IG <span class="text-fuchsia-500">Sepi Penonton</span>',
+  deskripsiUtama: "Udah nyiapin produk diskon gede-gedean dan cuap-cuap berjam-jam saat live, tapi yang nonton cuma 1 atau 2 orang saja? Ini kendala psikologis audiens yang bikin jualan sepi:",
+  ms1Teks: '<strong class="text-fuchsia-500 font-bold">Audiens Cepat Kabur:</strong> Secara alami, orang yang masuk ke live sepi akan langsung keluar lagi karena ngerasa suasananya canggung dan kurang seru.',
+  ms2Teks: '<strong class="text-fuchsia-500 font-bold">Kredibilitas Toko Diragukan:</strong> Penonton baru sering menilai kualitas brand dari seberapa ramai live-nya. Kalau sepi, mereka mikir produk Anda kurang diminati.',
+  ms3Teks: '<strong class="text-fuchsia-500 font-bold">Interaksi Dua Arah Mandek:</strong> Gak adanya viewer yang stand-by bikin kolom komentar live sepi melompong, suasana jualan jadi terasa kaku dan garing.',
+  ms4Teks: '<strong class="text-fuchsia-500 font-bold">Peluang Closing Kecil:</strong> Efek psikologis keramaian itu penting banget. Siaran langsung yang sepi penonton bikin orang gak tertarik buat ikutan rebutan beli produk Anda.'
+};
+
+const dataApaItu = {
+  judulUtama: 'Solusi Cerdas: Beli Livestreaming <span class="text-fuchsia-500">Instagram</span>',
+  deskripsiUtama: "Ini strategi jitu untuk meramaikan ruang siaran langsung Anda dengan penonton konstan agar menciptakan suasana yang hidup dan memicu interaksi organik.",
+  k1Judul: "Ngebangun Efek Ramai (Hype)",
+  k1Teks: "Kami mendatangkan penonton saat siaran langsung dimulai, menciptakan kesan kalau acara atau produk yang Anda tawarkan lagi diburu banyak orang.",
+  k2Judul: "Keamanan Privasi Mutlak",
+  k2Teks: "Sebagai penyedia jasa tambah penonton live instagram yang profesional, cara kerja kami sangat rapi dan murni dari luar jaringan. Privasi Anda aman bersama kami."
+};
+
+const dataManfaat = {
+  judulUtama: 'Keuntungan Keren Nambah Penonton <span class="text-fuchsia-500">Live IG</span>',
+  deskripsiUtama: "Memiliki angka penonton live yang ramai di dashboard itu gerbang utama buat ningkatin closing penjualan toko online Anda.",
+  m1Judul: "Mancing Penonton Asli Bertahan",
+  m1Teks: "Suasana live yang ramai bikin penonton baru betah berlama-lama menyimak obrolan Anda, meningkatkan peluang mereka buat ikutan belanja.",
+  m2Judul: "Meningkatkan Rasa Percaya Konsumen",
+  m2Teks: "Angka viewer live yang tinggi jadi bukti instan kalau brand toko online Anda aktif, populer, dan punya banyak peminat setia.",
+  m3Judul: "Memicu Algoritma Merekomendasikan Live",
+  m3Teks: "Instagram menyukai siaran langsung dengan metrik penonton konstan. Akun Anda punya peluang lebih besar buat muncul di barisan depan menu Story.",
+  m4Judul: "Hemat Tenaga Cuap-Cuap",
+  m4Teks: "Gak perlu lagi stres live sendirian tanpa ada yang lihat. Anda bisa tampil penuh percaya diri di depan kamera karena angka penonton sudah ramai."
+};
+
+const dataMengapaMemilih = {
+  judulUtama: 'Kenapa auradigital Selalu Jadi <span class="text-violet-400">Pilihan Utama?</span>',
+  deskripsiUtama: "AuraDigital adalah ahlinya manajemen eskalasi reputasi media sosial terpercaya. Kami memberikan kualitas operasional premium untuk kesuksesan brand Anda.",
+  mk1Judul: "Sistem Kerja Eksternal",
+  mk1Teks: "Kami gak butuh informasi sensitif atau hak akses internal akun Anda. Cukup infokan nama profil saat live sudah mengudara.",
+  mk2Judul: "Viewer Konstan & Stabil",
+  mk2Teks: "Layanan beli penonton live ig di tempat kami didesain bertahan sesuai durasi paket biar performa live Anda tetap kelihatan ramai dari awal sampai akhir.",
+  mk3Judul: "Garansi Layanan Premium",
+  mk3Teks: "Kepercayaan Anda adalah segalanya. Seluruh investasi digital Anda di AuraDigital diproteksi oleh standar pelayanan terbaik demi kepuasan penuh.",
+  mk4Judul: "Ekosistem Digital Terlengkap",
+  mk4Teks: "Klien VIP kami biasanya juga mengombinasikan ini dengan layanan platform lain, seperti order jasa komentar YouTube indonesia dan jasa trending topik twitter.",
+  mk5Judul: "Pakar Solusi Isu Bisnis",
+  mk5Teks: "Butuh perlindungan aset? Tim handal kami siap sedia menangani hal-hal krusial lewat jasa hapus akun tiktok sampai urusan jasa report akun tiktok.",
+  mk6Judul: "Admin Ramah & Siap Siaga",
+  mk6Teks: "Mau live jam berapa aja? Tinggal koordinasikan dengan admin kami yang responsif buat nentuin jadwal eksekusi yang paling pas."
+};
+
+const dataSolusi = {
+  judulUtama: 'Mekanisme Aman Tambah <span class="text-fuchsia-500">Penonton Live</span>',
+  deskripsiUtama: "Proses pengerjaan didesain mengikuti ritme natural agar siaran langsung Anda berjalan lancar dan aman.",
+  sol1Icon: "lucide:users",
+  sol1Judul: "Injeksi Viewer Tepat Waktu",
+  sol1Teks: "Begitu Anda menekan tombol 'Mulai Live', sistem kami akan langsung mengarahkan aliran penonton masuk ke dalam siaran secara bertahap.",
+  sol2Icon: "lucide:shield-check",
+  sol2Judul: "Pengerjaan Jarak Jauh",
+  sol2Teks: "Operasional dikerjakan murni dari luar. Anda bisa fokus berinteraksi dan jualan di depan kamera, biarkan tim kami yang meramaikan metriknya.",
+  sol3Icon: "lucide:activity",
+  sol3Judul: "Stabilitas Durasi Terjaga",
+  sol3Teks: "Penonton diatur agar konstan menemani sesi live Anda, menciptakan ruang diskusi yang kelihatan dinamis dan interaktif."
+};
+
+const dataCaraOrder = {
+  judulUtama: 'Gampang Banget Cara Order <span class="text-violet-400">Jasa Live</span>',
+  deskripsiUtama: "Hanya butuh tiga langkah simpel untuk menyulap sesi live streaming Anda menjadi ramai peminat.",
+  co1Judul: "Pilih Jumlah Penonton",
+  co1Teks: "Tentukan mau didampingi 10 atau 100 penonton live yang sesuai dengan target eksposur campaign jualan Anda hari ini.",
+  co2Judul: "Hubungi Admin & Jadwalkan Jam Live",
+  co2Teks: "Klik tombol WhatsApp, kabari admin kami mengenai paket yang dipilih, serta informasikan jam berapa Anda akan mulai siaran langsung.",
+  co3Judul: "Mulai Live & Duduk Manis",
+  co3Teks: "Pastikan akun dalam mode Publik. Begitu Anda mulai mengudara, kabari admin kembali dan lihat angka penonton mulai melesat ramai!"
+};
+
+const dataHargaPaket = {
+  judulHarga: "Penawaran Investasi Livestreaming",
+  deskripsiHarga: "Opsi harga terbaik untuk menciptakan efek toko online ramai dan populer saat siaran langsung.",
+
+  // Paket Kiri (10 Penonton Live)
+  p1Gambar: "/image/paket-harga-livestreamingig.png",
+  p1Nama: "10 Penonton Live IG",
+  p1Fitur1: "Durasi Standar Sesi Live",
+  p1Fitur2: "Proses Cepat & Eksekusi Aman",
+  p1Fitur3: "Cukup Berikan Nama Akun",
+  p1Harga: "Rp 200.000",
+  p1Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%2010%20Penonton%20Live%20Instagram",
+
+  // Paket Kanan (100 Penonton Live)
+  p2Label: "PILIHAN FAVORIT LIVE SELLER",
+  p2Gambar: "/image/paket-harga-livestreamingig.png",
+  p2Nama: "100 Penonton Live IG",
+  p2Fitur1: "Durasi Prioritas Sesi Live",
+  p2Fitur2: "Cocok Untuk Hype Flash Sale Masif",
+  p2Fitur3: "Prioritas Layanan Konsultasi",
+  p2Harga: "Rp 2.000.000",
+  p2Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%20100%20Penonton%20Live%20Instagram" 
+};
+
+const dataFaq = {
+  judulUtama: 'Tanya Jawab Seputar <span class="text-fuchsia-500">Livestreaming IG</span>',
+  deskripsiUtama: "Masih bingung sistem operasinya? Ini jawaban santai atas pertanyaan yang paling sering diajukan klien sebelum order di auradigital.",
+  linkWhatsapp: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital,%20saya%20mau%20tanya-tanya%20dulu%20soal%20Jasa%20Livestreaming%20Instagram",
+  faq1Judul: "Apakah penambahan penonton live ini aman buat kelangsungan akun saya?",
+  faq1Teks: "Super aman Kak! Seluruh proses dijalankan murni dari luar sistem tanpa menyentuh privasi akun jualan Anda. Algoritma membaca kehadiran penonton ini sebagai kunjungan wajar.",
+  faq2Judul: "Kapan saya harus berkabar ke admin kalau mau mulai live?",
+  faq2Teks: "Sangat disarankan untuk booking jadwal minimal 1-2 jam sebelum live dimulai ya Kak. Jadi tim operasional kami bisa stand-by bersiap nge-push penonton pas Kakak klik tombol 'Mulai Live'.",
+  faq3Judul: "Berapa lama penontonnya akan bertahan di dalam live saya?",
+  faq3Teks: "Penonton akan konstan menemani aktivitas siaran langsung Anda sesuai dengan durasi standar paket sesi live yang dikoordinasikan bersama admin kami melalui WhatsApp.",
+  faq4Judul: "Akun saya boleh dikunci (Private) gak saat live berlangsung?",
+  faq4Teks: "Gak boleh ya Kak. Akun wajib disetting Publik agar jaringan penonton kami bisa masuk dan melihat tayangan siaran langsung Anda dengan lancar tanpa terhambat sistem gembok.",
+  faq5Judul: "Di AuraDigital melayani optimasi platform apa lagi selain Instagram?",
+  faq5Teks: "Banyak pilihan Kak! Kami melayani optimasi lintas platform seperti jasa komentar YouTube indonesia, penanganan akun nakal via jasa report tiktok, hingga push viral di Twitter.",
+  faq6Judul: "Bagaimana cara sistem menemukan siaran live saya?",
+  faq6Teks: "Sangat gampang. Kakak cukup berikan Username Instagram yang digunakan untuk live. Begitu akun Kakak menyalakan siaran langsung, sistem otomatis mendeteksi dan langsung mengirimkan penonton masuk."
+};
+---
+
+<DefaultLayout title={title} description={description} keywords={keywords}>
+
+<Fragment slot="head">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "Jasa Tambah Penonton Live Instagram Terpercaya",
+    "image": "https://auradigital.id/image/paket-harga-livestreamingig.png",
+    "description": "Layanan jasa livestreaming instagram yang aman. Beli penonton live IG untuk meramaikan suasana jualan dan meningkatkan konversi belanja bersama AuraDigital.",
+    "brand": {
+      "@type": "Brand",
+      "name": "auradigital"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "540"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "200000",
+      "highPrice": "2000000",
+      "priceCurrency": "IDR",
+      "offerCount": "2"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Beranda",
+        "item": "https://auradigital.id/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Layanan",
+        "item": "https://auradigital.id/layanan/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Jasa Livestreaming Instagram"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Apakah penambahan penonton live ini aman buat kelangsungan akun saya?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Super aman Kak! Seluruh proses dijalankan murni dari luar sistem tanpa menyentuh privasi akun jualan Anda. Algoritma membaca kehadiran penonton ini sebagai kunjungan wajar."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Akun saya boleh dikunci (Private) gak saat live berlangsung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Gak boleh ya Kak. Akun wajib disetting Publik agar jaringan penonton kami bisa masuk dan melihat tayangan siaran langsung Anda dengan lancar."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Berapa lama penontonnya akan bertahan di dalam live saya?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Penonton akan konstan menemani aktivitas siaran langsung Anda sesuai dengan durasi standar paket sesi live yang dikoordinasikan bersama admin kami."
+        }
+      }
+    ]
+  }
+]
+</script>
+</Fragment>
+
+  <Hero {...dataHero} />
+
+  <MasalahClient {...dataMasalah} />
+
+  <ApaItuauradigital {...dataApaItu} />
+
+  <Manfaatauradigital {...dataManfaat} />
+
+  <MengapaMemilihauradigital {...dataMengapaMemilih} />
+
+  <Solusi {...dataSolusi} />
+
+  <CaraOrder {...dataCaraOrder} />
+
+  <DaftarHarga />
+
+  <HargaPaket {...dataHargaPaket} />
+
+  <Testimonials />
+
+  <MetodePembayaran />
+
+  <Faqauradigital {...dataFaq} />
+
+</DefaultLayout>
