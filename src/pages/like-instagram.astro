@@ -1,0 +1,274 @@
+---
+// src/pages/like-instagram.astro
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+
+// ==========================================
+// 1. IMPORT SEMUA KOMPONEN CETAKAN
+// ==========================================
+import Hero from '../components/Hero.astro'
+import MasalahClient from '../components/MasalahClient.astro' 
+import ApaItuauradigital from '../components/ApaItuauradigital.astro'
+import Manfaatauradigital from '../components/Manfaatauradigital.astro'
+import MengapaMemilihauradigital from '../components/MengapaMemilihauradigital.astro'
+import CaraOrder from '../components/CaraOrder.astro'
+import Solusi from '../components/Solusi.astro'
+import HargaPaket from '../components/HargaPaket.astro'
+import Testimonials from '../components/Testimonials.astro'
+import DaftarHarga from '../components/DaftarHarga.astro'
+import MetodePembayaran from '../components/MetodePembayaran.astro'
+import Faqauradigital from '../components/Faqauradigital.astro'
+
+// ==========================================
+// 2. DATA SEO & META 
+// ==========================================
+const title = "Jasa Like Instagram Aktif & Real | AuraDigital";
+const description = "Bikin postingan IG makin ramai dan tembus Explore dengan jasa like Instagram aktif. Kami juga ahlinya jasa komentar YouTube indonesia & jasa report akun tiktok.";
+const keywords = "jasa like instagram, beli like ig, jasa tambah like instagram, beli like instagram aktif, tambah like ig murah, beli like instagram indonesia, jasa komentar YouTube indonesia, jasa report akun tiktok, jasa hapus akun tiktok, jasa trending topik twitter, jual akun tiktok, jasa report tiktok, auradigital";
+
+// ==========================================
+// 3. DATA KONTEN KHUSUS LIKE INSTAGRAM
+// ==========================================
+
+const dataHero = {
+  tipe: "service" as const,
+  labelTeks: "Layanan Instagram Premium",
+  labelIcon: "lucide:heart",
+  judulUtama: 'Jasa <span class="text-fuchsia-500">Like Instagram</span> <br class="hidden md:block"/> Aktif & Real',
+  deskripsi: "Postingan sepi interaksi? Bikin tiap foto, carousel, atau Reels Anda langsung ramai dan dilirik algoritma dengan layanan beli like IG di AuraDigital. Cara kerjanya sangat aman, privasi terjaga penuh, dan pastinya bikin brand Anda makin dipercaya calon pembeli. <br class='hidden md:block mt-2' /> <span class='text-fuchsia-400 font-semibold block mt-4'>✓ Privasi Terjamin &nbsp; ✓ Kualitas Akun Natural &nbsp; ✓ Proses Cepat</span>",
+  teksTombol1: "Lihat Paket Layanan",
+  linkTombol1: "#harga-paket",
+  teksTombol2: "Konsultasi Strategi",
+  linkTombol2: "https://wa.me/6289634740308",
+  gambarHero: "/image/hero-instagram.png" // Boleh disamakan dengan hero IG sebelumnya atau diganti nanti
+};
+
+const dataMasalah = {
+  judulUtama: 'Masalah Saat Postingan <span class="text-fuchsia-500">Sepi Like</span>',
+  deskripsiUtama: "Udah capek-capek mikirin konsep konten, tapi yang ngasih love (like) cuma hitungan jari itu emang bikin frustrasi. Ini dampaknya kalau konten Anda sepi interaksi:",
+  ms1Teks: '<strong class="text-fuchsia-500 font-bold">Susah Tembus Explore:</strong> Algoritma butuh bukti kalau konten Anda disukai banyak orang di menit-menit pertama. Kalau sepi, kontennya bakal diam di tempat.',
+  ms2Teks: '<strong class="text-fuchsia-500 font-bold">Gagal Meyakinkan Pembeli:</strong> Followers banyak tapi like-nya sedikit banget? Calon pelanggan malah jadi ragu dan ngerasa toko Anda kurang meyakinkan.',
+  ms3Teks: '<strong class="text-fuchsia-500 font-bold">Kalah Saing dari Kompetitor:</strong> Pesaing yang postingannya banjir like selalu kelihatan lebih laris manis, bikin audiens lebih milih belanja ke mereka.',
+  ms4Teks: '<strong class="text-fuchsia-500 font-bold">Reputasi Brand Menurun:</strong> Secara psikologis, postingan yang ramai interaksinya bikin nama brand Anda makin dihormati dan kelihatan profesional.'
+};
+
+const dataApaItu = {
+  judulUtama: 'Solusi Jitu: Beli Like <span class="text-fuchsia-500">Instagram</span>',
+  deskripsiUtama: "Ini adalah strategi nambahin interaksi awal buat ngasih 'pancingan' supaya postingan Anda terlihat hidup dan memicu audiens asli ikutan penasaran.",
+  k1Judul: "Daya Tarik Visual Seketika",
+  k1Teks: "Kami mendatangkan interaksi yang bikin foto atau video Anda langsung punya angka like tinggi, bikin siapa pun yang lihat langsung terkesan.",
+  k2Judul: "Kerahasiaan Dijamin Aman",
+  k2Teks: "Sebagai penyedia jasa tambah like instagram yang profesional, operasional kami super simpel. Cukup kasih tautan (link) postingannya aja, beres deh."
+};
+
+const dataManfaat = {
+  judulUtama: 'Kerennya Efek Tambah Like <span class="text-fuchsia-500">IG</span>',
+  deskripsiUtama: "Interaksi yang ramai itu kunci utama buat menangin persaingan. Dampaknya kerasa banget buat pertumbuhan akun Anda.",
+  m1Judul: "Peluang Viral Makin Terbuka",
+  m1Teks: "Angka like yang tinggi di awal tayang jadi sinyal positif buat algoritma Instagram. Postingan Anda jadi gampang masuk Explore atau tab Reels.",
+  m2Judul: "Membangun Rasa Percaya (Trust)",
+  m2Teks: "Konten promo yang banyak like-nya bikin audiens mikir: 'Wah, produk ini banyak yang suka, pasti bagus!'. Efeknya, konversi penjualan makin naik.",
+  m3Judul: "Engagement Rate Meroket",
+  m3Teks: "Buat para kreator, engagement rate yang sehat itu modal utama buat narik perhatian brand-brand besar ngajakin kerjasama atau endorse.",
+  m4Judul: "Efek Ikut-ikutan (Bandwagon Effect)",
+  m4Teks: "Secara alami, orang lebih gampang ikutan ngasih like atau komentar pas ngeliat postingan yang udah ramai duluan."
+};
+
+const dataMengapaMemilih = {
+  judulUtama: 'Kenapa auradigital Jadi <span class="text-violet-400">Pilihan Utama?</span>',
+  deskripsiUtama: "Kami mengutamakan kualitas. AuraDigital adalah partner eskalasi digital andalan buat ngebangun reputasi brand Anda dengan rapi dan terukur.",
+  mk1Judul: "Data Anda Sangat Aman",
+  mk1Teks: "Kami bekerja murni dari eksternal. Gak perlu repot kasih hak akses akun, cukup kirim link konten yang mau diramaikan.",
+  mk2Judul: "Kualitas Like Natural",
+  mk2Teks: "Kami sedia layanan beli like instagram aktif biar interaksi di postingan Anda kelihatan nyatu dengan audiens asli.",
+  mk3Judul: "Jaminan Garansi Penuh",
+  mk3Teks: "Kepuasan klien nomor satu! Layanan jasa like ig permanen kami punya perlindungan isi ulang (refill) buat jaga-jaga kalau ada fluktuasi.",
+  mk4Judul: "Semua Kebutuhan Digital Ada",
+  mk4Teks: "Banyak klien kami yang sekalian merapikan platform lain, kayak pesan jasa komentar YouTube indonesia sampai jasa trending topik twitter.",
+  mk5Judul: "Pakar Penanganan Isu Akun",
+  mk5Teks: "Tim kami juga pro banget buat urusan di balik layar, mulai dari jasa hapus akun tiktok sampai jual akun tiktok buat korporat.",
+  mk6Judul: "Admin Responsif & Informatif",
+  mk6Teks: "Gak perlu bingung milih layanan. Admin kami asyik banget diajak ngobrol buat ngebahas strategi promosi yang lagi Anda butuhin."
+};
+
+const dataSolusi = {
+  judulUtama: 'Cara Aman & Rapi Tambah <span class="text-fuchsia-500">Like</span>',
+  deskripsiUtama: "Proses pengerjaan kami didesain senatural mungkin biar akun Anda tetap aman tanpa melanggar panduan komunitas.",
+  sol1Icon: "lucide:heart-handshake",
+  sol1Judul: "Filtering Kualitas",
+  sol1Teks: "Kami memastikan interaksi yang masuk berasal dari jaringan akun yang rapi biar postingan Anda tetap punya nilai estetika tinggi.",
+  sol2Icon: "lucide:shield-check",
+  sol2Judul: "Pengerjaan Jarak Jauh",
+  sol2Teks: "Semuanya dieksekusi dari sistem kami. Anda cukup upload konten seperti biasa, kirim link-nya, dan biar kami yang ramaikan.",
+  sol3Icon: "lucide:timer",
+  sol3Judul: "Kecepatan yang Fleksibel",
+  sol3Teks: "Masuknya interaksi bisa diatur ritmenya, mau instan langsung ngebut atau pelan-pelan mengalir kayak postingan organik yang lagi viral."
+};
+
+const dataCaraOrder = {
+  judulUtama: 'Gampang Banget Cara Order <span class="text-violet-400">Jasa Like</span>',
+  deskripsiUtama: "Cuma butuh beberapa menit buat bikin postingan Instagram Anda langsung kebanjiran interaksi.",
+  co1Judul: "Pilih Jumlah Target",
+  co1Teks: "Tentukan berapa banyak like yang mau ditambahkan buat ngedongkrak performa foto atau video terbaru Anda.",
+  co2Judul: "Chat Admin Kami",
+  co2Teks: "Klik tombol WhatsApp, sapa admin kami yang ramah, dan kasih tahu pesanan Anda.",
+  co3Judul: "Kirim Tautan (Link) Postingan",
+  co3Teks: "Cukup copy link foto atau Reels IG-nya dan kirim ke kami. Ingat, akunnya jangan digembok (harus Publik) ya.",
+  co4Judul: "Santai & Tunggu Hasilnya",
+  co4Teks: "Sistem kami bakal langsung merespons pesanan. Anda tinggal refresh HP dan lihat notifikasi mulai jebol!"
+};
+
+const dataHargaPaket = {
+  judulHarga: "Penawaran Investasi Like Instagram",
+  deskripsiHarga: "Harga yang sangat terjangkau buat ngebikin tiap konten Anda punya daya jual yang tinggi.",
+
+  // Paket Kiri (100 Like)
+  p1Gambar: "/image/paket-harga-likeig.png",
+  p1Nama: "100 Like IG",
+  p1Fitur1: "Kualitas Akun Natural",
+  p1Fitur2: "Proses Eksekusi Cepat",
+  p1Fitur3: "Cukup Kirim Link Postingan",
+  p1Harga: "Rp 200.000",
+  p1Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%20100%20Like%20Instagram",
+
+  // Paket Kanan (1.000 Like)
+  p2Label: "PILIHAN FAVORIT KONTEN KREATOR",
+  p2Gambar: "/image/paket-harga-likeig.png",
+  p2Nama: "1.000 Like IG",
+  p2Fitur1: "Garansi Drop Refill",
+  p2Fitur2: "Peluang Masuk Explore Tinggi",
+  p2Fitur3: "Bisa Dibagi ke Beberapa Postingan",
+  p2Harga: "Rp 2.000.000",
+  p2Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%201.000%20Like%20Instagram" 
+};
+
+const dataFaq = {
+  judulUtama: 'Tanya Jawab Seputar <span class="text-fuchsia-500">Layanan Like IG</span>',
+  deskripsiUtama: "Ada yang masih mengganjal? Ini rangkuman pertanyaan yang sering banget ditanyain klien soal layanan beli like ig di auradigital.",
+  linkWhatsapp: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital,%20saya%20mau%20tanya-tanya%20dulu%20soal%20Jasa%20Like%20Instagram",
+  faq1Judul: "Beneran aman gak sih buat akun bisnis saya?",
+  faq1Teks: "Super aman! Kami bekerja sangat rapi dari luar sistem tanpa minta kredensial Anda. Algoritma gak bakal menganggap ini sebagai sesuatu yang membahayakan akun.",
+  faq2Judul: "Like-nya bisa luntur atau ngurang (drop) gak nanti?",
+  faq2Teks: "Kadang update sistem pusat bikin sedikit fluktuasi, tapi tenang! Paket jasa like ig permanen kami udah cover asuransi isi ulang (refill) kok.",
+  faq3Judul: "Satu paket like bisa dibagi buat beberapa foto gak?",
+  faq3Teks: "Tentu bisa banget! Khusus buat yang pesen paket besar, like-nya bisa kami pecah dan sebar ke beberapa postingan biar interaksinya merata.",
+  faq4Judul: "Akunnya wajib Publik ya pas diproses?",
+  faq4Teks: "Betul sekali Kak. Kalau akunnya di-Private, jaringan kami gak bakal bisa lihat kontennya buat ngasih like. Jadi pastikan gemboknya dibuka dulu ya.",
+  faq5Judul: "Bisa bantuin optimasi sosial media lain?",
+  faq5Teks: "Pasti! Selain Instagram, klien kami sering order jasa komentar YouTube indonesia, nanganin isu pakai jasa report tiktok, sampai nge-push branding via jasa trending topik twitter.",
+  faq6Judul: "Kapan interaksinya mulai masuk?",
+  faq6Teks: "Kerja kami ngebut! Biasanya beberapa saat setelah order masuk antrean, notifikasi HP Anda bakal langsung ramai dengan like baru."
+};
+---
+
+<DefaultLayout title={title} description={description} keywords={keywords}>
+
+<Fragment slot="head">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "Jasa Tambah Like Instagram Aktif & Real",
+    "image": "https://auradigital.id/image/paket-harga-likeig.png",
+    "description": "Layanan jasa like instagram yang terbukti aman. Beli like IG untuk ramaikan konten Anda dan tingkatkan peluang masuk Explore bersama AuraDigital.",
+    "brand": {
+      "@type": "Brand",
+      "name": "auradigital"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "1840"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "200000",
+      "highPrice": "2000000",
+      "priceCurrency": "IDR",
+      "offerCount": "2"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Beranda",
+        "item": "https://auradigital.id/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Layanan",
+        "item": "https://auradigital.id/layanan/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Jasa Like Instagram"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Beneran aman gak sih buat akun bisnis saya?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Super aman! Kami bekerja sangat rapi dari luar sistem tanpa minta kredensial Anda. Algoritma gak bakal menganggap ini sebagai sesuatu yang membahayakan akun."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Satu paket like bisa dibagi buat beberapa foto gak?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tentu bisa banget! Khusus buat yang pesen paket besar, like-nya bisa kami pecah dan sebar ke beberapa postingan biar interaksinya merata."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Akunnya wajib Publik ya pas diproses?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Betul sekali Kak. Kalau akunnya di-Private, jaringan kami gak bakal bisa lihat kontennya buat ngasih like. Jadi pastikan gemboknya dibuka dulu ya."
+        }
+      }
+    ]
+  }
+]
+</script>
+</Fragment>
+
+  <Hero {...dataHero} />
+
+  <MasalahClient {...dataMasalah} />
+
+  <ApaItuauradigital {...dataApaItu} />
+
+  <Manfaatauradigital {...dataManfaat} />
+
+  <MengapaMemilihauradigital {...dataMengapaMemilih} />
+
+  <Solusi {...dataSolusi} />
+
+  <CaraOrder {...dataCaraOrder} />
+
+  <DaftarHarga />
+
+  <HargaPaket {...dataHargaPaket} />
+
+  <Testimonials />
+
+  <MetodePembayaran />
+
+  <Faqauradigital {...dataFaq} />
+
+</DefaultLayout>
