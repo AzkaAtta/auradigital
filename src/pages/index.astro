@@ -123,21 +123,71 @@ const dataFaq = {
 
 <DefaultLayout title={title} description={description} keywords={keywords}>
   
-  <script type="application/ld+json" slot="head">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebSite",
-          "@id": "https://auradigital.id/#website",
-          "url": "https://auradigital.id",
-          "name": "auradigital",
-          "description": "Dominasi algoritma, bangun kredibilitas brand, dan maksimalkan potensi organik di multi-platform dengan strategi eskalasi interaksi yang terukur dan 100% aman.",
-          "inLanguage": "id-ID"
+  <Fragment slot="head">
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "AuraDigital",
+        "url": "https://auradigital.id/",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://auradigital.id/?s={search_term_string}",
+          "query-input": "required name=search_term_string"
         }
-      ]
-    }
-  </script>
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "AuraDigital",
+        "image": "https://auradigital.id/image/logo-sosmed.png",
+        "url": "https://auradigital.id/",
+        "telephone": "+6289634740308",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "ID",
+          "addressRegion": "Jawa Barat"
+        },
+        "logo": "https://auradigital.id/logo-auradigital.svg",
+        "sameAs": [
+          "https://www.instagram.com/auradigital.id"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Layanan apa saja yang menjadi keunggulan di AuraDigital?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "AuraDigital menyediakan solusi eskalasi digital premium berskala luas, termasuk diantaranya jasa komentar YouTube indonesia, penanganan akun bermasalah lewat jasa report akun tiktok serta jasa hapus akun tiktok, hingga optimasi promosi via jasa trending topik twitter."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Apakah proses pengerjaan di AuraDigital aman untuk reputasi akun?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sangat aman. Seluruh sistem pelayanan dan eskalasi reputasi digital kami dikerjakan murni secara eksternal (dari luar jaringan aplikasi). Privasi Anda terjaga penuh karena kami mengutamakan kerahasiaan data klien secara profesional."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Bagaimana prosedur untuk memesan layanan eskalasi ini?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Caranya sangat mudah dan praktis. Anda cukup menentukan jumlah kebutuhan paket, klik tombol chat untuk terhubung langsung dengan admin WhatsApp kami yang responsif, kirimkan tautan publik target, dan tim operasional kami akan segera memproses pesanan Anda secara rapi."
+            }
+          }
+        ]
+      }
+    ]
+    </script>
+  </Fragment>
 
   <Hero {...dataHero} />
   
