@@ -1,0 +1,274 @@
+---
+// src/pages/share-instagram.astro
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+
+// ==========================================
+// 1. IMPORT SEMUA KOMPONEN CETAKAN
+// ==========================================
+import Hero from '../components/Hero.astro'
+import MasalahClient from '../components/MasalahClient.astro' 
+import ApaItuauradigital from '../components/ApaItuauradigital.astro'
+import Manfaatauradigital from '../components/Manfaatauradigital.astro'
+import MengapaMemilihauradigital from '../components/MengapaMemilihauradigital.astro'
+import CaraOrder from '../components/CaraOrder.astro'
+import Solusi from '../components/Solusi.astro'
+import HargaPaket from '../components/HargaPaket.astro'
+import Testimonials from '../components/Testimonials.astro'
+import DaftarHarga from '../components/DaftarHarga.astro'
+import MetodePembayaran from '../components/MetodePembayaran.astro'
+import Faqauradigital from '../components/Faqauradigital.astro'
+
+// ==========================================
+// 2. DATA SEO & META 
+// ==========================================
+const title = "Jasa Share Instagram Aktif & Real | AuraDigital";
+const description = "Bikin konten IG Anda makin viral dan jangkau lebih banyak audiens dengan jasa share Instagram. AuraDigital juga ahlinya jasa komentar YouTube indonesia.";
+const keywords = "jasa share instagram, beli share ig, jasa tambah share instagram, beli share postingan ig, tambah share ig murah, jasa komentar YouTube indonesia, jasa report akun tiktok, jasa hapus akun tiktok, jasa trending topik twitter, jual akun tiktok, jasa report tiktok, auradigital";
+
+// ==========================================
+// 3. DATA KONTEN KHUSUS SHARE INSTAGRAM
+// ==========================================
+
+const dataHero = {
+  tipe: "service" as const,
+  labelTeks: "Layanan Instagram Premium",
+  labelIcon: "lucide:share-2",
+  judulUtama: 'Jasa <span class="text-fuchsia-500">Share Instagram</span> <br class="hidden md:block"/> Bikin Konten Cepat Viral',
+  deskripsi: "Bikin algoritma ngelirik konten promosi Anda! Layanan jasa share IG kami siap nge-push foto atau video Reels Anda biar disebar ke audiens yang lebih luas. Cocok banget buat naikin jangkauan (reach) dan impresi secara natural, bikin akun makin sehat. <br class='hidden md:block mt-2' /> <span class='text-fuchsia-400 font-semibold block mt-4'>✓ Jangkauan Makin Luas &nbsp; ✓ Privasi Terjaga &nbsp; ✓ Eksekusi Cepat</span>",
+  teksTombol1: "Lihat Paket Layanan",
+  linkTombol1: "#harga-paket",
+  teksTombol2: "Konsultasi Strategi",
+  linkTombol2: "https://wa.me/6289634740308",
+  gambarHero: "/image/hero-instagram.png" 
+};
+
+const dataMasalah = {
+  judulUtama: 'Masalah Saat Jangkauan <span class="text-fuchsia-500">Mentok</span>',
+  deskripsiUtama: "Udah bikin desain dan video cape-cape, tapi yang lihat cuma orangnya itu-itu aja? Ini dampaknya kalau konten Anda kurang dibagikan (share) sama audiens:",
+  ms1Teks: '<strong class="text-fuchsia-500 font-bold">Mentok di Follower Sendiri:</strong> Konten cuma muter di audiens lama, susah banget buat dapet pelanggan baru dari luar circle profil Anda.',
+  ms2Teks: '<strong class="text-fuchsia-500 font-bold">Susah Tembus Explore:</strong> Algoritma Instagram butuh metrik share yang tinggi buat mastiin kalau konten Anda layak dipromosikan ke halaman pencarian umum.',
+  ms3Teks: '<strong class="text-fuchsia-500 font-bold">Engagement Rate Susah Naik:</strong> Interaksi mandek karena konten jarang muncul di beranda audiens baru yang belum kenal brand Anda.',
+  ms4Teks: '<strong class="text-fuchsia-500 font-bold">Capek Bikin Promo tapi Sepi:</strong> Bikin frustrasi kan, kalau konten promosi diskon udah tayang tapi gak ada yang tahu gara-gara jangkauannya dibatasi.'
+};
+
+const dataApaItu = {
+  judulUtama: 'Solusi Ampuh: Beli Share <span class="text-fuchsia-500">Instagram</span>',
+  deskripsiUtama: "Ini adalah strategi nge-push konten dari belakang layar biar insight dan jangkauan (reach) postingan meroket secara elegan.",
+  k1Judul: "Sinyal Algoritma yang Kuat",
+  k1Teks: "Bikin konten tersebar lebih luas. Algoritma akan membaca tingginya metrik share sebagai tanda kalau konten Anda beneran ngasih manfaat buat banyak orang.",
+  k2Judul: "Privasi Sangat Aman",
+  k2Teks: "Cara kerja layanan jasa tambah share instagram ini murni dari luar jaringan. Kami cuma butuh link postingan Anda tanpa minta hak akses sedikit pun."
+};
+
+const dataManfaat = {
+  judulUtama: 'Keuntungan Maksimal Nambah Share <span class="text-fuchsia-500">IG</span>',
+  deskripsiUtama: "Gak cuma sekedar nambahin angka statistik, metrik share itu sinyal paling sakti buat mendongkrak performa brand Anda.",
+  m1Judul: "Buka Peluang Masuk Explore",
+  m1Teks: "Dorongan share ngasih sinyal positif biar Instagram makin rajin merekomendasikan konten Anda ke orang-orang yang belum jadi follower.",
+  m2Judul: "Calon Pembeli Berdatangan",
+  m2Teks: "Makin sering disebar, makin besar peluang produk atau jasa Anda dilihat sama target market baru di luar sana.",
+  m3Judul: "Insights Profil Makin Hijau",
+  m3Teks: "Impresi dan reach di dashboard insight IG bisnis Anda bakal naik tajam, bagus banget buat pamer portofolio akun kalau lagi butuh sponsor.",
+  m4Judul: "Hemat Waktu Promosi",
+  m4Teks: "Gak usah capek minta tolong teman di grup WA buat bantu share konten. Semuanya kami beresin dengan cepat, rapi, dan terukur."
+};
+
+const dataMengapaMemilih = {
+  judulUtama: 'Kenapa auradigital Jadi <span class="text-violet-400">Pilihan Pebisnis?</span>',
+  deskripsiUtama: "Kami ngerti banget cara mancing algoritma tanpa ngorbanin keamanan. AuraDigital itu ahlinya eskalasi reputasi digital buat brand yang mau tumbuh cepat.",
+  mk1Judul: "Sistem Kerja Eksternal",
+  mk1Teks: "Kami gak pernah minta hak akses masuk ke akun Anda. Privasi dan kerahasiaan pesanan kami jaga dengan sangat ketat.",
+  mk2Judul: "Kualitas Natural",
+  mk2Teks: "Layanan beli share ig ini dilakukan pakai jaringan yang kelihatan hidup biar sistem bacanya sebagai interaksi wajar audiens.",
+  mk3Judul: "Ada Jaminan Refill",
+  mk3Teks: "Tenang aja, layanan premium kami dilengkapi fasilitas pengisian ulang kalau sewaktu-waktu ada fluktuasi angka pasca update sistem.",
+  mk4Judul: "Optimasi Serba Ada",
+  mk4Teks: "Klien VIP kami sering sekalian merapikan platform lain, misal order jasa komentar YouTube indonesia sampai jasa trending topik twitter sekalian.",
+  mk5Judul: "Satgas Isu Media Sosial",
+  mk5Teks: "Tim jagoan kami juga handal urus urusan pelik semacam jasa hapus akun tiktok atau jual akun tiktok buat keperluan korporasi besar.",
+  mk6Judul: "Admin Enak Diajak Diskusi",
+  mk6Teks: "CS kami asyik banget dan selalu ngasih solusi. Anda bisa bebas nanya-nanya strategi yang pas buat ningkatin jangkauan konten hari ini."
+};
+
+const dataSolusi = {
+  judulUtama: 'Cara Rapi Nge-Push <span class="text-fuchsia-500">Share Postingan</span>',
+  deskripsiUtama: "Langkah kerja kami didesain senatural mungkin biar postingan makin luas jangkauannya tanpa memicu kecurigaan sistem.",
+  sol1Icon: "lucide:rocket",
+  sol1Judul: "Fokus Angkat Jangkauan",
+  sol1Teks: "Kami memastikan aliran share masuk buat naikin angka impresi dan reach dari postingan foto atau Reels jagoan Anda.",
+  sol2Icon: "lucide:shield-check",
+  sol2Judul: "Proses Super Aman",
+  sol2Teks: "Anda tinggal upload konten seperti biasa, lalu serahkan link-nya ke kami. Duduk manis aja mantau insight yang naik sendirinya.",
+  sol3Icon: "lucide:timer",
+  sol3Judul: "Ritme Mengalir Natural",
+  sol3Teks: "Masuknya metrik share sengaja diatur secara estetik biar terkesan postingannya beneran lagi hangat dibicarakan banyak orang."
+};
+
+const dataCaraOrder = {
+  judulUtama: 'Gampang Banget Order <span class="text-violet-400">Jasa Share</span>',
+  deskripsiUtama: "Cuma butuh tiga langkah santai buat bikin konten jualan atau video Reel Anda terbang menjangkau audiens baru.",
+  co1Judul: "Tentukan Angka Target",
+  co1Teks: "Mau naikin reach pelan-pelan atau mau langsung nge-boom viral? Tentukan jumlah share yang sesuai selera campaign Anda.",
+  co2Judul: "Chat Lewat WA",
+  co2Teks: "Klik tombol pesan, kasih tahu admin kami yang asyik ini soal paket mana yang mau dieksekusi secepatnya.",
+  co3Judul: "Kirim Tautan (Link)",
+  co3Teks: "Copy link foto atau video yang mau disebar ke admin. Ingat, pastiin gembok profilnya dibuka alias disetting Publik dulu ya.",
+  co4Judul: "Pantau Insights Naik",
+  co4Teks: "Begitu konfirmasi beres, sistem bakal langsung bekerja. Anda tinggal cek menu Insights dan lihat bar reach yang meroket!"
+};
+
+const dataHargaPaket = {
+  judulHarga: "Penawaran Investasi Jangkauan",
+  deskripsiHarga: "Harga yang worth-it banget buat ngebikin tiap karya atau konten jualan Anda menjangkau calon pembeli baru.",
+
+  // Paket Kiri (100 Share)
+  p1Gambar: "/image/paket-harga-shareig.png",
+  p1Nama: "100 Share IG",
+  p1Fitur1: "Tingkatkan Jangkauan Natural",
+  p1Fitur2: "Proses Sangat Cepat & Aman",
+  p1Fitur3: "Cukup Berikan Link Konten",
+  p1Harga: "Rp 200.000",
+  p1Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%20100%20Share%20Instagram",
+
+  // Paket Kanan (1.000 Share)
+  p2Label: "PILIHAN FAVORIT MARKETING",
+  p2Gambar: "/image/paket-harga-shareig.png",
+  p2Nama: "1.000 Share IG",
+  p2Fitur1: "Garansi Aman Drop Refill",
+  p2Fitur2: "Peluang FYP/Explore Meroket",
+  p2Fitur3: "Bisa Dipecah Untuk Beberapa Link",
+  p2Harga: "Rp 2.000.000",
+  p2Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%201.000%20Share%20Instagram" 
+};
+
+const dataFaq = {
+  judulUtama: 'Tanya Jawab Seputar <span class="text-fuchsia-500">Layanan Share IG</span>',
+  deskripsiUtama: "Masih ragu? Ini jawaban dari obrolan santai yang sering banget ditanyain klien sebelum pesen layanan keren ini di auradigital.",
+  linkWhatsapp: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital,%20saya%20mau%20tanya-tanya%20dulu%20soal%20Jasa%20Share%20Instagram",
+  faq1Judul: "Aman gak sih buat akun bisnis atau onlineshop saya?",
+  faq1Teks: "Sangat aman dong! Operasional kami murni dari luar. Algoritma cuma bakal ngebaca kalau konten Anda itu lagi banyak dibagikan sama audiens karena saking bagusnya.",
+  faq2Judul: "Nanti angka share-nya bisa turun (drop) gak?",
+  faq2Teks: "Fluktuasi akibat update algoritma wajar terjadi, tapi tenang aja. Kami udah nyiapin jaminan garansi refill (isi ulang) biar hati Anda tetap nyaman.",
+  faq3Judul: "Akun IG saya harus di-setting Publik?",
+  faq3Teks: "Wajib banget. Kalau gemboknya ditutup (Private), jaringan kami gak bakal bisa akses link konten yang mau disebar. Jadi buka dulu gemboknya selama masa pengerjaan.",
+  faq4Judul: "Satu paket ini bisa dibagi ke beberapa link konten gak?",
+  faq4Teks: "Bisa banget! Khusus buat pesanan paket besar, share-nya bebas kita sebar merata ke beberapa foto atau video Reels biar seluruh profil kecipratan jangkauannya.",
+  faq5Judul: "Di AuraDigital bisa urusin selain Instagram gak?",
+  faq5Teks: "Tentu! Kami ahlinya eskalasi reputasi. Klien juga sering pesan jasa komentar YouTube indonesia, nanganin isu kompetitor lewat jasa report akun tiktok, sampai yang kelas berat juga kami siap.",
+  faq6Judul: "Kapan jangkauannya mulai naik setelah order?",
+  faq6Teks: "Begitu orderan masuk antrean dan tervalidasi, sistem kami bakal langsung ngatur ritme share biar datanya mulai merangkak naik secara rapi dan natural."
+};
+---
+
+<DefaultLayout title={title} description={description} keywords={keywords}>
+
+<Fragment slot="head">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "Jasa Tambah Share Instagram Aktif",
+    "image": "https://auradigital.id/image/paket-harga-shareig.png",
+    "description": "Layanan jasa share instagram yang 100% aman. Bikin jangkauan postingan makin meroket dan raih calon pelanggan baru bersama AuraDigital.",
+    "brand": {
+      "@type": "Brand",
+      "name": "auradigital"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "890"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "200000",
+      "highPrice": "2000000",
+      "priceCurrency": "IDR",
+      "offerCount": "2"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Beranda",
+        "item": "https://auradigital.id/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Layanan",
+        "item": "https://auradigital.id/layanan/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Jasa Share Instagram"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Aman gak sih buat akun bisnis atau onlineshop saya?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sangat aman dong! Operasional kami murni dari luar. Algoritma cuma bakal ngebaca kalau konten Anda itu lagi banyak dibagikan sama audiens."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Satu paket ini bisa dibagi ke beberapa link konten gak?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bisa banget! Khusus buat pesanan paket besar, share-nya bebas kita sebar merata ke beberapa foto atau video Reels biar seluruh profil kecipratan jangkauannya."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Akun IG saya harus di-setting Publik?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Wajib banget. Kalau gemboknya ditutup (Private), jaringan kami gak bakal bisa akses link konten yang mau disebar."
+        }
+      }
+    ]
+  }
+]
+</script>
+</Fragment>
+
+  <Hero {...dataHero} />
+
+  <MasalahClient {...dataMasalah} />
+
+  <ApaItuauradigital {...dataApaItu} />
+
+  <Manfaatauradigital {...dataManfaat} />
+
+  <MengapaMemilihauradigital {...dataMengapaMemilih} />
+
+  <Solusi {...dataSolusi} />
+
+  <CaraOrder {...dataCaraOrder} />
+
+  <DaftarHarga />
+
+  <HargaPaket {...dataHargaPaket} />
+
+  <Testimonials />
+
+  <MetodePembayaran />
+
+  <Faqauradigital {...dataFaq} />
+
+</DefaultLayout>
