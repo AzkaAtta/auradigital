@@ -1,8 +1,14 @@
 ---
 // src/components/SiteMetaHome.astro
-// Komponen ini bertugas menangkap data dari Frontmatter index.astro
+// Komponen ini bertugas menangkap data dari Frontmatter (dan punya sabuk pengaman)
 
-const { title, description, keywords } = Astro.props
+const { 
+  title = "AuraDigital | Agensi Eskalasi Digital & Optimasi Media Sosial Premium", 
+  description = "Solusi eskalasi digital terpercaya. AuraDigital melayani jasa komentar YouTube indonesia, jasa report akun tiktok, hingga push viralitas via jasa trending topik twitter secara profesional dan aman.", 
+  keywords = "jasa buzzer indonesia, jasa sosmed, jasa terpercaya, jasa sosmed terpercaya",
+  // Pastikan ekstensi gambar ini sesuai (.jpg atau .png) dengan yang ada di folder public
+  image = "https://auradigital.id/image/logo-sosmed.png"
+} = Astro.props
 ---
 
 <title>{title}</title>
@@ -15,15 +21,16 @@ const { title, description, keywords } = Astro.props
 <meta property="og:url" content={Astro.url.href} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-
-<meta property="og:image" content="https://auradigital.id/image/logo-sosmed.jpg" />
-<meta property="og:image:type" content="image/jpeg" /> <meta property="og:image:width" content="1200" />
+<meta property="og:image" content={image} />
+<meta property="og:image:type" content="image/png" /> 
+<meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={Astro.url.href} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content="https://auradigital.id/image/logo-sosmed.jpg" />
+<meta property="twitter:image" content={image} />
 
 <link rel="canonical" href={Astro.url.href} />
+
