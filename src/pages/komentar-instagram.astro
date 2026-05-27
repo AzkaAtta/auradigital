@@ -1,0 +1,274 @@
+---
+// src/pages/komentar-instagram.astro
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+
+// ==========================================
+// 1. IMPORT SEMUA KOMPONEN CETAKAN
+// ==========================================
+import Hero from '../components/Hero.astro'
+import MasalahClient from '../components/MasalahClient.astro' 
+import ApaItuauradigital from '../components/ApaItuauradigital.astro'
+import Manfaatauradigital from '../components/Manfaatauradigital.astro'
+import MengapaMemilihauradigital from '../components/MengapaMemilihauradigital.astro'
+import CaraOrder from '../components/CaraOrder.astro'
+import Solusi from '../components/Solusi.astro'
+import HargaPaket from '../components/HargaPaket.astro'
+import Testimonials from '../components/Testimonials.astro'
+import DaftarHarga from '../components/DaftarHarga.astro'
+import MetodePembayaran from '../components/MetodePembayaran.astro'
+import Faqauradigital from '../components/Faqauradigital.astro'
+
+// ==========================================
+// 2. DATA SEO & META 
+// ==========================================
+const title = "Jasa Komentar Instagram Aktif & Custom Teks | AuraDigital";
+const description = "Bikin postingan Instagram Anda makin hidup dan meyakinkan dengan jasa komentar Instagram aktif. Bebas custom teks. Jago juga buat jasa komentar YouTube indonesia.";
+const keywords = "jasa komentar instagram, beli komentar ig, jasa komen ig, beli komentar instagram aktif, jasa komentar instagram custom, beli komentar postingan ig, jasa komentar YouTube indonesia, jasa report akun tiktok, jasa hapus akun tiktok, jasa trending topik twitter, jual akun tiktok, jasa report tiktok, auradigital";
+
+// ==========================================
+// 3. DATA KONTEN KHUSUS KOMENTAR INSTAGRAM
+// ==========================================
+
+const dataHero = {
+  tipe: "service" as const,
+  labelTeks: "Layanan Instagram Premium",
+  labelIcon: "lucide:message-square-text",
+  judulUtama: 'Jasa <span class="text-fuchsia-500">Komentar Instagram</span> <br class="hidden md:block"/> Aktif & Bisa Custom',
+  deskripsi: "Postingan sepi atau butuh ulasan positif buat mancing pembeli? Layanan beli komentar IG kami siap ngeramein kolom diskusi Anda pakai narasi yang bisa di-custom sesuka hati. Prosesnya sangat rapi, aman, dan pastinya bikin brand Anda makin dipercaya audiens baru! <br class='hidden md:block mt-2' /> <span class='text-fuchsia-400 font-semibold block mt-4'>✓ Privasi Terjaga Penuh &nbsp; ✓ Bebas Atur Teks Sendiri &nbsp; ✓ Akun Natural</span>",
+  teksTombol1: "Lihat Paket Layanan",
+  linkTombol1: "#harga-paket",
+  teksTombol2: "Konsultasi Strategi",
+  linkTombol2: "https://wa.me/6289634740308",
+  gambarHero: "/image/hero-instagram.png" 
+};
+
+const dataMasalah = {
+  judulUtama: 'Masalah Saat Postingan <span class="text-fuchsia-500">Sepi Komentar</span>',
+  deskripsiUtama: "Udah upload konten promosi yang keren, tapi kolom komentar kosong melompong? Ini dampaknya kalau postingan Anda sepi interaksi dua arah:",
+  ms1Teks: '<strong class="text-fuchsia-500 font-bold">Bikin Ragu Pembeli Baru:</strong> Kalau gak ada yang nanya harga atau ngasih testi di kolom diskusi, calon pelanggan suka ragu buat order duluan.',
+  ms2Teks: '<strong class="text-fuchsia-500 font-bold">Algoritma Kurang Melirik:</strong> Instagram suka banget sama konten yang memancing obrolan. Kalau sepi, postingan Anda susah buat direkomendasikan.',
+  ms3Teks: '<strong class="text-fuchsia-500 font-bold">Kalah Kredibilitas:</strong> Pesaing yang postingannya ramai interaksi selalu kelihatan lebih laku dan profesional di mata audiens.',
+  ms4Teks: '<strong class="text-fuchsia-500 font-bold">Gagal Bikin Hype:</strong> Acara promo diskon atau rilis produk baru jadi kurang greget kalau gak ada audiens yang ikutan antusias ngeramein.'
+};
+
+const dataApaItu = {
+  judulUtama: 'Solusi Keren: Beli Komentar <span class="text-fuchsia-500">Instagram</span>',
+  deskripsiUtama: "Ini adalah trik cerdas buat ngasih 'pancingan' interaksi awal sekaligus ngebangun opini positif di postingan terbaru Anda.",
+  k1Judul: "Percakapan yang Menjual",
+  k1Teks: "Kami ngedatengin komentar yang teksnya bisa Anda atur sendiri, entah itu pura-pura tanya detail produk, kasih pujian, atau diskusi seru.",
+  k2Judul: "Kerahasiaan Terjamin",
+  k2Teks: "Sebagai penyedia jasa komentar instagram yang pro, cara kerja kami sangat simpel dan murni dari luar. Anda cuma butuh kirim link aja."
+};
+
+const dataManfaat = {
+  judulUtama: 'Serunya Efek Tambah Komentar <span class="text-fuchsia-500">IG</span>',
+  deskripsiUtama: "Ngeramein komentar itu bukan cuma bikin akun kelihatan aktif, tapi bisa ningkatin konversi penjualan secara halus.",
+  m1Judul: "Mancing Interaksi Asli",
+  m1Teks: "Kolom diskusi yang udah ramai duluan bakal bikin audiens asli lebih berani ikutan nimbrung ngasih tanggapan.",
+  m2Judul: "Ngebangun Social Proof",
+  m2Teks: "Komentar ulasan positif yang rapi bikin calon pembeli langsung mikir, 'Wah, ini tokonya terpercaya dan yang beli pada puas nih!'",
+  m3Judul: "Fleksibel Buat Campaign",
+  m3Teks: "Cocok banget buat manasin suasana kalau Anda lagi ngadain giveaway, promo akhir bulan, atau Q&A buat interaksi bisnis.",
+  m4Judul: "Naikin Engagement Rate",
+  m4Teks: "Interaksi dua arah di kolom komentar itu nilainya tinggi banget buat ngeyakinin algoritma kalau konten Anda emang layak viral."
+};
+
+const dataMengapaMemilih = {
+  judulUtama: 'Kenapa auradigital Jadi <span class="text-violet-400">Andalan Kreator?</span>',
+  deskripsiUtama: "AuraDigital adalah ahlinya meracik opini dan interaksi yang terlihat natural. Kami udah terbiasa nanganin kampanye brand besar dengan santai tapi pasti.",
+  mk1Judul: "Kerahasiaan Tetap Terjaga",
+  mk1Teks: "Privasi itu penting banget. Kami memproses semuanya secara eksternal tanpa pernah nanya data sensitif akun Anda.",
+  mk2Judul: "Komen Bebas Diatur",
+  mk2Teks: "Layanan beli komentar instagram aktif kami ngasih kebebasan penuh. Anda yang nyiapin teksnya biar nyambung sama gaya bahasa produk Anda.",
+  mk3Judul: "Gaya Bahasa Natural",
+  mk3Teks: "Pengen komentar gaya santai, formal, atau gaul ala anak muda? Semuanya tereksekusi rapi kayak obrolan orang beneran.",
+  mk4Judul: "Dukungan Digital Lengkap",
+  mk4Teks: "Biar makin viral, klien kami juga langganan ngeramein platform lain kayak pakai jasa komentar YouTube indonesia dan jasa trending topik twitter.",
+  mk5Judul: "Satgas Penanganan Isu",
+  mk5Teks: "Ada persaingan gak sehat? Kami siap sedia lewat jasa report akun tiktok sampai jasa hapus akun tiktok buat netralisir hal negatif.",
+  mk6Judul: "Admin Ramah & Solutif",
+  mk6Teks: "Ngobrol sama kami itu asyik banget. Bebas curhat soal strategi optimasi yang paling pas buat naikin omset Anda."
+};
+
+const dataSolusi = {
+  judulUtama: 'Cara Rapi Nambahin <span class="text-fuchsia-500">Komentar</span>',
+  deskripsiUtama: "Proses pengerjaan didesain biar kelihatan mengalir natural, bikin orang lain gak curiga kalau itu optimasi.",
+  sol1Icon: "lucide:message-square-dashed",
+  sol1Judul: "Pengerjaan dari Luar",
+  sol1Teks: "Semuanya dieksekusi dengan aman dari jaringan eksternal. Anda cukup duduk manis aja nerima notifikasi interaksi masuk.",
+  sol2Icon: "lucide:users-round",
+  sol2Judul: "Filter Akun Nyata",
+  sol2Teks: "Kami selalu mastiin profil yang ikutan komen itu punya nama yang wajar dan kelihatan aktif biar estetika postingan Anda tetap terjaga.",
+  sol3Icon: "lucide:timer",
+  sol3Judul: "Ritme Obrolan Natural",
+  sol3Teks: "Kecepatan masuknya komen bakal diatur secara bertahap (drip-feed) biar obrolannya kelihatan ngalir kayak interaksi akun organik biasa."
+};
+
+const dataCaraOrder = {
+  judulUtama: 'Gampang Banget Order <span class="text-violet-400">Jasa Kami</span>',
+  deskripsiUtama: "Cuma butuh beberapa menit buat nyiapin amunisi interaksi yang bikin postingan Anda ramai.",
+  co1Judul: "Tentukan Jumlah Target",
+  co1Teks: "Mau nambahin 100 atau 1.000 komentar ulasan positif? Silakan sesuaikan sama kebutuhan campaign promo Anda.",
+  co2Judul: "Siapin Teks Komentarnya",
+  co2Teks: "Ketik daftar komentar yang pengen di-post di IG Anda. Makin variatif dan nyambung sama konten, efeknya makin sakti!",
+  co3Judul: "Chat WA & Kirim Link",
+  co3Teks: "Klik tombol WhatsApp kami, kirim link postingan IG Anda beserta daftar teksnya. Oh ya, pastiin akun IG-nya lagi di mode Publik ya.",
+  co4Judul: "Tunggu Interaksi Meroket",
+  co4Teks: "Tim kami bakal langsung eksekusi. Anda tinggal nunggu notifikasi di HP meledak sama komentar-komentar asyik!"
+};
+
+const dataHargaPaket = {
+  judulHarga: "Penawaran Investasi Kolom Komentar",
+  deskripsiHarga: "Harga yang worth-it banget buat ngebangun kesan positif di setiap foto atau produk yang Anda upload.",
+
+  // Paket Kiri (100 Komentar)
+  p1Gambar: "/image/paket-harga-komentarig.png",
+  p1Nama: "100 Komentar IG Custom",
+  p1Fitur1: "Bebas Atur Teks Komentar",
+  p1Fitur2: "Kualitas Akun Terlihat Natural",
+  p1Fitur3: "Pengerjaan Sangat Aman",
+  p1Harga: "Rp 200.000",
+  p1Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%20100%20Komentar%20Instagram",
+
+  // Paket Kanan (1.000 Komentar)
+  p2Label: "PILIHAN FAVORIT BRANDING",
+  p2Gambar: "/image/paket-harga-komentarig.png",
+  p2Nama: "1.000 Komentar IG Custom",
+  p2Fitur1: "Dapat Dipisah ke Beberapa Postingan",
+  p2Fitur2: "Bagus Buat Scale Up Campaign",
+  p2Fitur3: "Layanan Konsultasi Prioritas",
+  p2Harga: "Rp 2.000.000",
+  p2Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%201.000%20Komentar%20Instagram" 
+};
+
+const dataFaq = {
+  judulUtama: 'Tanya Jawab Seputar <span class="text-fuchsia-500">Komentar IG</span>',
+  deskripsiUtama: "Masih ada yang mau ditanyain? Ini ringkasan ngobrol santai yang sering banget ditanyain klien sebelum pesen layanan komentar di auradigital.",
+  linkWhatsapp: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital,%20saya%20mau%20konsultasi%20dulu%20soal%20Jasa%20Komentar%20Instagram",
+  faq1Judul: "Apakah aman buat akun jualan saya?",
+  faq1Teks: "Aman banget dong! Semua operasional dikerjain murni dari luar jaringan akun Anda, jadi algoritma ngeliatnya kayak obrolan wajar dari pengguna biasa.",
+  faq2Judul: "Komentarnya beneran bisa bebas saya atur teksnya?",
+  faq2Teks: "Bener banget! Keunggulan layanan beli komentar instagram aktif di kami itu bebas custom. Anda tinggal kirim list teksnya ke admin, dan kami siap luncurkan persis sesuai pesanan.",
+  faq3Judul: "Satu paket ini bisa disebar ke banyak foto gak?",
+  faq3Teks: "Pastinya bisa. Khusus buat yang mesen paket besar, komentarnya bisa banget kita sebar proporsional ke beberapa postingan biar akunnya rame merata.",
+  faq4Judul: "Pas diproses, akun saya harus Publik atau boleh Private?",
+  faq4Teks: "Harus Publik ya Kak! Kalau akunnya di-Private (gembok), jaringan kami gak bakal bisa nembus buat ngetik komentar di postingan Anda.",
+  faq5Judul: "Di AuraDigital bisa optimasi platform sebelah juga gak?",
+  faq5Teks: "Pasti! Banyak banget klien kami yang ikutan order jasa komentar YouTube indonesia atau sekalian jual akun tiktok buat naikin kapasitas bisnisnya. Semua ada ahlinya di sini.",
+  faq6Judul: "Berapa lama proses masuknya komentar ini?",
+  faq6Teks: "Setelah obrolan di WA tervalidasi, kami langsung atur jadwalnya. Masuknya sengaja kita atur ngalir perlahan biar ritme obrolannya senatural mungkin."
+};
+---
+
+<DefaultLayout title={title} description={description} keywords={keywords}>
+
+<Fragment slot="head">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "Jasa Komentar Instagram Aktif & Custom Teks",
+    "image": "https://auradigital.id/image/paket-harga-komentarig.png",
+    "description": "Layanan jasa komentar instagram yang aman dan bebas custom teks. Bikin konten IG makin hidup dan raih rasa percaya pelanggan bersama AuraDigital.",
+    "brand": {
+      "@type": "Brand",
+      "name": "auradigital"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "980"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "200000",
+      "highPrice": "2000000",
+      "priceCurrency": "IDR",
+      "offerCount": "2"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Beranda",
+        "item": "https://auradigital.id/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Layanan",
+        "item": "https://auradigital.id/layanan/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Jasa Komentar Instagram"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Apakah aman buat akun jualan saya?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Aman banget dong! Semua operasional dikerjain murni dari luar jaringan akun Anda, jadi algoritma ngeliatnya kayak obrolan wajar dari pengguna biasa."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Komentarnya beneran bisa bebas saya atur teksnya?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bener banget! Keunggulan kami itu bebas custom. Anda tinggal kirim list teksnya ke admin, dan kami siap luncurkan persis sesuai pesanan."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Satu paket ini bisa disebar ke banyak foto gak?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pastinya bisa. Khusus buat yang mesen paket besar, komentarnya bisa banget kita sebar proporsional ke beberapa postingan biar akunnya rame merata."
+        }
+      }
+    ]
+  }
+]
+</script>
+</Fragment>
+
+  <Hero {...dataHero} />
+
+  <MasalahClient {...dataMasalah} />
+
+  <ApaItuauradigital {...dataApaItu} />
+
+  <Manfaatauradigital {...dataManfaat} />
+
+  <MengapaMemilihauradigital {...dataMengapaMemilih} />
+
+  <Solusi {...dataSolusi} />
+
+  <CaraOrder {...dataCaraOrder} />
+
+  <DaftarHarga />
+
+  <HargaPaket {...dataHargaPaket} />
+
+  <Testimonials />
+
+  <MetodePembayaran />
+
+  <Faqauradigital {...dataFaq} />
+
+</DefaultLayout>
