@@ -7,14 +7,14 @@ import Footer from '../components/Footer.astro'
 import FloatingCS from '../components/FloatingCS.astro'
 import { ClientRouter } from 'astro:transitions'
 
-// Import komponen SEO bawaan (kalau masih mau dipakai buat fitur lainnya)
+// Import komponen SEO andalan
 import SEO from '@components/SEO.astro'
 
-// 👇 PENGATURAN SEO UTAMA UNTUK AURADIGITAL
+// 👇 PENGATURAN SEO UTAMA (DIPANGKAS SESUAI STANDAR BING & KATA KUNCI TERPASANG)
 const {
-  title = 'AuraDigital | Agensi Eskalasi Digital & Optimasi Media Sosial Premium', 
-  description = 'Tingkatkan otoritas dan kredibilitas brand Anda bersama AuraDigital. Solusi manajemen engagement, followers, likes, views, dan votes profesional untuk TikTok, Instagram, Facebook, dan Twitter.', 
-  keywords, 
+  title = 'AuraDigital | Jasa Sosmed Terpercaya', 
+  description = 'Solusi media sosial terpercaya dengan layanan cepat, aman, dan profesional untuk hasil lebih maksimal.', 
+  keywords = 'jasa buzzer, jasa buzzer indonesia, jasa sosmed, jasa sosmed terpercaya, jasa sosmed Indonesia', 
   image = '/logo-auradigital.png', 
 } = Astro.props
 ---
@@ -25,21 +25,13 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     
-    {/* ==========================================
-        SEO INTI: DITULIS MANUAL BIAR MESIN PENCARI LANGSUNG BACA!
-        ========================================== */}
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    {keywords && <meta name="keywords" content={keywords} />}
-    
-    {/* Open Graph (Biar preview link di WA/Sosmed tampil cakep) */}
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    
+    {/* Favicon mengarah ke logo baru */}
     <link rel="icon" type="image/svg+xml" href="/logo-auradigital.svg" />
 
-    {/* Eksekusi komponen SEO bawaan sebagai pelengkap tambahan */}
+    {/* ==========================================
+        SEO INTI: CUKUP PANGGIL KOMPONEN INI SAJA!
+        (Semua tag manual dihapus agar tidak ada error tag dobel di Bing)
+        ========================================== */}
     <SEO title={title} description={description} keywords={keywords} image={image} />
 
     <slot name="head" />
