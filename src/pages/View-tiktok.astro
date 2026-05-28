@@ -1,0 +1,277 @@
+---
+// src/pages/view-tiktok.astro
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+
+// ==========================================
+// 1. IMPORT SEMUA KOMPONEN CETAKAN
+// ==========================================
+import Hero from '../components/Hero.astro'
+import MasalahClient from '../components/MasalahClient.astro' 
+import ApaItuauradigital from '../components/ApaItuauradigital.astro'
+import Manfaatauradigital from '../components/Manfaatauradigital.astro'
+import MengapaMemilihauradigital from '../components/MengapaMemilihauradigital.astro'
+import CaraOrder from '../components/CaraOrder.astro'
+import Solusi from '../components/Solusi.astro'
+import HargaPaket from '../components/HargaPaket.astro'
+import Testimonials from '../components/Testimonials.astro'
+import DaftarHarga from '../components/DaftarHarga.astro'
+import MetodePembayaran from '../components/MetodePembayaran.astro'
+import Faqauradigital from '../components/Faqauradigital.astro'
+
+// ==========================================
+// 2. DATA SEO & META 
+// ==========================================
+// Title persis 47 karakter (< 70)
+const title = "Jasa View TikTok Aktif & Real | Tambah Tayangan";
+
+// Deskripsi persis 152 karakter (Range 150-155)
+const description = "Jasa view TikTok aktif dan real untuk meningkatkan jangkauan tayangan video Anda. Beli view TikTok premium yang terbukti aman untuk tembus FYP sekarang.";
+
+// Kata kunci FOKUS 100% pada View TikTok (Tidak dicampur layanan lain)
+const keywords = "jasa view tiktok, beli view tiktok, tambah view tiktok, view tiktok aktif, view tiktok murah, penambah tayangan tiktok, fyp tiktok, jasa tayangan tiktok, beli views tiktok, layanan view tiktok, optimasi video tiktok, jasa tambah view tiktok";
+
+// ==========================================
+// 3. DATA KONTEN KHUSUS VIEW TIKTOK
+// ==========================================
+
+const dataHero = {
+  tipe: "service" as const,
+  labelTeks: "Layanan TikTok Premium",
+  labelIcon: "lucide:eye",
+  judulUtama: 'Jasa <span class="text-fuchsia-500">View TikTok</span> <br class="hidden md:block"/> Meledakkan Penonton Video',
+  deskripsi: "Bikin video promosi dan konten Anda kebanjiran penonton dalam waktu singkat! Layanan jasa view TikTok kami siap membantu mendongkrak angka tayangan video secara aman, rapi, dan privasi terjaga penuh untuk mendominasi algoritma. <br class='hidden md:block mt-2' /> <span class='text-fuchsia-400 font-semibold block mt-4'>✓ Tayangan Terlihat Alami &nbsp; ✓ Tanpa Kredensial Internal &nbsp; ✓ Eksekusi Cepat</span>",
+  teksTombol1: "Lihat Paket Layanan",
+  linkTombol1: "#harga-paket",
+  teksTombol2: "Konsultasi Strategi",
+  linkTombol2: "https://wa.me/6289634740308",
+  gambarHero: "/image/hero-tiktok.png" 
+};
+
+const dataMasalah = {
+  judulUtama: 'Masalah Saat Video TikTok <span class="text-fuchsia-500">Sepi Penonton</span>',
+  deskripsiUtama: "Sudah capek-capek mengedit video hingga estetik, namun saat di-upload angka tayangannya sangat seret? Ini adalah kendala psikologis dan algoritma yang Anda hadapi:",
+  ms1Teks: '<strong class="text-fuchsia-500 font-bold">Kelihatan Gak Menarik:</strong> Secara psikologis, audiens cenderung langsung skip (scroll) video yang angka view-nya kecil karena dianggap kurang menghibur.',
+  ms2Teks: '<strong class="text-fuchsia-500 font-bold">Dilewati Algoritma FYP:</strong> Sistem butuh bukti kalau video Anda diminati di menit pertama. Kalau sepi view, video akan tenggelam dan sulit direkomendasikan.',
+  ms3Teks: '<strong class="text-fuchsia-500 font-bold">Kepercayaan Konsumen Rendah:</strong> Video ulasan produk keranjang kuning yang sepi penonton membuat calon pembeli ragu untuk melakukan transaksi.',
+  ms4Teks: '<strong class="text-fuchsia-500 font-bold">Rendah Jangkauan Afiliasi:</strong> Sulit mendapatkan konversi maksimal dari program afiliasi jika video promosi utamanya saja miskin interaksi tayangan.'
+};
+
+const dataApaItu = {
+  judulUtama: 'Solusi Jitu: Beli View <span class="text-fuchsia-500">TikTok</span>',
+  deskripsiUtama: "Ini adalah strategi paling taktis untuk menaikkan angka tayangan video demi menciptakan persepsi keramaian yang positif dan memancing audiens asli.",
+  k1Judul: "Sinyal Validasi Visual",
+  k1Teks: "Kami mendistribusikan tayangan yang membuat metrik video Anda langsung melesat, memberikan kesan profesional bahwa konten tersebut benar-benar viral.",
+  k2Judul: "Kerahasiaan Terjamin",
+  k2Teks: "Sebagai penyedia jasa tambah view tiktok profesional, operasional kami berjalan dari jaringan luar. Cukup kirim tautan video tanpa data sensitif."
+};
+
+const dataManfaat = {
+  judulUtama: 'Keuntungan Keren Tambah View <span class="text-fuchsia-500">TikTok</span>',
+  deskripsiUtama: "Memiliki metrik tayangan video yang melimpah adalah kunci utama untuk memenangkan persaingan distribusi konten di era algoritma yang ketat.",
+  m1Judul: "Sinyal Positif ke Algoritma",
+  m1Teks: "Akselerasi angka view di awal memberikan sinyal kepada sistem bahwa video Anda sangat menarik, membuka peluang lebar menembus fyp tiktok.",
+  m2Judul: "Konversi Penjualan Meroket",
+  m2Teks: "Video promosi produk yang ditonton puluhan ribu orang akan membangun rasa percaya yang kuat, menghilangkan keraguan audiens untuk segera order.",
+  m3Judul: "Daya Jual Kreator Naik",
+  m3Teks: "Statistik tayangan video yang stabil dan ramai adalah portofolio terbaik bagi konten kreator untuk menarik minat brand besar agar memberikan endorse.",
+  m4Judul: "Hemat Waktu Promosi",
+  m4Teks: "Tidak perlu lagi repot membagikan tautan video ke grup saling tonton. Serahkan pada tim ahli kami untuk hasil yang cepat dan metrik terukur."
+};
+
+const dataMengapaMemilih = {
+  judulUtama: 'Kenapa auradigital Selalu Jadi <span class="text-violet-400">Pilihan Utama?</span>',
+  deskripsiUtama: "Kami mengutamakan standar kualitas operasional. AuraDigital adalah mitra terpercaya untuk urusan eskalasi interaksi konten dengan kualitas premium.",
+  mk1Judul: "Privasi Anda Terjaga Penuh",
+  mk1Teks: "Kami memproses semuanya secara eksternal. Privasi klien adalah prioritas utama, kami tidak pernah meminta kredensial akun internal Anda.",
+  mk2Judul: "Kualitas Penonton Natural",
+  mk2Teks: "Layanan beli view tiktok kami selalu memperhatikan kualitas sebaran yang rapi dan terdistribusi merata demi kesehatan dashboard akun Anda.",
+  mk3Judul: "Garansi Proteksi Investasi",
+  mk3Teks: "Tenang saja, layanan jasa tayangan video kami dilengkapi dengan komitmen kualitas tinggi agar angka tayangan menempel dengan baik pada video.",
+  mk4Judul: "Pakar Algoritma TikTok",
+  mk4Teks: "Tim teknis kami sangat memahami cara kerja fyp tiktok, sehingga ritme masuknya tayangan akan disesuaikan agar selalu terkesan organik.",
+  mk5Judul: "Tanpa Jejak Digital Pelanggaran",
+  mk5Teks: "Kami menggunakan infrastruktur teknologi bersih, memastikan akun Anda terhindar dari teguran atau masalah pembatasan jangkauan.",
+  mk6Judul: "Konsultasi Strategi Gratis",
+  mk6Teks: "CS kami sangat komunikatif. Anda bebas berdiskusi santai kapan saja untuk menentukan target paket tayangan yang pas dengan materi video Anda."
+};
+
+const dataSolusi = {
+  judulUtama: 'Cara Aman & Rapi Tambah <span class="text-fuchsia-500">View Video</span>',
+  deskripsiUtama: "Proses pengerjaan dikonfigurasi sedemikian rupa agar tampak wajar dan menghasilkan dampak grafik tayangan yang maksimal.",
+  sol1Icon: "lucide:play-circle",
+  sol1Judul: "Distribusi Tayangan Terarah",
+  sol1Teks: "Kami mengarahkan aliran penonton ke tautan video spesifik yang Anda pilih, memastikan metrik tayangannya meroket sesuai dengan jadwal.",
+  sol2Icon: "lucide:shield-check",
+  sol2Judul: "Operasional Sistem Jarak Jauh",
+  sol2Teks: "Anda cukup upload video seperti biasa, kirimkan tautannya ke CS kami, lalu pantau grafik views di dashboard Anda merangkak naik.",
+  sol3Icon: "lucide:timer",
+  sol3Judul: "Ritme Mengalir Natural",
+  sol3Teks: "Kecepatan masuknya penonton diatur agar terkesan mengalir alami layaknya sebuah konten yang sedang hangat diperbincangkan publik."
+};
+
+const dataCaraOrder = {
+  judulUtama: 'Tiga Langkah Gampang Order <span class="text-violet-400">Jasa View</span>',
+  deskripsiUtama: "Hanya butuh waktu singkat untuk menyulap video TikTok Anda menjadi pusat perhatian yang meyakinkan.",
+  co1Judul: "Tentukan Angka Target",
+  co1Teks: "Pilih paket kebutuhan tayangan yang paling pas untuk mendongkrak reputasi video promosi atau keranjang kuning Anda.",
+  co2Judul: "Hubungi Admin via WA",
+  co2Teks: "Klik tombol pesan, sapa staf ahli kami, dan informasikan paket layanan tayangan yang mau Anda eksekusi hari ini.",
+  co3Judul: "Kirim Link & Lihat Hasilnya",
+  co3Teks: "Kirim tautan video TikTok Anda. Setelah urusan administrasi tervalidasi, jaringan sistem kami akan langsung bekerja secara otomatis!"
+};
+
+const dataHargaPaket = {
+  judulHarga: "Penawaran Investasi View Video",
+  deskripsiHarga: "Opsi harga terbaik untuk menciptakan efek viralitas instan pada setiap konten video TikTok jagoan Anda.",
+
+  // Paket Kiri (100 View)
+  p1Gambar: "/image/paket-harga-viewtiktok.png",
+  p1Nama: "100 View TikTok",
+  p1Fitur1: "Kualitas Tayangan Rapi",
+  p1Fitur2: "Proses Eksekusi Cepat",
+  p1Fitur3: "Cukup Kirim Tautan Video",
+  p1Harga: "Rp 200.000",
+  p1Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%20100%20View%20TikTok",
+
+  // Paket Kanan (1.000 View)
+  p2Label: "PILIHAN FAVORIT ONLINE SHOP",
+  p2Gambar: "/image/paket-harga-viewtiktok.png",
+  p2Nama: "1.000 View TikTok",
+  p2Fitur1: "Garansi Eksekusi Aman",
+  p2Fitur2: "Peluang Masuk FYP Tinggi",
+  p2Fitur3: "Prioritas Layanan Konsultasi",
+  p2Harga: "Rp 2.000.000",
+  p2Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%201.000%20View%20TikTok" 
+};
+
+const dataFaq = {
+  judulUtama: 'Tanya Jawab Seputar <span class="text-fuchsia-500">Layanan View</span>',
+  deskripsiUtama: "Masih penasaran dengan detail sistemnya? Ini adalah jawaban santai atas hal-hal yang sering ditanyakan sebelum mengeksekusi layanan view.",
+  linkWhatsapp: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital,%20saya%20mau%20tanya-tanya%20dulu%20soal%20Jasa%20View%20TikTok",
+  faq1Judul: "Apakah penambahan view ini aman buat akun utama saya?",
+  faq1Teks: "Super aman Kak! Cara kerja kami murni dari luar sistem tanpa perlu meminta data internal Anda. Algoritma membaca proses ini sebagai tayangan video normal.",
+  faq2Judul: "Akun saya wajib di-setting Publik juga ya?",
+  faq2Teks: "Iya, wajib banget Kak. Kalau akun dalam kondisi Private (digembok), jaringan kami otomatis tidak bisa mengakses tautan video Anda.",
+  faq3Judul: "Apakah bisa untuk video yang ada keranjang kuningnya?",
+  faq3Teks: "Sangat bisa! Bahkan ini sangat disarankan untuk meningkatkan tingkat kepercayaan calon pembeli saat mereka melihat video produk Anda.",
+  faq4Judul: "Apakah angka tayangan ini bisa menghilang tiba-tiba?",
+  faq4Teks: "Metrik tayangan (views) pada TikTok umumnya sangat stabil dan menempel secara permanen pada video, tidak mudah turun seperti metrik pengikut.",
+  faq5Judul: "Kapan view-nya mulai merangkak naik setelah saya order?",
+  faq5Teks: "Begitu pesanan tervalidasi di WA, sistem langsung memasukkan tautan Anda ke dalam antrean. Proses sebarannya sengaja diatur mengalir secara natural.",
+  faq6Judul: "Apakah bisa dipecah untuk beberapa video?",
+  faq6Teks: "Untuk paket-paket tertentu, kami memberikan fleksibilitas distribusi tautan. Silakan komunikasikan kebutuhan sebaran Anda dengan tim konsultan kami."
+};
+---
+
+<DefaultLayout title={title} description={description} keywords={keywords}>
+
+<Fragment slot="head">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "Jasa View TikTok Aktif & Real",
+    "image": "https://auradigital.id/image/paket-harga-viewtiktok.png",
+    "description": "Layanan jasa view tiktok yang aman dan terpercaya untuk mendongkrak algoritma FYP tayangan video Anda secara masif.",
+    "brand": {
+      "@type": "Brand",
+      "name": "auradigital"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "895"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "200000",
+      "highPrice": "2000000",
+      "priceCurrency": "IDR",
+      "offerCount": "2"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Beranda",
+        "item": "https://auradigital.id/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Layanan",
+        "item": "https://auradigital.id/layanan/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Jasa View TikTok"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Apakah penambahan view ini aman buat akun utama saya?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Super aman Kak! Cara kerja kami murni dari luar sistem tanpa perlu meminta data internal Anda. Algoritma membaca proses ini sebagai tayangan video normal."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Apakah angka tayangan ini bisa menghilang tiba-tiba?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Metrik tayangan (views) pada TikTok umumnya sangat stabil dan menempel secara permanen pada video, tidak mudah turun seperti metrik pengikut."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Apakah bisa untuk video yang ada keranjang kuningnya?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sangat bisa! Bahkan ini sangat disarankan untuk meningkatkan tingkat kepercayaan calon pembeli saat mereka melihat video produk Anda."
+        }
+      }
+    ]
+  }
+]
+</script>
+</Fragment>
+
+  <Hero {...dataHero} />
+
+  <MasalahClient {...dataMasalah} />
+
+  <ApaItuauradigital {...dataApaItu} />
+
+  <Manfaatauradigital {...dataManfaat} />
+
+  <MengapaMemilihauradigital {...dataMengapaMemilih} />
+
+  <Solusi {...dataSolusi} />
+
+  <CaraOrder {...dataCaraOrder} />
+
+  <DaftarHarga />
+
+  <HargaPaket {...dataHargaPaket} />
+
+  <Testimonials />
+
+  <MetodePembayaran />
+
+  <Faqauradigital {...dataFaq} />
+
+</DefaultLayout>
