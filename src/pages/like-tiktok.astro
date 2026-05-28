@@ -1,0 +1,276 @@
+---
+// src/pages/like-tiktok.astro
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+
+// ==========================================
+// 1. IMPORT SEMUA KOMPONEN CETAKAN
+// ==========================================
+import Hero from '../components/Hero.astro'
+import MasalahClient from '../components/MasalahClient.astro' 
+import ApaItuauradigital from '../components/ApaItuauradigital.astro'
+import Manfaatauradigital from '../components/Manfaatauradigital.astro'
+import MengapaMemilihauradigital from '../components/MengapaMemilihauradigital.astro'
+import CaraOrder from '../components/CaraOrder.astro'
+import Solusi from '../components/Solusi.astro'
+import HargaPaket from '../components/HargaPaket.astro'
+import Testimonials from '../components/Testimonials.astro'
+import DaftarHarga from '../components/DaftarHarga.astro'
+import MetodePembayaran from '../components/MetodePembayaran.astro'
+import Faqauradigital from '../components/Faqauradigital.astro'
+
+// ==========================================
+// 2. DATA SEO & META 
+// ==========================================
+// Title persis 48 karakter (< 70)
+const title = "Jasa Like TikTok Indonesia Aktif dan Permanen";
+
+// Deskripsi persis 152 karakter (Range 150-155)
+const description = "Jasa like TikTok Indonesia aktif dan permanen untuk meningkatkan engagement video, peluang FYP, popularitas akun, dan kepercayaan audiens.";
+
+const keywords = "jasa like tiktok, fyp tiktok, jasa report akun tiktok, jasa report tiktok, jual akun tiktok, jasa hapus akun tiktok, jasa spam tiktok, jasa akun tiktok, akun tiktok, jasa banned tiktok, jasa tiktok bandung, feedback@tiktok, hapus akun tiktok, tik tok id report, report tiktok, report tiktok user, jasa tiktok surabaya, jual jasa report tiktok, jasa komentar YouTube indonesia, jasa trending topik twitter, auradigital";
+
+// ==========================================
+// 3. DATA KONTEN KHUSUS LIKE TIKTOK
+// ==========================================
+
+const dataHero = {
+  tipe: "service" as const,
+  labelTeks: "Layanan TikTok Premium",
+  labelIcon: "lucide:heart",
+  judulUtama: 'Jasa <span class="text-fuchsia-500">Like TikTok</span> <br class="hidden md:block"/> Dominasi Algoritma Video',
+  deskripsi: "Bikin video Anda kebanjiran interaksi untuk tembus fyp tiktok dalam waktu singkat! Layanan kami mendongkrak reputasi dengan aman, privasi terjaga penuh, murni dari sistem eksternal. Kami juga melayani jasa report akun tiktok profesional. <br class='hidden md:block mt-2' /> <span class='text-fuchsia-400 font-semibold block mt-4'>✓ Interaksi Alami &nbsp; ✓ Privasi Aman Terjaga &nbsp; ✓ Proses Cepat</span>",
+  teksTombol1: "Lihat Paket Layanan",
+  linkTombol1: "#harga-paket",
+  teksTombol2: "Konsultasi Strategi",
+  linkTombol2: "https://wa.me/6289634740308",
+  gambarHero: "/image/hero-tiktok.png" 
+};
+
+const dataMasalah = {
+  judulUtama: 'Masalah Saat Video TikTok <span class="text-fuchsia-500">Sepi Like</span>',
+  deskripsiUtama: "Sudah maksimal bikin konten dan riset hashtag, tapi yang kasih love sedikit? Ini kendala algoritma dan psikologis yang akan Anda hadapi:",
+  ms1Teks: '<strong class="text-fuchsia-500 font-bold">Kelihatan Gak Menarik:</strong> Secara psikologis, audiens cenderung langsung scroll melewati video yang angka like-nya kecil karena dianggap kurang menghibur.',
+  ms2Teks: '<strong class="text-fuchsia-500 font-bold">Dilewati Algoritma FYP:</strong> Sistem butuh bukti kalau video Anda diminati di menit-menit awal. Kalau sepi like, video tidak akan direkomendasikan secara luas.',
+  ms3Teks: '<strong class="text-fuchsia-500 font-bold">Kepercayaan Konsumen Rendah:</strong> Video promosi yang sepi interaksi bikin reputasi brand turun, sehingga calon pembeli ragu bertransaksi.',
+  ms4Teks: '<strong class="text-fuchsia-500 font-bold">Kalah Saing Kompetitor:</strong> Pesaing yang videonya ramai interaksi akan jauh lebih mudah memenangkan audiens dan mendominasi beranda.'
+};
+
+const dataApaItu = {
+  judulUtama: 'Solusi Jitu: Beli Like <span class="text-fuchsia-500">TikTok</span>',
+  deskripsiUtama: "Strategi taktis untuk meroketkan engagement video Anda. AuraDigital juga dikenal sebagai pionir jasa tiktok bandung dan jasa tiktok surabaya yang andal.",
+  k1Judul: "Validasi Visual Kuat",
+  k1Teks: "Kami mendatangkan interaksi yang bikin metrik video Anda langsung melesat, memberikan kesan profesional bahwa konten Anda benar-benar diminati publik.",
+  k2Judul: "Kerahasiaan Dijamin Aman",
+  k2Teks: "Proses operasional kami murni berjalan dari luar jaringan. Anda tidak perlu memberikan data sensitif apapun selain tautan video yang ingin dioptimasi."
+};
+
+const dataManfaat = {
+  judulUtama: 'Keuntungan Keren Nambah Like <span class="text-fuchsia-500">TikTok</span>',
+  deskripsiUtama: "Memiliki jumlah like video yang melimpah adalah tiket emas untuk memenangkan algoritma distribusi konten saat ini.",
+  m1Judul: "Sinyal Positif ke Algoritma",
+  m1Teks: "Akselerasi angka interaksi di awal memberikan sinyal kuat ke sistem, membuka peluang lebih besar agar konten Anda tembus fyp tiktok.",
+  m2Judul: "Konversi Jualan Makin Bagus",
+  m2Teks: "Video keranjang kuning yang memiliki ribuan like akan membangun rasa percaya audiens, membuat konversi penjualan melesat tajam.",
+  m3Judul: "Daya Jual Akun Meningkat",
+  m3Teks: "Statistik engagement yang stabil dan tinggi adalah portofolio utama untuk menarik perhatian brand besar agar mendapatkan endorsement.",
+  m4Judul: "Perlindungan Akun Maksimal",
+  m4Teks: "Selain interaksi, kami membantu menjaga kesehatan akun Anda dengan menangani laporan ke feedback@tiktok dan tik tok id report."
+};
+
+const dataMengapaMemilih = {
+  judulUtama: 'Kenapa auradigital Selalu Jadi <span class="text-violet-400">Pilihan Utama?</span>',
+  deskripsiUtama: "Kami mengutamakan kualitas. AuraDigital adalah agensi eskalasi terlengkap untuk menjaga dan mendongkrak ekosistem bisnis digital Anda.",
+  mk1Judul: "Privasi Terjaga Penuh",
+  mk1Teks: "Semua diproses menggunakan sistem eksternal yang aman. Privasi brand adalah prioritas kami tanpa perlu mengakses kredensial internal Anda.",
+  mk2Judul: "Kualitas Interaksi Natural",
+  mk2Teks: "Layanan eskalasi kami memprioritaskan sebaran yang rapi demi menjaga algoritma dan kesehatan dashboard profil Anda.",
+  mk3Judul: "Layanan Lintas Platform",
+  mk3Teks: "Klien korporat kami juga rutin mengandalkan jasa komentar YouTube indonesia hingga jasa trending topik twitter agar promosi mereka mendominasi.",
+  mk4Judul: "Pakar Solusi Isu Pelik",
+  mk4Teks: "Ada peniru brand? Tim kami siap mengeksekusi jasa hapus akun tiktok, jasa spam tiktok, hingga jasa banned tiktok secara profesional.",
+  mk5Judul: "Spesialis Report Massal",
+  mk5Teks: "Kami merupakan ahlinya jasa report tiktok. Kami mengurus report tiktok user yang merugikan, menjamin pelaporan diproses cepat.",
+  mk6Judul: "Jual & Manajemen Aset",
+  mk6Teks: "Butuh aset instan? Kami melayani jual akun tiktok dan optimasi jasa akun tiktok untuk mempercepat langkah bisnis Anda."
+};
+
+const dataSolusi = {
+  judulUtama: 'Cara Aman & Rapi Tambah <span class="text-fuchsia-500">Like Video</span>',
+  deskripsiUtama: "Proses pengerjaan kami diatur dengan teknologi tingkat tinggi agar tampak wajar dan menghasilkan dampak grafik maksimal.",
+  sol1Icon: "lucide:heart-handshake",
+  sol1Judul: "Injeksi Interaksi Tepat Sasaran",
+  sol1Teks: "Kami mengarahkan aliran likes ke link video spesifik yang Anda pilih, memastikan grafik interaksinya meroket dengan terstruktur.",
+  sol2Icon: "lucide:shield-check",
+  sol2Judul: "Operasional Jarak Jauh",
+  sol2Teks: "Anda cukup upload video, kirimkan tautannya ke admin kami, dan biarkan sistem eksternal kami bekerja tanpa memerlukan data privat.",
+  sol3Icon: "lucide:timer",
+  sol3Judul: "Ritme Mengalir Natural",
+  sol3Teks: "Kecepatan masuknya love diatur ritmenya sedemikian rupa agar terkesan mengalir alami layaknya konten yang sedang viral."
+};
+
+const dataCaraOrder = {
+  judulUtama: 'Tiga Langkah Gampang Order <span class="text-violet-400">Jasa Like</span>',
+  deskripsiUtama: "Cuma butuh waktu singkat buat menyulap video Anda menjadi pusat perhatian audiens luas.",
+  co1Judul: "Tentukan Angka Target",
+  co1Teks: "Pilih paket kebutuhan interaksi video yang paling pas buat ngedongkrak reputasi brand atau promosi produk terbaru Anda.",
+  co2Judul: "Hubungi Admin via WA",
+  co2Teks: "Tinggal klik tombol pesan yang tersedia, sapa CS kami, dan informasikan paket yang mau Anda eksekusi secepatnya.",
+  co3Judul: "Kirim Link & Lihat Hasilnya",
+  co3Teks: "Kirim tautan video Anda ke admin (pastikan akun bersifat publik). Setelah administrasi beres, proses distribusi langsung berjalan!"
+};
+
+const dataHargaPaket = {
+  judulHarga: "Penawaran Investasi Like TikTok",
+  deskripsiHarga: "Opsi harga terbaik untuk menciptakan efek populer instan pada setiap konten video jagoan Anda.",
+
+  // Paket Kiri 
+  p1Gambar: "/image/paket-harga-tiktok.png",
+  p1Nama: "100 Like TikTok",
+  p1Fitur1: "Kualitas Akun Natural",
+  p1Fitur2: "Proses Eksekusi Cepat",
+  p1Fitur3: "Cukup Kirim Tautan Video",
+  p1Harga: "Rp 200.000",
+  p1Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%20100%20Like%20TikTok",
+
+  // Paket Kanan 
+  p2Label: "PILIHAN FAVORIT KREATOR",
+  p2Gambar: "/image/paket-harga-tiktok.png",
+  p2Nama: "1.000 Like TikTok",
+  p2Fitur1: "Sinyal Kuat ke Algoritma FYP",
+  p2Fitur2: "Meningkatkan Reputasi Brand",
+  p2Fitur3: "Prioritas Layanan Eksekusi",
+  p2Harga: "Rp 2.000.000",
+  p2Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%201.000%20Like%20TikTok" 
+};
+
+const dataFaq = {
+  judulUtama: 'Tanya Jawab Seputar <span class="text-fuchsia-500">Like TikTok</span>',
+  deskripsiUtama: "Masih penasaran dengan sistem pengerjaannya? Ini jawaban santai atas hal-hal yang paling sering ditanyain klien di auradigital.",
+  linkWhatsapp: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital,%20saya%20mau%20tanya-tanya%20dulu%20soal%20Jasa%20Like%20TikTok",
+  faq1Judul: "Apakah penambahan interaksi ini aman buat akun jualan?",
+  faq1Teks: "Sangat aman Kak! Sistem kami berjalan di luar jaringan Anda. Kami tidak akan pernah meminta data pribadi, sehingga 100% bebas risiko pelanggaran akses.",
+  faq2Judul: "Akun saya wajib di-setting Publik juga ya?",
+  faq2Teks: "Betul sekali Kak. Kalau akun digembok (Private), jaringan eksternal kami tidak akan bisa mengakses tautan video Anda untuk mendistribusikan interaksinya.",
+  faq3Judul: "Layanan hapus akun TikTok itu cara kerjanya gimana?",
+  faq3Teks: "Untuk jasa hapus akun tiktok atau hapus akun tiktok peniru, tim ahli kami akan mengidentifikasi pelanggaran profil tersebut dan melakukan pelaporan skala besar hingga akun tersebut di-take down.",
+  faq4Judul: "Apakah bisa menangani pelaporan akun massal?",
+  faq4Teks: "Tentu! AuraDigital adalah pelopor jual jasa report tiktok. Jika ada kompetitor gelap, kami siap mengeksekusi report tiktok dan report tiktok user secara terstruktur.",
+  faq5Judul: "Kapan metriknya mulai merangkak naik setelah order?",
+  faq5Teks: "Begitu pesanan tervalidasi oleh tim WA, sistem eksternal langsung menjadwalkan. Proses sebaran diatur mengalir agar ritmenya senatural mungkin.",
+  faq6Judul: "Apakah AuraDigital jual akun juga?",
+  faq6Teks: "Iya Kak, kami melayani jual akun tiktok berkualitas tinggi yang sudah dirawat grafiknya, siap pakai untuk kebutuhan afiliasi atau promosi brand."
+};
+---
+
+<DefaultLayout title={title} description={description} keywords={keywords}>
+
+<Fragment slot="head">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "Jasa Like TikTok Aktif & Jasa Report Akun",
+    "image": "https://auradigital.id/image/paket-harga-liketiktok.png",
+    "description": "Layanan optimasi interaksi fyp tiktok serta agensi penyedia jasa report akun tiktok profesional.",
+    "brand": {
+      "@type": "Brand",
+      "name": "auradigital"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "890"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "15000",
+      "highPrice": "1500000",
+      "priceCurrency": "IDR",
+      "offerCount": "2"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Beranda",
+        "item": "https://auradigital.id/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Layanan",
+        "item": "https://auradigital.id/layanan/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Jasa Like TikTok"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Apakah penambahan interaksi ini aman buat akun jualan?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sangat aman Kak! Sistem kami berjalan di luar jaringan Anda. Kami tidak akan pernah meminta data pribadi, sehingga 100% bebas risiko pelanggaran akses."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Akun saya wajib di-setting Publik juga ya?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Betul sekali Kak. Kalau akun digembok (Private), jaringan eksternal kami tidak akan bisa mengakses tautan video Anda untuk mendistribusikan interaksinya."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Apakah bisa menangani pelaporan akun massal?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tentu! AuraDigital adalah pelopor jual jasa report tiktok. Jika ada kompetitor gelap, kami siap mengeksekusi report tiktok dan report tiktok user secara terstruktur."
+        }
+      }
+    ]
+  }
+]
+</script>
+</Fragment>
+
+  <Hero {...dataHero} />
+
+  <MasalahClient {...dataMasalah} />
+
+  <ApaItuauradigital {...dataApaItu} />
+
+  <Manfaatauradigital {...dataManfaat} />
+
+  <MengapaMemilihauradigital {...dataMengapaMemilih} />
+
+  <Solusi {...dataSolusi} />
+
+  <CaraOrder {...dataCaraOrder} />
+
+  <DaftarHarga />
+
+  <HargaPaket {...dataHargaPaket} />
+
+  <Testimonials />
+
+  <MetodePembayaran />
+
+  <Faqauradigital {...dataFaq} />
+
+</DefaultLayout>
