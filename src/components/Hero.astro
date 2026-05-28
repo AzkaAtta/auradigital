@@ -98,9 +98,14 @@ const {
     
     {gambarHero && (
       <div class="absolute inset-0 z-0">
-        <img src={gambarHero} alt="Background Layanan" class="w-full h-full object-cover object-center opacity-20 block" />
+        {/* 👇 1. Opacity gambar dinaikkan dari 20 jadi 50 biar lebih nyata */}
+        <img src={gambarHero} alt="Background Layanan" class="w-full h-full object-cover object-center opacity-50 block" />
+        
+        {/* Gradasi atas bawah dibiarkan agar menyatu dengan warna website */}
         <div class="absolute inset-0 bg-gradient-to-b from-[#090514] via-transparent to-[#090514]"></div>
-        <div class="absolute inset-0 bg-[#090514]/60"></div> 
+        
+        {/* 👇 2. "Kaca film" gelapnya diturunkan ketebalannya dari 60 jadi 30 */}
+        <div class="absolute inset-0 bg-[#090514]/30"></div> 
       </div>
     )}
 
