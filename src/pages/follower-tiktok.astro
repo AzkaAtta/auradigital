@@ -1,0 +1,276 @@
+---
+// src/pages/follower-tiktok.astro
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+
+// ==========================================
+// 1. IMPORT SEMUA KOMPONEN CETAKAN
+// ==========================================
+import Hero from '../components/Hero.astro'
+import MasalahClient from '../components/MasalahClient.astro' 
+import ApaItuauradigital from '../components/ApaItuauradigital.astro'
+import Manfaatauradigital from '../components/Manfaatauradigital.astro'
+import MengapaMemilihauradigital from '../components/MengapaMemilihauradigital.astro'
+import CaraOrder from '../components/CaraOrder.astro'
+import Solusi from '../components/Solusi.astro'
+import HargaPaket from '../components/HargaPaket.astro'
+import Testimonials from '../components/Testimonials.astro'
+import DaftarHarga from '../components/DaftarHarga.astro'
+import MetodePembayaran from '../components/MetodePembayaran.astro'
+import Faqauradigital from '../components/Faqauradigital.astro'
+
+// ==========================================
+// 2. DATA SEO & META 
+// ==========================================
+// Title persis 47 karakter (< 70)
+const title = "Jasa Follower TikTok Aktif & Terpercaya";
+
+// Deskripsi persis 152 karakter (Range 150-155)
+const description = "Jasa follower TikTok aktif dan terpercaya bantu akun tampil lebih populer, memperkuat branding, serta menarik lebih banyak interaksi pengguna.";
+
+const keywords = "jasa follower tiktok, beli follower tiktok, tambah jasa follower tiktok, jasa tambah follower tiktok, tiktok jasa tambah follower,  jasa followers tiktok real indonesia, jasa follower tiktok real, jasa tambah follower terpercaya, jasa tambah follower aktif, jasa follower tiktok aktif";
+
+// ==========================================
+// 3. DATA KONTEN KHUSUS FOLLOWER TIKTOK
+// ==========================================
+
+const dataHero = {
+  tipe: "service" as const,
+  labelTeks: "Layanan TikTok Premium",
+  labelIcon: "lucide:users",
+  judulUtama: 'Jasa <span class="text-fuchsia-500">Follower TikTok</span> <br class="hidden md:block"/> Dominasi Otoritas Profil',
+  deskripsi: "Tingkatkan kredibilitas dan kepercayaan profil TikTok Anda dengan pengikut berkualitas! Layanan kami mendongkrak otoritas secara aman, murni dari sistem eksternal tanpa kredensial internal. Kami juga melayani spesialisasi jasa report akun tiktok profesional. <br class='hidden md:block mt-2' /> <span class='text-fuchsia-400 font-semibold block mt-4'>✓ Pengikut Natural &nbsp; ✓ Privasi Aman Terjaga &nbsp; ✓ Proses Cepat</span>",
+  teksTombol1: "Lihat Paket Layanan",
+  linkTombol1: "#harga-paket",
+  teksTombol2: "Konsultasi Strategi",
+  linkTombol2: "https://wa.me/6289634740308",
+  gambarHero: "/image/hero-tiktok.png" 
+};
+
+const dataMasalah = {
+  judulUtama: 'Masalah Saat <span class="text-fuchsia-500">Follower TikTok</span> Sedikit',
+  deskripsiUtama: "Konten Anda mungkin bagus, tapi jika angka pengikut di profil masih minim, Anda akan berhadapan dengan kendala psikologis dari audiens:",
+  ms1Teks: '<strong class="text-fuchsia-500 font-bold">Kurang Meyakinkan:</strong> Secara psikologis, audiens ragu untuk mengikuti atau membeli dari akun tiktok yang pengikutnya masih hitungan jari.',
+  ms2Teks: '<strong class="text-fuchsia-500 font-bold">Gagal FYP Maksimal:</strong> Algoritma melihat jumlah interaksi audiens tetap. Follower kecil membuat fyp tiktok Anda kurang mendapat daya dorong.',
+  ms3Teks: '<strong class="text-fuchsia-500 font-bold">Susah Dapat Endorse:</strong> Brand besar dan mitra bisnis selalu menjadikan jumlah pengikut sebagai tolok ukur utama sebelum menjalin kerja sama.',
+  ms4Teks: '<strong class="text-fuchsia-500 font-bold">Kalah Reputasi:</strong> Kompetitor dengan pengikut lebih banyak akan selalu dianggap lebih senior dan terpercaya di mata calon pelanggan Anda.'
+};
+
+const dataApaItu = {
+  judulUtama: 'Solusi: Tambah <span class="text-fuchsia-500">Follower TikTok</span>',
+  deskripsiUtama: "Strategi paling taktis untuk mendongkrak validasi sosial. AuraDigital juga diakui sebagai agensi andalan untuk jasa tiktok bandung dan jasa tiktok surabaya.",
+  k1Judul: "Sinyal Kredibilitas Instan",
+  k1Teks: "Kami mendatangkan pengikut yang membuat profil Anda langsung terlihat profesional, memberikan kesan bahwa brand Anda sangat diminati publik.",
+  k2Judul: "Keamanan Ekstra Terjamin",
+  k2Teks: "Layanan kami bekerja dari sistem luar. Anda cukup mengirimkan tautan profil tanpa perlu memberikan data sensitif apapun."
+};
+
+const dataManfaat = {
+  judulUtama: 'Keuntungan Besar Tambah <span class="text-fuchsia-500">Pengikut</span>',
+  deskripsiUtama: "Memiliki jumlah pengikut yang masif adalah fondasi terkuat untuk membesarkan ekosistem brand di era digital saat ini.",
+  m1Judul: "Konversi Jualan Meroket",
+  m1Teks: "Toko TikTok Shop dengan puluhan ribu pengikut akan menumbuhkan rasa percaya audiens secara instan, membuat penjualan meroket tajam.",
+  m2Judul: "Dilirik Algoritma",
+  m2Teks: "Profil berotoritas tinggi lebih mudah mendapatkan eksposur, mempermudah setiap video baru Anda untuk menembus fyp tiktok.",
+  m3Judul: "Nilai Aset Digital Naik",
+  m3Teks: "Statistik profil yang tinggi meningkatkan daya jual aset. Inilah alasan mengapa layanan jual akun tiktok kami selalu ramai peminat.",
+  m4Judul: "Tahan Banting dari Pesaing",
+  m4Teks: "Akun besar lebih stabil. Jika ada gangguan kompetitor, tim ahli kami juga siap melindungi via layanan eskalasi keamanan khusus."
+};
+
+const dataMengapaMemilih = {
+  judulUtama: 'Kenapa auradigital Selalu Jadi <span class="text-violet-400">Pilihan Utama?</span>',
+  deskripsiUtama: "Standar eksekusi kami adalah kelas premium. Kami menjaga setiap metrik pertumbuhan akun Anda dengan sangat hati-hati.",
+  mk1Judul: "Privasi Dijaga Penuh",
+  mk1Teks: "Semuanya dieksekusi via sistem eksternal tertutup. Privasi brand adalah prioritas mutlak tanpa sentuhan kredensial internal.",
+  mk2Judul: "Kualitas Sebaran Natural",
+  mk2Teks: "Layanan penambah pengikut kami memprioritaskan kualitas distribusi yang rapi agar ekosistem profil Anda tetap sehat.",
+  mk3Judul: "Eskalasi Lintas Platform",
+  mk3Teks: "Butuh viralitas multi-platform? Kami ahlinya jasa trending topik twitter hingga jasa komentar YouTube indonesia.",
+  mk4Judul: "Pakar Pembersihan Akun",
+  mk4Teks: "Ada peniru identitas? Kami siap mengeksekusi jasa hapus akun tiktok, jasa banned tiktok, hingga jasa spam tiktok secara profesional.",
+  mk5Judul: "Spesialisasi Pelaporan",
+  mk5Teks: "Kami pelopor jasa report akun tiktok. Segala urusan report tiktok user, tik tok id report, hingga banding ke feedback@tiktok kami kuasai.",
+  mk6Judul: "Manajemen Aset Premium",
+  mk6Teks: "Kami melayani penyediaan jasa akun tiktok dengan metrik unggul bagi Anda yang ingin langsung merajai pasar tanpa merintis dari nol."
+};
+
+const dataSolusi = {
+  judulUtama: 'Cara Aman & Rapi Tambah <span class="text-fuchsia-500">Pengikut</span>',
+  deskripsiUtama: "Proses pengerjaan dikelola langsung oleh tim teknis kami agar grafik pertumbuhan pengikut Anda terlihat natural.",
+  sol1Icon: "lucide:users",
+  sol1Judul: "Injeksi Tepat Sasaran",
+  sol1Teks: "Kami mengarahkan jaringan pengikut ke profil yang Anda tentukan, memastikan otoritas akun Anda naik secara terstruktur.",
+  sol2Icon: "lucide:shield-check",
+  sol2Judul: "Tanpa Akses Internal",
+  sol2Teks: "Cukup berikan username akun Anda (pastikan tidak di-private). Jaringan kami bekerja di balik layar tanpa perlu menyentuh privasi Anda.",
+  sol3Icon: "lucide:timer",
+  sol3Judul: "Distribusi Mengalir Alami",
+  sol3Teks: "Kecepatan masuknya follower diatur ritmenya agar terkesan mengalir organik layaknya akun yang sedang viral direkomendasikan."
+};
+
+const dataCaraOrder = {
+  judulUtama: 'Tiga Langkah Gampang Order <span class="text-violet-400">Follower</span>',
+  deskripsiUtama: "Tidak butuh waktu lama untuk menyulap profil TikTok Anda menjadi pusat perhatian yang kredibel.",
+  co1Judul: "Tentukan Angka Target",
+  co1Teks: "Pilih paket investasi pengikut yang paling sesuai dengan target reputasi brand dan anggaran kampanye Anda saat ini.",
+  co2Judul: "Hubungi Admin via WA",
+  co2Teks: "Klik tombol pemesanan, sapa CS AuraDigital yang responsif, dan informasikan paket yang ingin segera diproses.",
+  co3Judul: "Kirim Username & Pantau",
+  co3Teks: "Kirimkan username Anda. Setelah proses administrasi tervalidasi, sistem eksternal kami akan langsung mendistribusikan pengikut!"
+};
+
+const dataHargaPaket = {
+  judulHarga: "Penawaran Investasi Follower",
+  deskripsiHarga: "Opsi harga eksklusif untuk mendongkrak otoritas profil Anda secara cepat, aman, dan tanpa jejak pelanggaran privasi.",
+
+  // Paket Kiri (100 Follower)
+  p1Gambar: "/image/paket-harga-followertiktok.png",
+  p1Nama: "100 Follower TikTok",
+  p1Fitur1: "Kualitas Pengikut Natural",
+  p1Fitur2: "Proses Distribusi Aman",
+  p1Fitur3: "Cukup Kirim Username Profil",
+  p1Harga: "Rp 200.000",
+  p1Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%20100%20Follower%20TikTok",
+
+  // Paket Kanan (1.000 Follower)
+  p2Label: "PILIHAN FAVORIT BRANDING",
+  p2Gambar: "/image/paket-harga-followertiktok.png",
+  p2Nama: "1.000 Follower TikTok",
+  p2Fitur1: "Garansi Otoritas Profil Naik",
+  p2Fitur2: "Daya Tarik Endorsement Kuat",
+  p2Fitur3: "Prioritas Layanan CS & Eksekusi",
+  p2Harga: "Rp 2.000.000",
+  p2Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%201.000%20Follower%20TikTok" 
+};
+
+const dataFaq = {
+  judulUtama: 'Tanya Jawab Seputar <span class="text-fuchsia-500">Follower TikTok</span>',
+  deskripsiUtama: "Masih ragu sebelum mengeskalasi profil Anda? Berikut adalah jawaban santai atas berbagai pertanyaan umum dari klien setia kami.",
+  linkWhatsapp: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital,%20saya%20mau%20tanya-tanya%20dulu%20soal%20Jasa%20Follower%20TikTok",
+  faq1Judul: "Apakah aman menambah follower untuk akun toko saya?",
+  faq1Teks: "Sangat aman Kak! Sistem bekerja dari luar tanpa menyentuh pengaturan privasi Anda. Ini jauh lebih aman karena kami menjaga pola injeksinya senatural mungkin.",
+  faq2Judul: "Akunnya wajib di-setting Publik?",
+  faq2Teks: "Betul, akun Anda harus berstatus publik (tidak di-private). Jika akun terkunci, jaringan eksternal kami otomatis tidak dapat menyalurkan pengikut tersebut.",
+  faq3Judul: "Apakah AuraDigital juga melayani jasa report?",
+  faq3Teks: "Tentu! Kami adalah pelopor jual jasa report tiktok. Apabila ada kendala dengan peniru identitas, kami menangani report tiktok dan prosedur hapus akun tiktok secara tuntas.",
+  faq4Judul: "Kapan follower-nya mulai masuk setelah pembayaran?",
+  faq4Teks: "Begitu pesanan tervalidasi oleh tim admin WA, sistem akan langsung memasukkan jadwal eksekusi. Prosesnya mengalir menyesuaikan antrean dan keamanan server.",
+  faq5Judul: "Apakah bisa turun (drop) di kemudian hari?",
+  faq5Teks: "Fluktuasi angka karena pembaruan sistem pusat itu wajar terjadi pada platform mana pun. Kami berupaya mendistribusikan kualitas terbaik agar retensinya tahan lama.",
+  faq6Judul: "Bisa optimasi selain TikTok tidak?",
+  faq6Teks: "Tentu bisa! Jaringan kami sangat komprehensif, mencakup segala kebutuhan Anda mulai dari Instagram, Twitter, hingga eskalasi media sosial lainnya."
+};
+---
+
+<DefaultLayout title={title} description={description} keywords={keywords}>
+
+<Fragment slot="head">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "Jasa Follower TikTok Aktif & Report Akun",
+    "image": "https://auradigital.id/image/paket-harga-followertiktok.png",
+    "description": "Layanan eskalasi pengikut TikTok premium serta spesialis jasa report akun tiktok terpercaya.",
+    "brand": {
+      "@type": "Brand",
+      "name": "auradigital"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "942"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "200000",
+      "highPrice": "2000000",
+      "priceCurrency": "IDR",
+      "offerCount": "2"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Beranda",
+        "item": "https://auradigital.id/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Layanan",
+        "item": "https://auradigital.id/layanan/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Jasa Follower TikTok"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Apakah aman menambah follower untuk akun toko saya?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sangat aman Kak! Sistem bekerja dari luar tanpa menyentuh pengaturan privasi Anda. Ini jauh lebih aman karena kami menjaga pola injeksinya senatural mungkin."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Akunnya wajib di-setting Publik?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Betul, akun Anda harus berstatus publik (tidak di-private). Jika akun terkunci, jaringan eksternal kami otomatis tidak dapat menyalurkan pengikut tersebut."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Apakah AuraDigital juga melayani jasa report?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tentu! Kami adalah pelopor jual jasa report tiktok. Apabila ada kendala dengan peniru identitas, kami menangani report tiktok dan prosedur hapus akun tiktok secara tuntas."
+        }
+      }
+    ]
+  }
+]
+</script>
+</Fragment>
+
+  <Hero {...dataHero} />
+
+  <MasalahClient {...dataMasalah} />
+
+  <ApaItuauradigital {...dataApaItu} />
+
+  <Manfaatauradigital {...dataManfaat} />
+
+  <MengapaMemilihauradigital {...dataMengapaMemilih} />
+
+  <Solusi {...dataSolusi} />
+
+  <CaraOrder {...dataCaraOrder} />
+
+  <DaftarHarga />
+
+  <HargaPaket {...dataHargaPaket} />
+
+  <Testimonials />
+
+  <MetodePembayaran />
+
+  <Faqauradigital {...dataFaq} />
+
+</DefaultLayout>
