@@ -94,47 +94,59 @@ const {
 
 {/* ================= HERO TIPE LAYANAN ================= */}
 {tipe === "service" && (
-  <section class="relative pt-32 pb-24 lg:pt-40 lg:pb-32 bg-[#090514] overflow-hidden flex items-center border-b border-violet-900/30">
-    <div class="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.45)_2px,transparent_2px)] [background-size:32px_32px] [background-position:16px_16px] z-0 animate-twinkle"></div>
+  <section class="relative pt-32 pb-24 lg:pt-40 lg:pb-32 bg-[#090514] text-white overflow-hidden flex items-center border-b border-violet-900/30">
+    
+    {/* 🖼️ 1. BACKGROUND GAMBAR (Khusus Layanan) */}
     {gambarHero && (
-      <div class="absolute inset-0 z-0">
-        {/* 👇 1. Opacity gambar dinaikkan dari 20 jadi 50 biar lebih nyata */}
-        <img src={gambarHero} alt="Background Layanan" class="w-full h-full object-cover object-center opacity-50 block" />
-        
-        {/* Gradasi atas bawah dibiarkan agar menyatu dengan warna website */}
-        <div class="absolute inset-0 bg-gradient-to-b from-[#090514] via-transparent to-[#090514]"></div>
-        
-        {/* 👇 2. "Kaca film" gelapnya diturunkan ketebalannya dari 60 jadi 30 */}
-        <div class="absolute inset-0 bg-[#090514]/30"></div> 
+      <div class="absolute inset-0 z-0 pointer-events-none">
+        {/* Gambar diblend dengan background agar menyatu dengan warna ungu */}
+        <img src={gambarHero} alt="Background Layanan" class="w-full h-full object-cover object-center opacity-40 mix-blend-overlay block" />
+        {/* Gradasi bawah biar halus menyatu ke section selanjutnya */}
+        <div class="absolute inset-0 bg-gradient-to-t from-[#090514] via-[#090514]/60 to-transparent"></div>
       </div>
     )}
 
-    <div class="relative z-10 container mx-auto px-6 text-center max-w-4xl mt-10 lg:mt-0">
-      
-      {labelTeks && (
-        <span class="inline-flex items-center gap-2 bg-violet-900/30 border border-violet-800 text-violet-300 px-4 py-1.5 rounded-full text-xs md:text-sm font-medium mb-6">
-          {labelIcon && <Icon name={labelIcon} class="w-4 h-4" />}
-          {labelTeks}
-        </span>
-      )}
-      
-      {judulUtama && <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-[1.2] mb-6 tracking-tight" set:html={judulUtama} />}
-      {deskripsi && <p class="text-sm md:text-base text-violet-100/70 max-w-3xl mx-auto leading-relaxed mb-10" set:html={deskripsi} />}
+    {/* 🌟 2. BACKGROUND TITIK (TWINKLE) - SAMA PERSIS DENGAN HOME */}
+    <div class="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.45)_2px,transparent_2px)] [background-size:32px_32px] [background-position:16px_16px] z-0 animate-twinkle pointer-events-none"></div>
+    
+    {/* 🔮 3. GLOW UNGU PREMIUM ATAS - SAMA PERSIS DENGAN HOME */}
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] bg-violet-600/35 blur-[120px] rounded-full pointer-events-none z-0"></div>
 
-      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center w-full sm:w-auto">
-        {teksTombol1 && linkTombol1 && (
-          <a href={linkTombol1} class="inline-flex justify-center items-center bg-violet-600 hover:bg-violet-700 text-white font-bold px-8 py-3.5 rounded-xl transition-all text-sm md:text-base min-w-[190px] !no-underline transform hover:-translate-y-1">
-            {teksTombol1}
-          </a>
-        )}
+    <div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
+      <div class="flex flex-col items-center">
         
-        {teksTombol2 && linkTombol2 && (
-          <a href={linkTombol2} target="_blank" rel="noopener noreferrer" class="inline-flex justify-center items-center !bg-transparent hover:!bg-white/5 !text-white font-bold px-8 py-3.5 rounded-xl border-2 !border-violet-600 hover:!border-violet-500 transition-all text-sm md:text-base min-w-[190px] !no-underline">
-            {teksTombol2}
-          </a>
-        )}
-      </div>
+        {/* Kontainer Teks */}
+        <div class="max-w-3xl flex flex-col items-center transform transition-all duration-1000 ease-out z-10 relative">
+          
+          {/* Label (Sama persis dengan home) */}
+          {labelTeks && (
+            <span class="inline-flex items-center gap-2 bg-violet-900/40 border border-violet-700/50 text-violet-300 px-4 py-1.5 rounded-full text-xs md:text-sm font-medium mb-8 backdrop-blur-sm shadow-sm">
+              {labelIcon && <Icon name={labelIcon} class="w-4 h-4" />}
+              {labelTeks}
+            </span>
+          )}
 
+          {/* Judul & Deskripsi (Sama persis dengan home) */}
+          {judulUtama && <h1 class="text-3xl md:text-4xl lg:text-5xl font-black mb-6 leading-[1.2] tracking-tight text-white" set:html={judulUtama}></h1>}
+          {deskripsi && <p class="text-sm md:text-base text-slate-300 leading-relaxed font-normal max-w-2xl" set:html={deskripsi}></p>}
+          
+          {/* Tombol (Bentuk oval/rounded-full dan efek kaca, sama persis dengan home) */}
+          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-10 w-full sm:w-auto">
+            {teksTombol1 && linkTombol1 && (
+              <a href={linkTombol1} class="inline-flex justify-center items-center !bg-transparent hover:!bg-white hover:!text-violet-600 !text-white font-bold px-8 py-3.5 rounded-full border-2 !border-white/50 transition-all text-sm md:text-base min-w-[200px] !no-underline shadow-lg shadow-violet-900/20">
+                {teksTombol1}
+              </a>
+            )}
+            
+            {teksTombol2 && linkTombol2 && (
+              <a href={linkTombol2} target="_blank" rel="noopener noreferrer" class="inline-flex justify-center items-center !bg-white/10 hover:!bg-white hover:!text-violet-900 !text-white font-bold px-8 py-3.5 rounded-full border-2 !border-white/20 transition-all text-sm md:text-base min-w-[200px] backdrop-blur-sm !no-underline">
+                {teksTombol2}
+              </a>
+            )}
+          </div>
+
+        </div>
+      </div>
     </div>
   </section>
 )}
