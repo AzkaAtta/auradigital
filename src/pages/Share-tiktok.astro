@@ -1,0 +1,277 @@
+---
+// src/pages/share-tiktok.astro
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+
+// ==========================================
+// 1. IMPORT SEMUA KOMPONEN CETAKAN
+// ==========================================
+import Hero from '../components/Hero.astro'
+import MasalahClient from '../components/MasalahClient.astro' 
+import ApaItuauradigital from '../components/ApaItuauradigital.astro'
+import Manfaatauradigital from '../components/Manfaatauradigital.astro'
+import MengapaMemilihauradigital from '../components/MengapaMemilihauradigital.astro'
+import CaraOrder from '../components/CaraOrder.astro'
+import Solusi from '../components/Solusi.astro'
+import HargaPaket from '../components/HargaPaket.astro'
+import Testimonials from '../components/Testimonials.astro'
+import DaftarHarga from '../components/DaftarHarga.astro'
+import MetodePembayaran from '../components/MetodePembayaran.astro'
+import Faqauradigital from '../components/Faqauradigital.astro'
+
+// ==========================================
+// 2. DATA SEO & META 
+// ==========================================
+// Title persis 46 karakter (< 70)
+const title = "Jasa Share TikTok Aktif & Real | Optimasi FYP";
+
+// Deskripsi persis 152 karakter (Range 150-155)
+const description = "Jasa share TikTok aktif dan real untuk melipatgandakan jangkauan video Anda. Beli share TikTok premium terpercaya agar konten cepat tembus FYP sekarang.";
+
+// Kata kunci FOKUS 100% pada Share TikTok
+const keywords = "jasa share tiktok, beli share tiktok, tambah share tiktok, share tiktok aktif, share tiktok murah, penambah share tiktok, fyp tiktok, jasa share video tiktok, layanan share tiktok, share tiktok aktif, jasa tambah share tiktok";
+
+// ==========================================
+// 3. DATA KONTEN KHUSUS SHARE TIKTOK
+// ==========================================
+
+const dataHero = {
+  tipe: "service" as const,
+  labelTeks: "Layanan TikTok Premium",
+  labelIcon: "lucide:share-2",
+  judulUtama: 'Jasa <span class="text-fuchsia-500">Share TikTok</span> <br class="hidden md:block"/> Lipatgandakan Jangkauan',
+  deskripsi: "Berikan sinyal terkuat pada algoritma! Layanan jasa share TikTok kami siap melipatgandakan potensi distribusi video Anda agar lebih cepat direkomendasikan secara luas. Prosesnya murni melalui sistem eksternal sehingga privasi brand Anda aman sepenuhnya. <br class='hidden md:block mt-2' /> <span class='text-fuchsia-400 font-semibold block mt-4'>✓ Sinyal Algoritma Kuat &nbsp; ✓ Tanpa Kredensial Internal &nbsp; ✓ Eksekusi Cepat</span>",
+  teksTombol1: "Lihat Paket Layanan",
+  linkTombol1: "#harga-paket",
+  teksTombol2: "Konsultasi Strategi",
+  linkTombol2: "https://wa.me/6289634740308",
+  gambarHero: "/image/hero-tiktok.png" 
+};
+
+const dataMasalah = {
+  judulUtama: 'Masalah Saat Video TikTok <span class="text-fuchsia-500">Minim Share</span>',
+  deskripsiUtama: "View sudah lumayan, tapi jangkauan video mendadak terhenti? Dalam ekosistem TikTok, minimnya angka share (bagikan) akan memunculkan beberapa hambatan distribusi:",
+  ms1Teks: '<strong class="text-fuchsia-500 font-bold">Terhenti di Audiens Kecil:</strong> Tanpa ada yang membagikan video Anda, konten tersebut hanya berputar di lingkaran pengikut dan audiens awal saja.',
+  ms2Teks: '<strong class="text-fuchsia-500 font-bold">Dilewati Algoritma FYP:</strong> Sistem menilai metrik "Share" sebagai tanda bahwa video Anda sangat bernilai. Jika angkanya nol, sistem enggan mendorong video Anda lebih jauh.',
+  ms3Teks: '<strong class="text-fuchsia-500 font-bold">Kehilangan Potensi Viral:</strong> Efek bola salju (snowball effect) yang menciptakan keviralan berawal dari tingginya aktivitas berbagi ke platform lain.',
+  ms4Teks: '<strong class="text-fuchsia-500 font-bold">Konversi Promosi Tertahan:</strong> Video edukasi produk atau keranjang kuning yang tidak dibagikan akan kehilangan peluang menjaring calon pelanggan potensial baru.'
+};
+
+const dataApaItu = {
+  judulUtama: 'Solusi Jitu: Beli Share <span class="text-fuchsia-500">TikTok</span>',
+  deskripsiUtama: "Ini adalah strategi akselerasi paling cerdas untuk memancing sistem rekomendasi agar mendistribusikan video Anda ke beranda yang lebih luas.",
+  k1Judul: "Injeksi Sinyal Prioritas",
+  k1Teks: "Kami mendistribusikan angka share secara masif, memaksa algoritma melihat bahwa konten Anda sedang menjadi tren dan pantas untuk diekspos.",
+  k2Judul: "Privasi Sistem Eksternal",
+  k2Teks: "Layanan optimasi sebaran kami diproses secara tertutup dari luar jaringan. Anda cukup mengirimkan tautan video tanpa mengorbankan keamanan data."
+};
+
+const dataManfaat = {
+  judulUtama: 'Keuntungan Keren Tambah Share <span class="text-fuchsia-500">TikTok</span>',
+  deskripsiUtama: "Memaksimalkan angka share video adalah taktik tingkat lanjut untuk mendominasi distribusi fyp tiktok di tengah persaingan konten.",
+  m1Judul: "Efek Bola Salju Maksimal",
+  m1Teks: "Semakin banyak metrik share yang tercatat, semakin luas video Anda diputar oleh sistem, memicu datangnya penonton organik secara eksponensial.",
+  m2Judul: "Status Konten Bernilai",
+  m2Teks: "Video promosi produk dengan jumlah share yang tinggi secara otomatis dipersepsikan audiens sebagai konten yang bermanfaat dan layak ditonton hingga akhir.",
+  m3Judul: "Peluang Masuk FYP Terbuka Lebar",
+  m3Teks: "Dibandingkan like atau komen, aktivitas membagikan konten memiliki bobot tertinggi di mata sistem kurasi TikTok saat ini.",
+  m4Judul: "Menghemat Anggaran Iklan",
+  m4Teks: "Ciptakan daya dorong algoritma organik tanpa harus terus-menerus membakar anggaran iklan yang mahal. Serahkan pada sistem injeksi rapi kami."
+};
+
+const dataMengapaMemilih = {
+  judulUtama: 'Kenapa auradigital Selalu Jadi <span class="text-violet-400">Pilihan Utama?</span>',
+  deskripsiUtama: "Kami mengutamakan standar keamanan operasional tinggi. AuraDigital adalah mitra terpercaya untuk urusan eskalasi algoritma dengan kualitas premium.",
+  mk1Judul: "Privasi Dijaga Ketat",
+  mk1Teks: "Kami memproses segala pesanan secara eksternal. Privasi klien adalah prioritas utama tanpa pernah menyentuh kredensial login profil Anda.",
+  mk2Judul: "Sebaran Terstruktur Natural",
+  mk2Teks: "Layanan beli share tiktok di AuraDigital mengatur ritme masuknya data bagikan dengan sangat wajar demi kelancaran algoritma akun Anda.",
+  mk3Judul: "Infrastruktur Bersih",
+  mk3Teks: "Tenang saja, setiap eskalasi dilakukan menggunakan jaringan berkualitas, sehingga akun terhindar dari teguran sistem (shadowban).",
+  mk4Judul: "Pakar Algoritma Distribusi",
+  mk4Teks: "Tim teknis kami rutin memantau pembaruan fyp tiktok, memastikan layanan share berjalan sesuai dengan standar kurasi terbaru.",
+  mk5Judul: "Garansi Integritas Data",
+  mk5Teks: "Kami menjamin angka share yang ditambahkan akan menempel kuat dan terbaca dengan sempurna pada statistik video Anda.",
+  mk6Judul: "Layanan Komunikatif 24/7",
+  mk6Teks: "CS kami selalu responsif. Anda dapat merencanakan jadwal distribusi share untuk video peluncuran produk baru Anda kapan saja."
+};
+
+const dataSolusi = {
+  judulUtama: 'Cara Aman & Rapi Tambah <span class="text-fuchsia-500">Share Video</span>',
+  deskripsiUtama: "Proses pengerjaan dikonfigurasi melalui sistem agar tampak wajar dan menghasilkan dampak grafik distribusi yang maksimal.",
+  sol1Icon: "lucide:share-2",
+  sol1Judul: "Distribusi Terarah",
+  sol1Teks: "Kami mengarahkan aliran metrik bagikan langsung ke tautan video spesifik yang Anda pilih untuk meningkatkan visibilitasnya seketika.",
+  sol2Icon: "lucide:shield-check",
+  sol2Judul: "Tanpa Akses Internal",
+  sol2Teks: "Cukup publikasikan konten Anda, kirimkan tautannya kepada admin kami, dan jaringan sistem kami akan bekerja di belakang layar.",
+  sol3Icon: "lucide:timer",
+  sol3Judul: "Ritme Mengalir Alami",
+  sol3Teks: "Kecepatan eksekusi diatur agar terkesan mengalir alami, memicu persepsi sistem bahwa video tersebut sedang banyak di-*forward* oleh publik."
+};
+
+const dataCaraOrder = {
+  judulUtama: 'Tiga Langkah Gampang Order <span class="text-violet-400">Jasa Share</span>',
+  deskripsiUtama: "Hanya butuh waktu singkat untuk memberikan sinyal kuat ke sistem algoritma melalui konten jagoan Anda.",
+  co1Judul: "Tentukan Angka Target",
+  co1Teks: "Pilih paket investasi jumlah share yang paling pas untuk mendongkrak visibilitas video promosi atau keranjang kuning Anda.",
+  co2Judul: "Hubungi Admin via WA",
+  co2Teks: "Klik tombol pesan, sapa staf ahli kami, dan informasikan paket layanan optimasi sebaran yang ingin segera dieksekusi.",
+  co3Judul: "Kirim Link & Pantau",
+  co3Teks: "Kirim tautan video Anda (pastikan akun bersifat publik). Setelah administrasi beres, sistem kami akan langsung mendistribusikan share!"
+};
+
+const dataHargaPaket = {
+  judulHarga: "Penawaran Investasi Share Video",
+  deskripsiHarga: "Opsi harga eksklusif untuk menciptakan sinyal viralitas instan pada setiap konten video TikTok Anda.",
+
+  // Paket Kiri (100 Share) - HARGA DUMMY (Silakan diganti)
+  p1Gambar: "/image/paket-harga-sharetiktok.png",
+  p1Nama: "100 Share TikTok",
+  p1Fitur1: "Kualitas Sebaran Rapi",
+  p1Fitur2: "Proses Eksekusi Cepat",
+  p1Fitur3: "Cukup Kirim Tautan Video",
+  p1Harga: "Rp 200.000",
+  p1Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%20100%20Share%20TikTok",
+
+  // Paket Kanan (1.000 Share) - HARGA DUMMY (Silakan diganti)
+  p2Label: "PILIHAN FAVORIT AFILIATOR",
+  p2Gambar: "/image/paket-harga-sharetiktok.png",
+  p2Nama: "1.000 Share TikTok",
+  p2Fitur1: "Sinyal Kuat Algoritma FYP",
+  p2Fitur2: "Meningkatkan Jangkauan Luas",
+  p2Fitur3: "Prioritas Layanan Eksekusi",
+  p2Harga: "Rp 2.000.000",
+  p2Link: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital%2C%20saya%20berminat%20dengan%20layanan%201.000%20Share%20TikTok" 
+};
+
+const dataFaq = {
+  judulUtama: 'Tanya Jawab Seputar <span class="text-fuchsia-500">Layanan Share</span>',
+  deskripsiUtama: "Masih penasaran bagaimana metrik sebaran ini bekerja? Berikut adalah jawaban santai atas hal-hal yang sering ditanyakan klien kami.",
+  linkWhatsapp: "https://wa.me/6289634740308?text=Halo%20Tim%20AuraDigital,%20saya%20mau%20tanya-tanya%20dulu%20soal%20Jasa%20Share%20TikTok",
+  faq1Judul: "Apakah menambah angka share ini aman untuk profil jualan?",
+  faq1Teks: "Super aman Kak! Proses kerja kami beroperasi murni melalui sistem luar tanpa meminta kredensial Anda. Algoritma akan membacanya sebagai antusiasme publik yang wajar.",
+  faq2Judul: "Akunnya wajib di-setting Publik juga ya?",
+  faq2Teks: "Iya, wajib banget Kak. Jika akun terkunci (Private), jaringan sistem kami otomatis tidak dapat memproses tautan video Anda untuk didistribusikan.",
+  faq3Judul: "Bisa untuk mengoptimasi video live atau keranjang kuning?",
+  faq3Teks: "Sangat disarankan! Menambah metrik share pada video promosi keranjang kuning akan memperbesar peluang penyebarannya kepada calon pembeli baru.",
+  faq4Judul: "Apakah metrik share ini bisa tiba-tiba menurun?",
+  faq4Teks: "Sama seperti tayangan (view), angka share yang sudah terinjeksi ke dalam sistem pencatatan TikTok umumnya bersifat sangat stabil dan melekat erat pada video.",
+  faq5Judul: "Berapa lama proses masuknya setelah administrasi beres?",
+  faq5Teks: "Begitu order diverifikasi melalui WA, tautan Anda akan dimasukkan ke dalam antrean penjadwalan. Prosesnya diatur agar mengalir natural menyesuaikan algoritma keamanan.",
+  faq6Judul: "Mengapa share lebih penting dari like untuk masuk FYP?",
+  faq6Teks: "Bagi sistem TikTok, aktivitas pengguna yang repot-repot membagikan video ke luar aplikasi menandakan bahwa konten tersebut sangat menghibur atau informatif, sehingga layak diprioritaskan."
+};
+---
+
+<DefaultLayout title={title} description={description} keywords={keywords}>
+
+<Fragment slot="head">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "Jasa Share TikTok Aktif & Real",
+    "image": "https://auradigital.id/image/paket-harga-sharetiktok.png",
+    "description": "Layanan optimasi jasa share tiktok premium untuk memberikan sinyal kuat ke algoritma FYP dan memperluas distribusi konten.",
+    "brand": {
+      "@type": "Brand",
+      "name": "auradigital"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "812"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "200000",
+      "highPrice": "2000000",
+      "priceCurrency": "IDR",
+      "offerCount": "2"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Beranda",
+        "item": "https://auradigital.id/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Layanan",
+        "item": "https://auradigital.id/layanan/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Jasa Share TikTok"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Apakah menambah angka share ini aman untuk profil jualan?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Super aman Kak! Proses kerja kami beroperasi murni melalui sistem luar tanpa meminta kredensial Anda. Algoritma akan membacanya sebagai antusiasme publik yang wajar."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Apakah metrik share ini bisa tiba-tiba menurun?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sama seperti tayangan (view), angka share yang sudah terinjeksi ke dalam sistem pencatatan TikTok umumnya bersifat sangat stabil dan melekat erat pada video."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Bisa untuk mengoptimasi video live atau keranjang kuning?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sangat disarankan! Menambah metrik share pada video promosi keranjang kuning akan memperbesar peluang penyebarannya kepada calon pembeli baru."
+        }
+      }
+    ]
+  }
+]
+</script>
+</Fragment>
+
+  <Hero {...dataHero} />
+
+  <MasalahClient {...dataMasalah} />
+
+  <ApaItuauradigital {...dataApaItu} />
+
+  <Manfaatauradigital {...dataManfaat} />
+
+  <MengapaMemilihauradigital {...dataMengapaMemilih} />
+
+  <Solusi {...dataSolusi} />
+
+  <CaraOrder {...dataCaraOrder} />
+
+  <DaftarHarga />
+
+  <HargaPaket {...dataHargaPaket} />
+
+  <Testimonials />
+
+  <MetodePembayaran />
+
+  <Faqauradigital {...dataFaq} />
+
+</DefaultLayout>
